@@ -1,0 +1,1602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colour Tribe — Full Website Build Roadmap</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=JetBrains+Mono:wght@400;600&family=Inter:wght@300;400;500;600&display=swap');
+
+  :root {
+    --navy: #0f1b2d;
+    --gold: #c9a84c;
+    --gold-light: #f0d080;
+    --cream: #f5f0e8;
+    --white: #ffffff;
+    --slate: #1e2d42;
+    --accent: #e05a2b;
+    --green: #2a7a4b;
+    --text: #1a1a2e;
+    --muted: #6b7280;
+    --border: #e2d9c8;
+    --code-bg: #0d1117;
+    --tag-blue: #1e3a5f;
+    --tag-green: #1a3d2b;
+    --tag-orange: #3d1f0a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--navy);
+    color: var(--white);
+    padding: 80px 60px 60px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%);
+  }
+  .cover-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 40px;
+  }
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 54px;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .cover h1 span { color: var(--gold); }
+  .cover-sub {
+    font-size: 18px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+    max-width: 640px;
+    margin-bottom: 50px;
+  }
+  .cover-meta {
+    display: flex; gap: 40px; flex-wrap: wrap;
+  }
+  .cover-meta-item { display: flex; flex-direction: column; gap: 4px; }
+  .cover-meta-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); }
+  .cover-meta-value { font-size: 14px; color: rgba(255,255,255,0.8); font-family: 'JetBrains Mono'; }
+  .cover-line {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--accent), var(--gold));
+  }
+
+  /* ── LAYOUT ── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+
+  /* ── TOC ── */
+  .toc { background: var(--navy); padding: 50px 60px; color: var(--white); }
+  .toc h2 { font-family: 'Playfair Display', serif; font-size: 28px; color: var(--gold); margin-bottom: 30px; }
+  .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 60px; }
+  .toc-item { display: flex; align-items: baseline; gap: 10px; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .toc-num { font-family: 'JetBrains Mono'; font-size: 11px; color: var(--gold); min-width: 24px; }
+  .toc-title { font-size: 13px; color: rgba(255,255,255,0.75); }
+
+  /* ── SECTION ── */
+  .section {
+    padding: 60px 60px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:nth-child(even) { background: #faf7f2; }
+
+  .section-header {
+    display: flex; align-items: flex-start; gap: 20px; margin-bottom: 36px;
+  }
+  .section-num {
+    font-family: 'JetBrains Mono'; font-size: 11px;
+    background: var(--navy); color: var(--gold);
+    padding: 4px 10px; border-radius: 4px; margin-top: 6px; white-space: nowrap;
+  }
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px; font-weight: 700;
+    line-height: 1.15;
+  }
+  .section h2 span { color: var(--gold); }
+
+  .section-intro {
+    font-size: 15px; color: var(--muted); max-width: 720px;
+    margin-bottom: 36px; line-height: 1.8;
+  }
+
+  /* ── SUBSECTION ── */
+  .sub { margin: 30px 0 20px; }
+  .sub h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px; font-weight: 700;
+    border-left: 3px solid var(--gold);
+    padding-left: 14px; margin-bottom: 14px;
+  }
+  .sub h4 {
+    font-size: 14px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--navy); margin: 20px 0 8px;
+  }
+
+  /* ── CARDS ── */
+  .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin: 20px 0; }
+  .card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 10px; padding: 22px 24px;
+    border-top: 3px solid var(--gold);
+  }
+  .card-icon { font-size: 24px; margin-bottom: 10px; }
+  .card h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--navy); }
+  .card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+  /* ── PAGE SPEC ── */
+  .page-spec {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 12px; margin: 20px 0; overflow: hidden;
+  }
+  .page-spec-header {
+    background: var(--navy); color: var(--white);
+    padding: 16px 24px; display: flex; align-items: center; gap: 14px;
+  }
+  .page-spec-header .route {
+    font-family: 'JetBrains Mono'; font-size: 12px; color: var(--gold);
+    background: rgba(201,168,76,0.15); padding: 3px 10px; border-radius: 4px;
+  }
+  .page-spec-header h4 { font-size: 15px; font-weight: 600; }
+  .page-spec-body { padding: 20px 24px; }
+
+  /* ── ANIM SPEC ── */
+  .anim-block {
+    background: #f0f4ff; border-left: 4px solid #3b82f6;
+    border-radius: 0 8px 8px 0; padding: 14px 18px; margin: 12px 0;
+  }
+  .anim-block .label {
+    font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+    color: #3b82f6; font-weight: 700; margin-bottom: 6px;
+  }
+  .anim-block p { font-size: 13px; color: var(--text); line-height: 1.6; }
+
+  /* ── CODE ── */
+  .code-block {
+    background: var(--code-bg); border-radius: 8px;
+    padding: 20px 24px; margin: 16px 0; overflow-x: auto;
+  }
+  .code-block pre {
+    font-family: 'JetBrains Mono'; font-size: 12.5px;
+    color: #e2e8f0; line-height: 1.7; white-space: pre-wrap;
+  }
+  .code-block .cm { color: #6a9955; }
+  .code-block .ck { color: #569cd6; }
+  .code-block .cs { color: #ce9178; }
+  .code-block .cn { color: #4ec9b0; }
+  .code-block .cp { color: #c586c0; }
+
+  /* ── LIST ── */
+  ul.spec-list { list-style: none; padding: 0; }
+  ul.spec-list li {
+    padding: 8px 0 8px 20px; position: relative;
+    font-size: 13.5px; border-bottom: 1px solid var(--border);
+    line-height: 1.6;
+  }
+  ul.spec-list li:last-child { border-bottom: none; }
+  ul.spec-list li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--gold); font-weight: 700;
+  }
+
+  ol.phase-list { padding-left: 20px; }
+  ol.phase-list li { padding: 6px 0; font-size: 13.5px; }
+  ol.phase-list li strong { color: var(--navy); }
+
+  /* ── TAGS ── */
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+  .tag {
+    font-family: 'JetBrains Mono'; font-size: 11px;
+    padding: 3px 10px; border-radius: 4px;
+  }
+  .tag.blue { background: #dbeafe; color: #1e40af; }
+  .tag.green { background: #d1fae5; color: #065f46; }
+  .tag.orange { background: #ffedd5; color: #9a3412; }
+  .tag.purple { background: #ede9fe; color: #5b21b6; }
+  .tag.dark { background: var(--navy); color: var(--gold); }
+
+  /* ── FIREBASE TREE ── */
+  .tree {
+    background: var(--code-bg); border-radius: 10px;
+    padding: 24px 28px; margin: 16px 0;
+    font-family: 'JetBrains Mono'; font-size: 12.5px;
+    color: #e2e8f0; line-height: 1.9;
+  }
+  .tree .t-key { color: #9cdcfe; }
+  .tree .t-type { color: #4ec9b0; }
+  .tree .t-val { color: #ce9178; }
+  .tree .t-comment { color: #6a9955; }
+
+  /* ── ANIMATION TABLE ── */
+  .anim-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+  .anim-table th {
+    background: var(--navy); color: var(--gold);
+    padding: 10px 14px; text-align: left; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 1.5px;
+  }
+  .anim-table td {
+    padding: 10px 14px; border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .anim-table tr:nth-child(even) td { background: #faf7f2; }
+  .anim-table code {
+    font-family: 'JetBrains Mono'; font-size: 11.5px;
+    background: #e8e4de; padding: 1px 6px; border-radius: 3px;
+  }
+
+  /* ── CALLOUT ── */
+  .callout {
+    border-radius: 10px; padding: 18px 22px; margin: 20px 0;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .callout.warn { background: #fef3c7; border-left: 4px solid #d97706; }
+  .callout.info { background: #dbeafe; border-left: 4px solid #2563eb; }
+  .callout.success { background: #d1fae5; border-left: 4px solid #059669; }
+  .callout-icon { font-size: 20px; margin-top: 2px; }
+  .callout-body { font-size: 13.5px; line-height: 1.7; }
+  .callout-body strong { display: block; margin-bottom: 4px; font-size: 14px; }
+
+  /* ── COMPONENT SPEC ── */
+  .comp-spec {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0;
+  }
+  .comp-box {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 18px 20px;
+  }
+  .comp-box h5 {
+    font-family: 'JetBrains Mono'; font-size: 12px;
+    color: var(--accent); margin-bottom: 10px;
+  }
+  .comp-box ul { list-style: disc; padding-left: 18px; }
+  .comp-box ul li { font-size: 12.5px; color: var(--muted); padding: 2px 0; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin: 30px 0;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy); color: rgba(255,255,255,0.5);
+    text-align: center; padding: 30px;
+    font-size: 12px; font-family: 'JetBrains Mono';
+  }
+  footer span { color: var(--gold); }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════ COVER -->
+<div class="cover">
+  <div class="cover-logo">◈ Colour Tribe — Build Roadmap Document</div>
+  <h1>Full-Stack<br><span>Website Build</span><br>Specification</h1>
+  <p class="cover-sub">A complete, developer-ready blueprint for building the Colour Tribe B2B hospitality uniform e-catalogue with quote engine, Firebase backend, animated homepage, and admin panel.</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item"><span class="cover-meta-label">Stack</span><span class="cover-meta-value">React 18 + Vite + Firebase</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">Styling</span><span class="cover-meta-value">Tailwind CSS + Framer Motion</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">DB</span><span class="cover-meta-value">Firestore + Storage</span></div>
+    <div class="cover-meta-item"><span class="cover-meta-label">Version</span><span class="cover-meta-value">v1.0 — Full Spec</span></div>
+  </div>
+  <div class="cover-line"></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ TOC -->
+<div class="toc">
+  <h2>Table of Contents</h2>
+  <div class="toc-grid">
+    <div class="toc-item"><span class="toc-num">01</span><span class="toc-title">Tech Stack & Project Setup</span></div>
+    <div class="toc-item"><span class="toc-num">09</span><span class="toc-title">Product Catalogue Page</span></div>
+    <div class="toc-item"><span class="toc-num">02</span><span class="toc-title">Firebase Database Structure</span></div>
+    <div class="toc-item"><span class="toc-num">10</span><span class="toc-title">Product Detail Page</span></div>
+    <div class="toc-item"><span class="toc-num">03</span><span class="toc-title">Folder & File Structure</span></div>
+    <div class="toc-item"><span class="toc-num">11</span><span class="toc-title">Quote Builder & Cart System</span></div>
+    <div class="toc-item"><span class="toc-num">04</span><span class="toc-title">Lead Capture Modal (Entry Form)</span></div>
+    <div class="toc-item"><span class="toc-num">12</span><span class="toc-title">Admin Panel — Full Spec</span></div>
+    <div class="toc-item"><span class="toc-num">05</span><span class="toc-title">Homepage — Sections & Animations</span></div>
+    <div class="toc-item"><span class="toc-num">13</span><span class="toc-title">SEO Strategy</span></div>
+    <div class="toc-item"><span class="toc-num">06</span><span class="toc-title">Navbar & Global Components</span></div>
+    <div class="toc-item"><span class="toc-num">14</span><span class="toc-title">Animation Master Reference</span></div>
+    <div class="toc-item"><span class="toc-num">07</span><span class="toc-title">Category Data Reference</span></div>
+    <div class="toc-item"><span class="toc-num">15</span><span class="toc-title">Deployment & Performance</span></div>
+    <div class="toc-item"><span class="toc-num">08</span><span class="toc-title">About & Contact Pages</span></div>
+    <div class="toc-item"><span class="toc-num">16</span><span class="toc-title">Build Phases & Timeline</span></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 01 TECH STACK -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">01</div>
+    <h2>Tech Stack &amp; <span>Project Setup</span></h2>
+  </div>
+  <p class="section-intro">Every library chosen for a specific reason — performance, animation quality, or DX. No over-engineering.</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h4>React 18 + Vite</h4>
+      <p>Lightning fast HMR during dev. SWC transpiler. Tree-shaking for production. Code-splitting per route via React.lazy().</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎨</div>
+      <h4>Tailwind CSS v3</h4>
+      <p>Utility-first CSS with custom config for brand colors (navy, gold, cream). JIT mode. No unused CSS in prod.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🎭</div>
+      <h4>Framer Motion v11</h4>
+      <p>All entrance animations, scroll reveals, page transitions, hover states, and the homepage particle / cloth simulations.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔥</div>
+      <h4>Firebase v10</h4>
+      <p>Firestore for data, Storage for images, Auth for admin login, Hosting for deployment, Functions for quote emails.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🗺️</div>
+      <h4>React Router v6</h4>
+      <p>File-based routing pattern. Nested routes for admin. Lazy-loaded pages. Scroll restoration on route change.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📦</div>
+      <h4>Zustand</h4>
+      <p>Lightweight global state for quote cart, lead info, UI state. No Redux overhead. Persisted to localStorage.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📋</div>
+      <h4>React Hook Form + Zod</h4>
+      <p>All forms (lead modal, quote request, contact). Type-safe validation with Zod schemas. No controlled-input re-renders.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🖼️</div>
+      <h4>Three.js (R3F)</h4>
+      <p>For the homepage 3D rotating fabric/cloth mesh background effect. React Three Fiber wrapper for clean integration.</p>
+    </div>
+  </div>
+
+  <div class="sub">
+    <h3>Vite Config & Tailwind Setup</h3>
+    <div class="code-block"><pre><span class="cm">// tailwind.config.js</span>
+module.exports = {
+  content: ['./index.html', './src/**/*.{js,jsx,ts,tsx}'],
+  theme: {
+    extend: {
+      colors: {
+        navy:  { DEFAULT: '#0f1b2d', light: '#1e2d42' },
+        gold:  { DEFAULT: '#c9a84c', light: '#f0d080', dark: '#9a7a2a' },
+        cream: { DEFAULT: '#f5f0e8', dark: '#e8e0d0' },
+        brand: { accent: '#e05a2b', green: '#2a7a4b' }
+      },
+      fontFamily: {
+        display: ['"Playfair Display"', 'serif'],
+        mono:    ['"JetBrains Mono"', 'monospace'],
+        body:    ['"Inter"', 'sans-serif'],
+      },
+      animation: {
+        'float': 'float 6s ease-in-out infinite',
+        'shimmer': 'shimmer 2s linear infinite',
+        'marquee': 'marquee 25s linear infinite',
+      }
+    }
+  }
+}</pre></div>
+  </div>
+
+  <div class="sub">
+    <h3>Dependencies (package.json)</h3>
+    <div class="tags">
+      <span class="tag dark">react@18</span>
+      <span class="tag dark">react-dom@18</span>
+      <span class="tag dark">vite@5</span>
+      <span class="tag dark">framer-motion@11</span>
+      <span class="tag dark">firebase@10</span>
+      <span class="tag dark">react-router-dom@6</span>
+      <span class="tag dark">zustand@4</span>
+      <span class="tag dark">react-hook-form@7</span>
+      <span class="tag dark">zod@3</span>
+      <span class="tag dark">@react-three/fiber</span>
+      <span class="tag dark">@react-three/drei</span>
+      <span class="tag dark">three@0.165</span>
+      <span class="tag dark">lucide-react</span>
+      <span class="tag dark">react-hot-toast</span>
+      <span class="tag dark">@tanstack/react-query</span>
+      <span class="tag dark">react-intersection-observer</span>
+      <span class="tag dark">lottie-react</span>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 02 FIREBASE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">02</div>
+    <h2>Firebase <span>Database Structure</span></h2>
+  </div>
+  <p class="section-intro">Firestore NoSQL structure optimised for the product catalogue, quote system, and admin operations. Every collection and field defined.</p>
+
+  <div class="sub">
+    <h3>Firestore Collections</h3>
+    <div class="tree">
+<span class="t-comment">// ── Firestore Root Collections ──────────────────────</span>
+
+<span class="t-key">categories</span>/
+  <span class="t-key">{categoryId}</span>/
+    <span class="t-key">name</span>:         <span class="t-type">string</span>   <span class="t-comment">// "Men Formal Suit / Western Wear"</span>
+    <span class="t-key">slug</span>:         <span class="t-type">string</span>   <span class="t-comment">// "men-formal-suit"</span>
+    <span class="t-key">icon</span>:         <span class="t-type">string</span>   <span class="t-comment">// emoji or icon name</span>
+    <span class="t-key">coverImage</span>:   <span class="t-type">string</span>   <span class="t-comment">// Firebase Storage URL</span>
+    <span class="t-key">description</span>:  <span class="t-type">string</span>
+    <span class="t-key">order</span>:        <span class="t-type">number</span>   <span class="t-comment">// for sorting in UI</span>
+    <span class="t-key">productCount</span>: <span class="t-type">number</span>   <span class="t-comment">// denormalized count</span>
+    <span class="t-key">createdAt</span>:    <span class="t-type">timestamp</span>
+
+<span class="t-key">products</span>/
+  <span class="t-key">{productId}</span>/
+    <span class="t-key">sku</span>:          <span class="t-type">string</span>   <span class="t-comment">// "HO-01", "KT-24", "BJ-03"</span>
+    <span class="t-key">name</span>:         <span class="t-type">string</span>   <span class="t-comment">// "Blazer and Trouser HO-01"</span>
+    <span class="t-key">categoryId</span>:   <span class="t-type">string</span>   <span class="t-comment">// ref to categories doc</span>
+    <span class="t-key">categoryName</span>: <span class="t-type">string</span>   <span class="t-comment">// denormalized</span>
+    <span class="t-key">basePrice</span>:    <span class="t-type">number</span>   <span class="t-comment">// Rs. 2588 — single unit price</span>
+    <span class="t-key">bulkPricing</span>:  <span class="t-type">array</span>    <span class="t-comment">// [ {minQty:10, price:2400}, {minQty:50, price:2200}, ... ]</span>
+    <span class="t-key">images</span>:       <span class="t-type">array</span>    <span class="t-comment">// [ {url, isPrimary} ] — Storage URLs</span>
+    <span class="t-key">description</span>:  <span class="t-type">string</span>
+    <span class="t-key">tags</span>:         <span class="t-type">array</span>    <span class="t-comment">// ["formal", "blazer", "corporate"]</span>
+    <span class="t-key">fabric</span>:       <span class="t-type">string</span>   <span class="t-comment">// "Poly-Viscose", "Cotton", etc.</span>
+    <span class="t-key">colors</span>:       <span class="t-type">array</span>    <span class="t-comment">// ["Navy", "Black", "Grey"]</span>
+    <span class="t-key">sizes</span>:        <span class="t-type">array</span>    <span class="t-comment">// ["XS","S","M","L","XL","XXL"]</span>
+    <span class="t-key">minOrderQty</span>:  <span class="t-type">number</span>   <span class="t-comment">// 10 (bulk supplier minimum)</span>
+    <span class="t-key">leadTimeDays</span>: <span class="t-type">number</span>   <span class="t-comment">// 7</span>
+    <span class="t-key">isActive</span>:     <span class="t-type">boolean</span>
+    <span class="t-key">isFeatured</span>:   <span class="t-type">boolean</span>
+    <span class="t-key">viewCount</span>:    <span class="t-type">number</span>
+    <span class="t-key">createdAt</span>:    <span class="t-type">timestamp</span>
+    <span class="t-key">updatedAt</span>:    <span class="t-type">timestamp</span>
+
+<span class="t-key">leads</span>/
+  <span class="t-key">{leadId}</span>/
+    <span class="t-key">name</span>:         <span class="t-type">string</span>
+    <span class="t-key">phone</span>:        <span class="t-type">string</span>
+    <span class="t-key">email</span>:        <span class="t-type">string</span>   <span class="t-comment">// optional</span>
+    <span class="t-key">businessName</span>: <span class="t-type">string</span>   <span class="t-comment">// optional</span>
+    <span class="t-key">source</span>:       <span class="t-type">string</span>   <span class="t-comment">// "modal" | "contact" | "quote"</span>
+    <span class="t-key">status</span>:       <span class="t-type">string</span>   <span class="t-comment">// "new" | "contacted" | "converted"</span>
+    <span class="t-key">createdAt</span>:    <span class="t-type">timestamp</span>
+
+<span class="t-key">quotes</span>/
+  <span class="t-key">{quoteId}</span>/
+    <span class="t-key">leadId</span>:       <span class="t-type">string</span>
+    <span class="t-key">name</span>:         <span class="t-type">string</span>
+    <span class="t-key">phone</span>:        <span class="t-type">string</span>
+    <span class="t-key">email</span>:        <span class="t-type">string</span>
+    <span class="t-key">message</span>:      <span class="t-type">string</span>
+    <span class="t-key">items</span>:        <span class="t-type">array</span>    <span class="t-comment">// [ {productId, sku, name, qty, size, color, unitPrice, lineTotal} ]</span>
+    <span class="t-key">approxTotal</span>:  <span class="t-type">number</span>   <span class="t-comment">// system-calculated estimate</span>
+    <span class="t-key">status</span>:       <span class="t-type">string</span>   <span class="t-comment">// "pending" | "reviewed" | "sent" | "won" | "lost"</span>
+    <span class="t-key">adminNote</span>:    <span class="t-type">string</span>
+    <span class="t-key">createdAt</span>:    <span class="t-type">timestamp</span>
+
+<span class="t-key">settings</span>/
+  <span class="t-key">site</span>/
+    <span class="t-key">phone</span>:        <span class="t-val">"97173 55779"</span>
+    <span class="t-key">email</span>:        <span class="t-val">"adorabletradingk08@gmail.com"</span>
+    <span class="t-key">address</span>:      <span class="t-val">"KH 58, Tigri Gol Chakkar..."</span>
+    <span class="t-key">whatsapp</span>:     <span class="t-val">"9717355779"</span>
+    <span class="t-key">instagram</span>:    <span class="t-type">string</span>
+    <span class="t-key">heroHeadline</span>: <span class="t-type">string</span>   <span class="t-comment">// editable from admin</span>
+    <span class="t-key">marqueeText</span>:  <span class="t-type">string</span>   <span class="t-comment">// scrolling ticker text</span>
+    </div>
+  </div>
+
+  <div class="sub">
+    <h3>Firebase Storage Structure</h3>
+    <div class="tree">
+<span class="t-key">gs://colourtribe-app.appspot.com/</span>
+  <span class="t-key">products/</span>
+    <span class="t-key">{categorySlug}/</span>
+      <span class="t-key">{sku}-primary.webp</span>     <span class="t-comment">// main image, max 800×900px</span>
+      <span class="t-key">{sku}-2.webp</span>            <span class="t-comment">// extra angle</span>
+  <span class="t-key">categories/</span>
+    <span class="t-key">{categorySlug}-cover.webp</span>
+  <span class="t-key">hero/</span>
+    <span class="t-key">hero-bg.webp</span>
+    <span class="t-key">hero-cloth-texture.webp</span>
+    </div>
+    <div class="callout info">
+      <span class="callout-icon">ℹ️</span>
+      <div class="callout-body"><strong>Image Optimization Rule</strong>All product images must be converted to WebP format at max 800px width before uploading. Use Sharp.js in an upload utility or Squoosh manually. Target &lt;120KB per image.</div>
+    </div>
+  </div>
+
+  <div class="sub">
+    <h3>Firestore Security Rules</h3>
+    <div class="code-block"><pre><span class="ck">rules_version</span> = <span class="cs">'2'</span>;
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    <span class="cm">// Anyone can READ products and categories</span>
+    match /products/{id} {
+      allow read: if true;
+      allow write: if request.auth != null &amp;&amp; isAdmin();
+    }
+    match /categories/{id} {
+      allow read: if true;
+      allow write: if request.auth != null &amp;&amp; isAdmin();
+    }
+
+    <span class="cm">// Anyone can CREATE leads/quotes (no auth needed)</span>
+    match /leads/{id} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null &amp;&amp; isAdmin();
+    }
+    match /quotes/{id} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null &amp;&amp; isAdmin();
+    }
+
+    <span class="cm">// Only admin reads settings</span>
+    match /settings/{id} {
+      allow read: if true;
+      allow write: if request.auth != null &amp;&amp; isAdmin();
+    }
+
+    function isAdmin() {
+      return request.auth.token.admin == true;
+    }
+  }
+}</pre></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 03 FOLDER STRUCTURE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">03</div>
+    <h2>Folder &amp; <span>File Structure</span></h2>
+  </div>
+  <div class="tree">
+<span class="t-key">colourtribe/</span>
+├── <span class="t-key">public/</span>
+│   ├── favicon.ico
+│   ├── og-image.jpg               <span class="t-comment">// 1200×630 for social sharing</span>
+│   └── robots.txt
+├── <span class="t-key">src/</span>
+│   ├── <span class="t-key">assets/</span>
+│   │   ├── fonts/
+│   │   ├── lottie/                <span class="t-comment">// JSON animation files</span>
+│   │   └── svg/                   <span class="t-comment">// logo, icons as SVG</span>
+│   ├── <span class="t-key">components/</span>
+│   │   ├── <span class="t-key">ui/</span>               <span class="t-comment">// Button, Badge, Modal, Spinner, Toast</span>
+│   │   ├── <span class="t-key">layout/</span>           <span class="t-comment">// Navbar, Footer, PageWrapper</span>
+│   │   ├── <span class="t-key">homepage/</span>         <span class="t-comment">// HeroSection, CategoriesGrid, Stats, Marquee...</span>
+│   │   ├── <span class="t-key">catalogue/</span>        <span class="t-comment">// ProductCard, CategoryFilter, SearchBar, SortBar</span>
+│   │   ├── <span class="t-key">product/</span>          <span class="t-comment">// ImageGallery, PriceTable, QuoteAdder, ColorPicker</span>
+│   │   ├── <span class="t-key">quote/</span>            <span class="t-comment">// QuoteDrawer, QuoteItem, QuoteForm, QuoteSummary</span>
+│   │   └── <span class="t-key">admin/</span>            <span class="t-comment">// AdminNav, ProductForm, LeadsTable, QuotesTable</span>
+│   ├── <span class="t-key">pages/</span>
+│   │   ├── HomePage.jsx
+│   │   ├── CataloguePage.jsx      <span class="t-comment">// /catalogue</span>
+│   │   ├── CategoryPage.jsx       <span class="t-comment">// /catalogue/:categorySlug</span>
+│   │   ├── ProductPage.jsx        <span class="t-comment">// /product/:sku</span>
+│   │   ├── QuotePage.jsx          <span class="t-comment">// /get-quote</span>
+│   │   ├── AboutPage.jsx
+│   │   ├── ContactPage.jsx
+│   │   └── <span class="t-key">admin/</span>
+│   │       ├── AdminLoginPage.jsx
+│   │       ├── AdminDashboard.jsx
+│   │       ├── AdminProducts.jsx
+│   │       ├── AdminProductForm.jsx
+│   │       ├── AdminCategories.jsx
+│   │       ├── AdminLeads.jsx
+│   │       └── AdminQuotes.jsx
+│   ├── <span class="t-key">hooks/</span>
+│   │   ├── useProducts.js         <span class="t-comment">// React Query + Firestore</span>
+│   │   ├── useCategories.js
+│   │   ├── useQuoteCart.js        <span class="t-comment">// Zustand store hook</span>
+│   │   ├── useLeadModal.js
+│   │   └── useAdmin.js
+│   ├── <span class="t-key">store/</span>
+│   │   ├── quoteStore.js          <span class="t-comment">// Zustand — quote cart items</span>
+│   │   ├── leadStore.js           <span class="t-comment">// Zustand — captured lead info</span>
+│   │   └── uiStore.js             <span class="t-comment">// Zustand — modal open states</span>
+│   ├── <span class="t-key">firebase/</span>
+│   │   ├── config.js              <span class="t-comment">// init firebase app</span>
+│   │   ├── products.js            <span class="t-comment">// CRUD helpers for products</span>
+│   │   ├── categories.js
+│   │   ├── leads.js
+│   │   ├── quotes.js
+│   │   └── storage.js             <span class="t-comment">// upload / delete image helpers</span>
+│   ├── <span class="t-key">utils/</span>
+│   │   ├── priceCalc.js           <span class="t-comment">// bulk pricing calculator</span>
+│   │   ├── seo.js                 <span class="t-comment">// dynamic meta tag setter</span>
+│   │   └── whatsapp.js            <span class="t-comment">// build WA message URL</span>
+│   ├── <span class="t-key">data/</span>
+│   │   └── categories.seed.js     <span class="t-comment">// initial seed data from catalogue</span>
+│   ├── App.jsx                    <span class="t-comment">// Router setup</span>
+│   ├── main.jsx
+│   └── index.css
+├── .env.local                     <span class="t-comment">// Firebase keys</span>
+├── tailwind.config.js
+├── vite.config.js
+└── package.json
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 04 LEAD MODAL -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">04</div>
+    <h2>Lead Capture <span>Entry Modal</span></h2>
+  </div>
+  <p class="section-intro">The first thing a visitor sees. A visually beautiful, non-intrusive full-screen overlay that captures Name + Phone before they browse. Shows once per session (sessionStorage flag). After submit, data goes to Firestore /leads and the modal closes.</p>
+
+  <div class="sub">
+    <h3>Visual Design Spec</h3>
+    <ul class="spec-list">
+      <li><strong>Backdrop:</strong> Navy (#0f1b2d) with 0.92 opacity blur backdrop. A subtle animated gold particle dust floats behind the modal box (canvas-based, 30 particles).</li>
+      <li><strong>Modal Box:</strong> White card, 480px wide, centered, border-radius 16px. Top accent bar: 4px gradient (gold → orange → gold). Subtle drop shadow: 0 25px 60px rgba(0,0,0,0.4).</li>
+      <li><strong>Logo:</strong> Colour Tribe logo SVG at top-center, 64px tall, with a slow spin entrance animation (rotateY 0°→360° once, 0.8s).</li>
+      <li><strong>Headline:</strong> "Get Bulk Pricing Today" in Playfair Display 28px. Subtext: "Tell us who you are — we'll show you the right prices." 14px Inter light.</li>
+      <li><strong>Fields:</strong> Name input + Phone input. Clean floating-label style. Gold bottom border on focus. Phone field auto-prefixes "+91".</li>
+      <li><strong>CTA Button:</strong> Full-width, navy background, gold text. Hover: reverses (gold bg, navy text). Ripple click effect via Framer Motion.</li>
+      <li><strong>Skip link:</strong> "Browse without registering →" in small muted text below button. Closes modal, does NOT save lead.</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>Animation Spec</h3>
+    <div class="anim-block">
+      <div class="label">🎭 Framer Motion — Modal Entrance</div>
+      <p><strong>Backdrop:</strong> opacity 0 → 1, duration 0.3s ease. <br><strong>Modal box:</strong> scale(0.85) + y(+40px) → scale(1) + y(0), duration 0.45s, spring(stiffness:300, damping:25). <br><strong>Fields + button:</strong> staggered children fade-up, 0.08s delay each. <br><strong>Exit:</strong> scale(0.9) + opacity 0, duration 0.2s. Backdrop fades out simultaneously.</p>
+    </div>
+  </div>
+
+  <div class="sub">
+    <h3>Logic</h3>
+    <div class="code-block"><pre><span class="cm">// hooks/useLeadModal.js — simplified</span>
+<span class="ck">const</span> shouldShowModal = () => {
+  <span class="ck">const</span> seen = sessionStorage.getItem(<span class="cs">'ct_lead_captured'</span>);
+  <span class="ck">return</span> !seen;  <span class="cm">// show once per session</span>
+};
+
+<span class="ck">const</span> submitLead = async (data) => {
+  await addDoc(collection(db, <span class="cs">'leads'</span>), {
+    ...data,
+    source: <span class="cs">'modal'</span>,
+    status: <span class="cs">'new'</span>,
+    createdAt: serverTimestamp()
+  });
+  sessionStorage.setItem(<span class="cs">'ct_lead_captured'</span>, <span class="cs">'true'</span>);
+  leadStore.setState({ name: data.name, phone: data.phone });
+};</pre></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 05 HOMEPAGE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">05</div>
+    <h2>Homepage — <span>Sections &amp; Animations</span></h2>
+  </div>
+  <p class="section-intro">The homepage is the centrepiece of the visual experience. Every section has a specific animation choreography. Build top-to-bottom in this exact order.</p>
+
+  <!-- HERO -->
+  <div class="sub">
+    <h3>Section 1 — Hero</h3>
+    <div class="page-spec">
+      <div class="page-spec-header">
+        <span class="route">HeroSection.jsx</span>
+        <h4>Full Viewport Height — 3D Animated Background</h4>
+      </div>
+      <div class="page-spec-body">
+        <h4>Layout</h4>
+        <ul class="spec-list">
+          <li><strong>Background Layer (z:0):</strong> React Three Fiber canvas fills 100vw × 100vh. Scene: A large low-poly cloth/fabric mesh (PlaneGeometry 20×20, 60×60 segments) that undulates like fabric blowing in wind using a vertex shader animating Y position with sin waves. Color: dark navy (#0a1520) with gold (#c9a84c) light reflecting from one top-right point light. The mesh rotates very slowly (0.0003 rad/frame on Y axis).</li>
+          <li><strong>Gradient Overlay (z:1):</strong> Position absolute, full coverage. Linear gradient: transparent top 40% → navy bottom 100%. Creates depth so text is readable.</li>
+          <li><strong>Content (z:2):</strong> Centered flex column. Left-aligned on md+.</li>
+          <li><strong>Headline:</strong> Playfair Display, 68px desktop / 40px mobile. Line 1: "Dress Your" in white. Line 2: "Hospitality" in gold (animated character-by-character). Line 3: "in Style." in white. Total 3 lines staggered.</li>
+          <li><strong>Sub-headline:</strong> "Bulk uniform manufacturer for hotels, restaurants, events &amp; corporates across India. Minimum order: 10 pieces." — 18px Inter light, max-width 560px, color rgba(255,255,255,0.72).</li>
+          <li><strong>CTA Row:</strong> Two buttons side-by-side. "Browse Catalogue" (solid gold, navy text, arrow icon). "Get a Quote" (outline white, hover fills white).</li>
+          <li><strong>Trust badges:</strong> Below CTA — 3 badges in a row: ✦ 500+ Hotel Clients | ✦ In-House Manufacturing | ✦ Delhi NCR &amp; Pan-India Delivery</li>
+          <li><strong>Scroll indicator:</strong> Bottom-center. Animated chevron bouncing downward. Disappears after user scrolls 100px.</li>
+        </ul>
+        <div class="anim-block">
+          <div class="label">🎭 Hero Text Animation (Framer Motion)</div>
+          <p>Each word of the headline is wrapped in a &lt;motion.span&gt;. Initial: {opacity:0, y:40}. Animate: {opacity:1, y:0}. Stagger: 0.12s between words. Duration: 0.6s each. Easing: [0.22, 1, 0.36, 1] (custom cubic bezier). CTA buttons appear after all headline words complete (total ~0.8s delay).</p>
+        </div>
+        <div class="anim-block">
+          <div class="label">✨ Gold Text Shimmer Effect</div>
+          <p>"Hospitality" word has CSS animation: a repeating linear-gradient shimmer moving left-to-right every 2.5s. background: linear-gradient(90deg, #c9a84c 0%, #f0d080 50%, #c9a84c 100%). background-size: 200%. animation: shimmer 2.5s linear infinite.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="sub">
+    <h3>Section 2 — Animated Marquee Strip</h3>
+    <div class="page-spec">
+      <div class="page-spec-header">
+        <span class="route">MarqueeStrip.jsx</span>
+        <h4>Scrolling Brand Statement Ticker</h4>
+      </div>
+      <div class="page-spec-body">
+        <ul class="spec-list">
+          <li><strong>Background:</strong> Gold (#c9a84c). Height: 48px.</li>
+          <li><strong>Content:</strong> Infinite scrolling text (CSS animation, not JS). Text: "HOTELS ✦ RESTAURANTS ✦ CATERING ✦ CORPORATE ✦ SECURITY ✦ HOUSEKEEPING ✦ CHEF WEAR ✦ FRONT OFFICE ✦ BANQUETS ✦" — repeated 3× for seamless loop.</li>
+          <li><strong>Font:</strong> JetBrains Mono, 12px, uppercase, letter-spacing 3px, navy color.</li>
+          <li><strong>Animation:</strong> CSS @keyframes marquee — translateX(0%) → translateX(-50%) at linear timing, 25s duration infinite. No JS needed.</li>
+          <li><strong>Hover:</strong> Pauses animation on hover (animation-play-state: paused).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <div class="sub">
+    <h3>Section 3 — Category Showcase Grid</h3>
+    <div class="page-spec">
+      <div class="page-spec-header">
+        <span class="route">CategoriesShowcase.jsx</span>
+        <h4>Visual Category Cards — Scroll Reveal</h4>
+      </div>
+      <div class="page-spec-body">
+        <ul class="spec-list">
+          <li><strong>Section header:</strong> "Our Uniform Categories" in Playfair Display 42px. Gold underline (3px, 80px wide, centered).</li>
+          <li><strong>Grid:</strong> 4 columns desktop, 2 tablet, 1 mobile. Gap: 20px. Cards: 320px tall.</li>
+          <li><strong>Card design:</strong> Full-bleed background image (product category photo). Dark gradient overlay: transparent 30% → navy 100%. Category name in white, bottom-left, Playfair Display 20px. Item count badge: top-right, gold pill. Hover: image scales to 1.08 (overflow hidden on card), gradient lightens slightly, "Browse →" text slides up from below.</li>
+          <li><strong>Categories displayed:</strong> Men's Formal Suits, Front Office / Reception, Chef & Kitchen Wear, Security & Driver, Steward / F&B Service, Housekeeping, Doorman / Bellboy, Ladies Formal — first 8 categories as visual cards.</li>
+        </ul>
+        <div class="anim-block">
+          <div class="label">🎭 Scroll Reveal — Intersection Observer + Framer Motion</div>
+          <p>Each card uses useInView hook (threshold: 0.2). When in view: cards animate in with staggered entrance — {opacity:0, y:60, scale:0.95} → {opacity:1, y:0, scale:1}. Stagger: 0.08s. Duration: 0.55s. Spring physics. Cards in second row have +0.32s additional delay (they appear as user scrolls in, not all at once).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="sub">
+    <h3>Section 4 — Stats Counter Bar</h3>
+    <div class="page-spec">
+      <div class="page-spec-header">
+        <span class="route">StatsBar.jsx</span>
+        <h4>Animated Number Counters on Scroll</h4>
+      </div>
+      <div class="page-spec-body">
+        <ul class="spec-list">
+          <li><strong>Background:</strong> Navy (#0f1b2d). Full width, padding 60px vertical.</li>
+          <li><strong>Stats layout:</strong> 4 items in a row, centered, dividers between each.</li>
+          <li><strong>Stat items:</strong> "500+" Hotels Served | "22+" Uniform Categories | "10,000+" Pieces Delivered | "15+" Years Experience</li>
+          <li><strong>Number typography:</strong> Playfair Display, 56px, gold color. Label: 13px Inter uppercase, white 60% opacity.</li>
+          <li><strong>Animation:</strong> When scrolled into view, numbers count up from 0 to target using a custom useCountUp hook (duration: 1.8s, easing: easeOutQuart). The "+" appears as a separate span that fades in at the end.</li>
+          <li><strong>Dividers:</strong> 1px vertical lines, gold 30% opacity, height 60px.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FEATURED PRODUCTS -->
+  <div class="sub">
+    <h3>Section 5 — Featured Products Carousel</h3>
+    <div class="page-spec">
+      <div class="page-spec-header">
+        <span class="route">FeaturedProducts.jsx</span>
+        <h4>Draggable Horizontal Carousel</h4>
+      </div>
+      <div class="page-spec-body">
+        <ul class="spec-list">
+          <li><strong>Heading:</strong> "Bestselling Uniforms" with a small gold ✦ left accent.</li>
+          <li><strong>Carousel:</strong> Horizontal scroll, drag-enabled (Framer Motion drag="x"). 4 cards visible desktop, 2 tablet. Snap-to-card behavior. Previous/Next arrow buttons (left, right sides). Gradient fades on edges to hint overflow.</li>
+          <li><strong>Product Card:</strong> 260px wide. Product image (top 65%). Category badge (top-left). SKU code (JetBrains Mono, small). Product name (Playfair Display 15px). Approximate price (large gold, "from ₹2,588/pc"). "Add to Quote" button — slides up on hover. "View Details →" link.</li>
+          <li><strong>Products shown:</strong> Pull 8 documents from Firestore where isFeatured == true, ordered by viewCount desc.</li>
+        </ul>
+        <div class="anim-block">
+          <div class="label">🎭 Card Hover State Animation</div>
+          <p>On hover: whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0,0,0,0.15)" }}. The "Add to Quote" button uses AnimatePresence — initial: {y:30, opacity:0}, animate: {y:0, opacity:1} on hover, exit: {y:30, opacity:0}.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div class="sub">
+    <h3>Section 6 — How It Works</h3>
+    <div class="page-spec">
+      <div class="page-spec-header">
+        <span class="route">HowItWorks.jsx</span>
+        <h4>3-Step Process with Animated Icons</h4>
+      </div>
+      <div class="page-spec-body">
+        <ul class="spec-list">
+          <li><strong>Background:</strong> Light cream (#f5f0e8).</li>
+          <li><strong>Heading:</strong> "How Bulk Ordering Works" Playfair 38px, navy. Centered.</li>
+          <li><strong>Steps:</strong> 3 columns. Step 1: "Browse &amp; Select" — Browse category, pick products, set quantity. Step 2: "Request a Quote" — Fill quick form, we calculate bulk pricing. Step 3: "Confirm &amp; Deliver" — Approve sample, full production, doorstep delivery.</li>
+          <li><strong>Step card design:</strong> Large step number (Playfair Display, 80px, gold, very light opacity as background decoration). Lottie animation icon above (24px icon, looping). Title 18px navy. Description 14px muted. Horizontal connecting dashed line between cards (SVG, gold dashed).</li>
+          <li><strong>CTA:</strong> "Start Your Order →" button below all 3 steps, centered.</li>
+        </ul>
+        <div class="anim-block">
+          <div class="label">🎭 Step Entrance — Left to Right Cascade</div>
+          <p>Step cards enter from bottom with 0.2s stagger delay. Each card: {opacity:0, y:50} → {opacity:1, y:0} on scroll into view. The connecting dashed SVG line draws from left to right using SVG stroke-dashoffset animation (pathLength 0→1, duration 0.8s, starts 0.3s after cards appear).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY CHOOSE US -->
+  <div class="sub">
+    <h3>Section 7 — Why Choose Colour Tribe</h3>
+    <div class="page-spec">
+      <div class="page-spec-header">
+        <span class="route">WhyChooseUs.jsx</span>
+        <h4>Split layout — Text left, Image collage right</h4>
+      </div>
+      <div class="page-spec-body">
+        <ul class="spec-list">
+          <li><strong>Layout:</strong> 2 columns, 50/50. Left: text content. Right: 2×2 grid of product photos with offset layout (one card slightly higher, one rotated 2°).</li>
+          <li><strong>USP Points (left):</strong> Each point has a gold icon, bold title, and 2-line description. Points: In-House Manufacturing | Custom Logo Embroidery | All Sizes XS–3XL | 7-Day Standard Delivery | 500+ Happy Clients | Quality Cloth Guarantee.</li>
+          <li><strong>Image collage (right):</strong> 4 product images in a Pinterest-style offset grid. Each card has a gold border (2px). Slight box-shadows. Top card has a gold badge "Colour Tribe Certified Quality".</li>
+        </ul>
+        <div class="anim-block">
+          <div class="label">🎭 Split Reveal on Scroll</div>
+          <p>Left column: slides in from left (x:-60 → x:0). Right column: slides in from right (x:+60 → x:0). Both simultaneously when section enters viewport. USP list items stagger inside the left column at 0.06s intervals after the column appears.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div class="sub">
+    <h3>Section 8 — Client Testimonials</h3>
+    <div class="page-spec">
+      <div class="page-spec-header">
+        <span class="route">Testimonials.jsx</span>
+        <h4>Auto-rotating Quote Cards — Dark Background</h4>
+      </div>
+      <div class="page-spec-body">
+        <ul class="spec-list">
+          <li><strong>Background:</strong> Navy (#0f1b2d). Section padding 80px.</li>
+          <li><strong>Layout:</strong> Large centered quote card (max-width 680px). Auto-rotates every 5s. Manual dots navigation below.</li>
+          <li><strong>Card:</strong> White text. Large gold quotation mark SVG (80px, top-left). Quote text Playfair Display 22px italic. Attribution: hotel/company name + city, small Inter light. 5 gold stars.</li>
+          <li><strong>Testimonials (seed data):</strong> Write 4–5 placeholder testimonials for "Hotel Royal, Delhi", "Spice Garden Restaurant, Mumbai", etc. Admin can edit/add via admin panel.</li>
+        </ul>
+        <div class="anim-block">
+          <div class="label">🎭 Quote Transition (AnimatePresence)</div>
+          <p>Old quote exits with {opacity:0, x:-40} simultaneously as new quote enters from {opacity:0, x:+40} → {opacity:1, x:0}. Duration 0.4s. Dots indicator uses layoutId for smooth active state transition.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA BAND -->
+  <div class="sub">
+    <h3>Section 9 — Final CTA Band</h3>
+    <ul class="spec-list">
+      <li><strong>Background:</strong> Gold-to-orange diagonal gradient (#c9a84c → #e05a2b). Full width. Padding 60px.</li>
+      <li><strong>Headline:</strong> "Ready to Outfit Your Team?" Playfair 44px white.</li>
+      <li><strong>Sub:</strong> "Get a custom bulk quote in 24 hours. No commitment required." white 70% opacity.</li>
+      <li><strong>Two CTAs:</strong> "Request Quote Now" (white button, navy text) + "Call Us: 97173 55779" (outline white).</li>
+      <li><strong>WhatsApp float:</strong> Sticky WhatsApp button (bottom-right, all pages) — green circle, WA icon, pulse ring animation.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 06 NAVBAR -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">06</div>
+    <h2>Navbar &amp; <span>Global Components</span></h2>
+  </div>
+
+  <div class="sub">
+    <h3>Navbar — NavBar.jsx</h3>
+    <ul class="spec-list">
+      <li><strong>Default state:</strong> Transparent background, positioned absolute over hero. Logo: Colour Tribe SVG, white. Nav links: white.</li>
+      <li><strong>Scrolled state:</strong> After 80px scroll — background becomes navy with subtle blur (backdrop-filter: blur(12px)). Smooth CSS transition 0.3s. Logo color stays white.</li>
+      <li><strong>Navigation links:</strong> Home | Catalogue | About Us | Contact | [Quote Cart Icon with badge count]</li>
+      <li><strong>Catalogue has a mega-dropdown:</strong> On hover, a wide dropdown appears showing all category tiles in a 3-column grid with category cover images. Appears with Framer Motion — opacity 0→1, y:-8→0, duration 0.2s.</li>
+      <li><strong>Quote Cart icon:</strong> Shopping-bag style icon. Gold badge with item count. Clicking opens QuoteDrawer (right-side sliding panel).</li>
+      <li><strong>Mobile:</strong> Hamburger menu → full-screen overlay nav. Links slide in from right, staggered. Categories expand as accordion.</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>Footer — Footer.jsx</h3>
+    <ul class="spec-list">
+      <li><strong>Background:</strong> Navy. 4-column layout.</li>
+      <li><strong>Col 1:</strong> Logo + "Manufacturer of All Hospitality Uniforms" tagline + social icons (Facebook, Instagram, LinkedIn, YouTube).</li>
+      <li><strong>Col 2:</strong> Quick Links — Home, Catalogue, About, Contact, Admin.</li>
+      <li><strong>Col 3:</strong> Category Links — 8 top categories listed.</li>
+      <li><strong>Col 4:</strong> Contact Info — Phone, Email, WhatsApp button, Address, Map link.</li>
+      <li><strong>Bottom bar:</strong> Copyright. "Made in Delhi, India 🇮🇳".</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>WhatsApp Float Button</h3>
+    <ul class="spec-list">
+      <li>Fixed position: bottom-right, 24px from edges. z-index: 9999. Always visible on all pages.</li>
+      <li>Green circle (#25D366), 56px diameter. WhatsApp SVG icon inside.</li>
+      <li>Animated: A green ring pulses outward every 2s (scale 1→1.4, opacity 0.6→0, 2s infinite).</li>
+      <li>Tooltip appears on hover: "Chat with us on WhatsApp".</li>
+      <li>Click: Opens wa.me/919717355779 with pre-filled message: "Hello! I'm interested in bulk uniform pricing from your catalogue."</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>Quote Drawer — QuoteDrawer.jsx</h3>
+    <ul class="spec-list">
+      <li>Right-side panel, 420px wide, slides in from right. Backdrop overlay.</li>
+      <li>Header: "My Quote List" + item count + X close button.</li>
+      <li>Body: Scrollable list of added quote items. Each item: product image thumbnail, name, SKU, quantity selector (+ / -), color/size selector, estimated price, remove button.</li>
+      <li>Footer: Approximate total (with note "Final price depends on customization"). Two buttons: "Request Accurate Quote" (primary), "Clear All" (ghost).</li>
+      <li>Animation: x:+420 → x:0, duration 0.35s, spring(stiffness:300, damping:30).</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 07 CATEGORY DATA -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">07</div>
+    <h2>Category Data <span>Reference (Seed File)</span></h2>
+  </div>
+  <p class="section-intro">All 26 categories from the catalogue, mapped to slugs and price ranges for the initial database seed.</p>
+
+  <div class="code-block"><pre><span class="cm">// data/categories.seed.js — All categories from Colour Tribe catalogue</span>
+<span class="ck">export const</span> CATEGORIES = [
+  { id: <span class="cs">'1'</span>,  name: <span class="cs">'Men Formal Suit / Western / Corporate'</span>, slug: <span class="cs">'men-formal-suit'</span>,       icon: <span class="cs">'🕴️'</span>, priceRange: [2588, 3278] },
+  { id: <span class="cs">'2'</span>,  name: <span class="cs">'Front Office / Reception / Front Desk'</span>,  slug: <span class="cs">'front-office'</span>,          icon: <span class="cs">'🏨'</span>, priceRange: [2128, 3278] },
+  { id: <span class="cs">'3'</span>,  name: <span class="cs">'Ethnic / Indo Western / Jodhpuri'</span>,       slug: <span class="cs">'ethnic-indo-western'</span>,    icon: <span class="cs">'🪔'</span>, priceRange: [891, 2243]  },
+  { id: <span class="cs">'4'</span>,  name: <span class="cs">'Bandgala Nehru / Service Jacket'</span>,        slug: <span class="cs">'bandgala-nehru'</span>,         icon: <span class="cs">'🎽'</span>, priceRange: [891, 891]   },
+  { id: <span class="cs">'5'</span>,  name: <span class="cs">'Banquet & Catering Jacket'</span>,              slug: <span class="cs">'banquet-catering'</span>,       icon: <span class="cs">'🍽️'</span>, priceRange: [914, 1029]  },
+  { id: <span class="cs">'6'</span>,  name: <span class="cs">'Steward / Restaurant / F&B Service'</span>,     slug: <span class="cs">'steward-restaurant'</span>,     icon: <span class="cs">'🥂'</span>, priceRange: [518, 776]   },
+  { id: <span class="cs">'7'</span>,  name: <span class="cs">'Formal Shirt — Gents'</span>,                   slug: <span class="cs">'formal-shirt-gents'</span>,     icon: <span class="cs">'👔'</span>, priceRange: [454, 489]   },
+  { id: <span class="cs">'8'</span>,  name: <span class="cs">'Formal Trouser / Pant'</span>,                  slug: <span class="cs">'formal-trouser'</span>,         icon: <span class="cs">'👖'</span>, priceRange: [489, 489]   },
+  { id: <span class="cs">'9'</span>,  name: <span class="cs">'Shirt & Pant Set — Gents'</span>,               slug: <span class="cs">'shirt-pant-gents'</span>,       icon: <span class="cs">'👗'</span>, priceRange: [949, 949]   },
+  { id: <span class="cs">'10'</span>, name: <span class="cs">'Formal Shirt & Pant — Female'</span>,           slug: <span class="cs">'formal-female'</span>,          icon: <span class="cs">'👚'</span>, priceRange: [489, 949]   },
+  { id: <span class="cs">'11'</span>, name: <span class="cs">'Formal Suit — Female'</span>,                   slug: <span class="cs">'formal-suit-female'</span>,     icon: <span class="cs">'💼'</span>, priceRange: [2875, 3450]  },
+  { id: <span class="cs">'12'</span>, name: <span class="cs">'Bellboy / Doorman / Frontman'</span>,           slug: <span class="cs">'bellboy-doorman'</span>,        icon: <span class="cs">'🏩'</span>, priceRange: [1093, 2588] },
+  { id: <span class="cs">'13'</span>, name: <span class="cs">'Doorman Protocol Uniform'</span>,               slug: <span class="cs">'doorman-protocol'</span>,       icon: <span class="cs">'🚪'</span>, priceRange: [3450, 3450] },
+  { id: <span class="cs">'14'</span>, name: <span class="cs">'Security & Driver Uniform'</span>,              slug: <span class="cs">'security-driver'</span>,        icon: <span class="cs">'🛡️'</span>, priceRange: [863, 978]   },
+  { id: <span class="cs">'15'</span>, name: <span class="cs">'Executive Chef / Live Kitchen'</span>,          slug: <span class="cs">'chef-uniform'</span>,           icon: <span class="cs">'👨‍🍳'</span>, priceRange: [575, 1093]  },
+  { id: <span class="cs">'16'</span>, name: <span class="cs">'Chef Coat — Assistant / Trainee'</span>,        slug: <span class="cs">'chef-coat'</span>,              icon: <span class="cs">'🍳'</span>, priceRange: [546, 978]   },
+  { id: <span class="cs">'17'</span>, name: <span class="cs">'Aprons — Denim / Full'</span>,                  slug: <span class="cs">'aprons-full'</span>,            icon: <span class="cs">'🧑‍🍳'</span>, priceRange: [259, 403]   },
+  { id: <span class="cs">'18'</span>, name: <span class="cs">'Service Apron — Half / Waist'</span>,           slug: <span class="cs">'service-apron'</span>,          icon: <span class="cs">'🍴'</span>, priceRange: [121, 259]   },
+  { id: <span class="cs">'19'</span>, name: <span class="cs">'Chef / Work Wear Trouser'</span>,               slug: <span class="cs">'chef-trouser'</span>,           icon: <span class="cs">'👗'</span>, priceRange: [489, 489]   },
+  { id: <span class="cs">'20'</span>, name: <span class="cs">'Work Wear / Industrial / Supervisor'</span>,    slug: <span class="cs">'workwear-industrial'</span>,    icon: <span class="cs">'⚙️'</span>, priceRange: [1035, 1093] },
+  { id: <span class="cs">'21'</span>, name: <span class="cs">'Housekeeping / Utility / Room Service'</span>, slug: <span class="cs">'housekeeping'</span>,           icon: <span class="cs">'🛏️'</span>, priceRange: [748, 834]   },
+  { id: <span class="cs">'22'</span>, name: <span class="cs">'Sweatshirt / Winter Wear'</span>,               slug: <span class="cs">'winter-wear'</span>,            icon: <span class="cs">'🧥'</span>, priceRange: [495, 748]   },
+  { id: <span class="cs">'23'</span>, name: <span class="cs">'Polo T-Shirt'</span>,                           slug: <span class="cs">'polo-tshirt'</span>,            icon: <span class="cs">'👕'</span>, priceRange: [345, 345]   },
+  { id: <span class="cs">'24'</span>, name: <span class="cs">'Round Neck T-Shirt'</span>,                     slug: <span class="cs">'round-neck-tshirt'</span>,      icon: <span class="cs">'👕'</span>, priceRange: [173, 173]   },
+  { id: <span class="cs">'25'</span>, name: <span class="cs">'Head Gear — Chef Cap / P-Cap / Bandana'</span>, slug: <span class="cs">'head-gear'</span>,              icon: <span class="cs">'🧢'</span>, priceRange: [58, 75]     },
+  { id: <span class="cs">'26'</span>, name: <span class="cs">'Table Linen / Chair Cover / Round Table'</span>,slug: <span class="cs">'table-linen'</span>,           icon: <span class="cs">'🪑'</span>, priceRange: [121, 1783]  },
+];</pre></div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 08 ABOUT -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">08</div>
+    <h2>About &amp; <span>Contact Pages</span></h2>
+  </div>
+
+  <div class="comp-spec">
+    <div class="comp-box">
+      <h5>/about — AboutPage.jsx</h5>
+      <ul>
+        <li>Hero banner: navy bg, "About Colour Tribe" headline</li>
+        <li>Brand story paragraph (from catalogue About Us text)</li>
+        <li>3 pillars: In-House Manufacturing | Skilled Workforce | Quality Cloth</li>
+        <li>Stats bar (same component as homepage)</li>
+        <li>Gallery: 6 product photos in masonry layout</li>
+        <li>Quote: Bhagwat Gita verse styled with gold large quotation marks</li>
+        <li>CTA: Get a Quote button</li>
+      </ul>
+    </div>
+    <div class="comp-box">
+      <h5>/contact — ContactPage.jsx</h5>
+      <ul>
+        <li>Split layout: form left, info right</li>
+        <li>Form fields: Name, Phone, Email, Business Name, Message</li>
+        <li>Submits to /leads collection with source: "contact"</li>
+        <li>Right panel: Phone, WhatsApp, Email, Address</li>
+        <li>Embedded Google Maps iframe (Greater Noida location)</li>
+        <li>Business hours display</li>
+        <li>Quick-contact WhatsApp button: large, prominent</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 09 CATALOGUE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">09</div>
+    <h2>Product Catalogue <span>Page</span></h2>
+  </div>
+  <p class="section-intro">The main shopping interface. SEO-optimised, filterable, searchable.</p>
+
+  <div class="page-spec">
+    <div class="page-spec-header">
+      <span class="route">/catalogue</span>
+      <h4>CataloguePage.jsx — Full Product Browser</h4>
+    </div>
+    <div class="page-spec-body">
+      <h4>Layout Structure</h4>
+      <ul class="spec-list">
+        <li><strong>Page header:</strong> Navy background strip. "Hospitality Uniform Catalogue" headline. Breadcrumb: Home → Catalogue.</li>
+        <li><strong>Left sidebar (280px):</strong> Sticky. Category filter accordion. Price range slider (₹0 – ₹5000). Size checkboxes. Gender filter. "Clear All Filters" link. On mobile: becomes a slide-up sheet triggered by "Filter" button.</li>
+        <li><strong>Top bar:</strong> Search input (real-time, queries Firestore or local state). Sort dropdown: Price Low–High | High–Low | Newest | A–Z. Result count: "Showing 48 products". View toggle: Grid / List.</li>
+        <li><strong>Product grid:</strong> 3 columns on desktop, 2 tablet, 1 mobile. Infinite scroll or load-more button (load 24 at a time).</li>
+        <li><strong>Product card:</strong> White card. Image (aspect-ratio 4/5). Category badge top-left. SKU top-right (JetBrains Mono). Product name (Playfair 14px). Price in gold. Min order note. "+ Add to Quote" button. Wishlist heart icon. Hover: image zooms 1.05, button slides up.</li>
+        <li><strong>Empty state:</strong> If no products match filter — illustrated empty state graphic with "No products found. Try adjusting filters."</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-spec">
+    <div class="page-spec-header">
+      <span class="route">/catalogue/:categorySlug</span>
+      <h4>CategoryPage.jsx — Filtered by Category</h4>
+    </div>
+    <div class="page-spec-body">
+      <ul class="spec-list">
+        <li><strong>Hero banner:</strong> Category cover image fullwidth, 250px tall. Gradient overlay. Category name in Playfair Display 40px white. Product count badge.</li>
+        <li><strong>Content:</strong> Same grid as CataloguePage but pre-filtered to this category. Sidebar still shows other category links for easy switching.</li>
+        <li><strong>SEO:</strong> Dynamic title: "Chef Uniforms | Colour Tribe Delhi". Dynamic meta description and OG tags per category.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 10 PRODUCT DETAIL -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>Product <span>Detail Page</span></h2>
+  </div>
+
+  <div class="page-spec">
+    <div class="page-spec-header">
+      <span class="route">/product/:sku</span>
+      <h4>ProductPage.jsx — Full Product Spec</h4>
+    </div>
+    <div class="page-spec-body">
+      <h4>Layout</h4>
+      <ul class="spec-list">
+        <li><strong>Left (55%):</strong> Image gallery. Primary image large. Thumbnail strip below (4 small, clickable). Click-to-zoom via a portal overlay. Keyboard navigation arrow support.</li>
+        <li><strong>Right (45%):</strong> All product details and actions.</li>
+      </ul>
+      <h4>Right Panel Content</h4>
+      <ul class="spec-list">
+        <li><strong>Breadcrumb:</strong> Home → Catalogue → Category → Product Name</li>
+        <li><strong>SKU badge:</strong> JetBrains Mono, gold background pill</li>
+        <li><strong>Product name:</strong> Playfair Display 32px</li>
+        <li><strong>Base price:</strong> Gold, 28px. "₹2,588 / piece". Below: "Bulk price available — see table below"</li>
+        <li><strong>Bulk Pricing Table:</strong> 3–4 rows. Qty | Price/pc | Total Est. Highlighted row for "Best Value". Color: green highlight on best-value row. E.g.: 10–49 pcs → ₹2,450 | 50–99 → ₹2,200 | 100+ → ₹1,980.</li>
+        <li><strong>Quote Configurator:</strong> Step 1 — Qty input (number, min=minOrderQty). Step 2 — Color selector (colour swatches from product.colors array). Step 3 — Size breakdown table (if applicable: how many of each size). Live price calculator shows "Approximate Total: ₹XX,XXX" updating in real-time as qty changes.</li>
+        <li><strong>CTA buttons:</strong> Primary: "+ Add to Quote List" (adds to Zustand store). Secondary: "Request Accurate Quote on WhatsApp" (pre-fills WA message with product + qty). Ghost: "Download Catalogue PDF" (links to a hosted PDF).</li>
+        <li><strong>Product details accordion:</strong> Fabric | Colors Available | Sizes | Lead Time | MOQ — expandable accordion sections.</li>
+        <li><strong>Related Products:</strong> 4 cards from same category below the main content.</li>
+      </ul>
+      <div class="anim-block">
+        <div class="label">🎭 Page Load Animation</div>
+        <p>Left image gallery: slides in from left (x:-30 → 0, opacity 0→1). Right panel content: slides in from right (x:+30 → 0, opacity 0→1). Both simultaneously on page mount, duration 0.5s. Inside the right panel, each block (price, table, configurator, CTAs) stagger entrance by 0.08s.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 11 QUOTE -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Quote Builder <span>&amp; Cart System</span></h2>
+  </div>
+
+  <div class="sub">
+    <h3>Zustand Quote Store</h3>
+    <div class="code-block"><pre><span class="cm">// store/quoteStore.js</span>
+<span class="ck">import</span> { create } from <span class="cs">'zustand'</span>;
+<span class="ck">import</span> { persist } from <span class="cs">'zustand/middleware'</span>;
+
+<span class="ck">export const</span> useQuoteStore = create(
+  persist(
+    (set, get) => ({
+      items: [],  <span class="cm">// { productId, sku, name, image, qty, color, sizes, unitPrice, lineTotal }</span>
+
+      addItem: (product, config) => set(state => {
+        <span class="ck">const</span> existing = state.items.find(i => i.productId === product.id);
+        <span class="ck">if</span> (existing) <span class="ck">return</span> { items: state.items.map(i =>
+          i.productId === product.id ? { ...i, qty: i.qty + config.qty } : i
+        )};
+        <span class="ck">return</span> { items: [...state.items, { productId: product.id, ...config }] };
+      }),
+
+      updateQty: (productId, qty) => set(state => ({
+        items: state.items.map(i => i.productId === productId ? { ...i, qty } : i)
+      })),
+
+      removeItem: (productId) => set(state => ({
+        items: state.items.filter(i => i.productId !== productId)
+      })),
+
+      clearAll: () => set({ items: [] }),
+
+      getApproxTotal: () => get().items.reduce((sum, i) => sum + i.lineTotal, 0),
+      getItemCount:   () => get().items.reduce((sum, i) => sum + i.qty, 0),
+    }),
+    { name: <span class="cs">'ct-quote-cart'</span> }
+  )
+);</pre></div>
+  </div>
+
+  <div class="sub">
+    <h3>Quote Request Page — /get-quote</h3>
+    <ul class="spec-list">
+      <li><strong>Left panel:</strong> Quote summary — list of items from Zustand store with images, names, qty, estimated price. Editable qty inputs. Remove buttons. Subtotal at bottom.</li>
+      <li><strong>Right panel:</strong> Contact form. Fields: Name (pre-filled from leadStore), Phone (pre-filled), Email, Business Name, City, Special Requirements textarea.</li>
+      <li><strong>On submit:</strong> Writes to /quotes collection with all items + contact info + approxTotal. Shows success screen with order reference number. Option to share quote via WhatsApp.</li>
+      <li><strong>Disclaimer:</strong> "This is an approximate quote. Our team will contact you within 24 hours with an accurate price based on fabric, customization, and embroidery requirements."</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>Bulk Price Calculator — priceCalc.js</h3>
+    <div class="code-block"><pre><span class="cm">// utils/priceCalc.js</span>
+<span class="ck">export</span> function calculateLineTotal(product, qty) {
+  <span class="ck">const</span> bulkTiers = product.bulkPricing || [];  <span class="cm">// sorted ascending by minQty</span>
+  <span class="ck">let</span> unitPrice = product.basePrice;
+  <span class="ck">for</span> (<span class="ck">const</span> tier of bulkTiers) {
+    <span class="ck">if</span> (qty >= tier.minQty) unitPrice = tier.price;
+  }
+  <span class="ck">return</span> { unitPrice, lineTotal: unitPrice * qty };
+}
+
+<span class="cm">// Default bulk tiers (admin can override per product):</span>
+<span class="cm">// 1–9:    base price (single unit not offered, show warning)</span>
+<span class="cm">// 10–49:  base × 0.94 (~6% off)</span>
+<span class="cm">// 50–99:  base × 0.87 (~13% off)</span>
+<span class="cm">// 100+:   base × 0.80 (~20% off)</span></pre></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 12 ADMIN -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <h2>Admin Panel — <span>Full Specification</span></h2>
+  </div>
+  <p class="section-intro">Protected behind Firebase Auth (email/password). Only one admin account. Accessible via /admin. No public registration.</p>
+
+  <div class="sub">
+    <h3>Admin Login — /admin/login</h3>
+    <ul class="spec-list">
+      <li>Simple centered card. Email + password fields. "Login to Admin" button. Firebase Auth signInWithEmailAndPassword. On success → /admin/dashboard. Error handling with toast.</li>
+      <li>No "Register" link. Admin account created manually via Firebase Console once.</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>Admin Layout</h3>
+    <ul class="spec-list">
+      <li>Left sidebar: Colour Tribe logo + nav links — Dashboard | Products | Categories | Leads | Quotes | Settings | Logout.</li>
+      <li>Dark sidebar (#0f1b2d), gold active state. Content area: light grey background.</li>
+      <li>Protected route wrapper: checks Firebase auth state, redirects to /admin/login if not authenticated.</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>Dashboard — /admin</h3>
+    <ul class="spec-list">
+      <li>KPI cards: Total Products | Active Categories | New Leads (last 7 days) | Pending Quotes. Each card has a trend indicator.</li>
+      <li>Recent Leads table: last 10 leads with name, phone, date, status badge, action buttons.</li>
+      <li>Recent Quotes table: last 5 quotes with value, status, quick-action.</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>Products Management — /admin/products</h3>
+    <ul class="spec-list">
+      <li><strong>List view:</strong> Table with product image thumbnail, SKU, name, category, price, status toggle (active/inactive), Featured toggle, Edit button, Delete button (confirm dialog).</li>
+      <li><strong>Filters:</strong> By category dropdown, search by SKU/name, filter by active/inactive.</li>
+      <li><strong>Add Product button:</strong> Opens /admin/products/new — full product form.</li>
+      <li><strong>Bulk actions:</strong> Select multiple → set active/inactive, delete selected.</li>
+    </ul>
+    <h4>Product Form — /admin/products/:id/edit</h4>
+    <ul class="spec-list">
+      <li><strong>Image upload:</strong> Drag-and-drop zone. Supports multiple images. Preview grid. Reorder by drag. Mark one as primary. Uploads to Firebase Storage on submit.</li>
+      <li><strong>Fields:</strong> SKU | Name | Category (dropdown) | Base Price | Fabric | Description | Colors (tag input) | Sizes (checkbox: XS S M L XL XXL 3XL) | Min Order Qty | Lead Time (days) | Tags (comma-separated) | Active toggle | Featured toggle.</li>
+      <li><strong>Bulk Pricing Section:</strong> Dynamic row adder — Min Qty | Price Per Piece | [Delete row]. "+ Add Tier" button.</li>
+      <li><strong>Submit:</strong> Saves to Firestore, redirects to product list with success toast.</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>Categories Management — /admin/categories</h3>
+    <ul class="spec-list">
+      <li>Drag-and-drop sortable list to reorder categories (react-beautiful-dnd or dnd-kit).</li>
+      <li>Add/Edit: name, slug (auto-generated from name), icon emoji, description, cover image upload.</li>
+      <li>Product count shown (read-only, denormalized).</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>Leads Management — /admin/leads</h3>
+    <ul class="spec-list">
+      <li>Full table with all captured leads. Columns: Date | Name | Phone | Email | Business | Source | Status.</li>
+      <li>Status can be changed inline: New → Contacted → Converted (dropdown).</li>
+      <li>Click phone number → opens dialer / WhatsApp chat link.</li>
+      <li>Export to CSV button (download all leads).</li>
+      <li>Filter by date range, source, status.</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>Quotes Management — /admin/quotes</h3>
+    <ul class="spec-list">
+      <li>Table: Date | Reference # | Customer | Products (count) | Approx Value | Status.</li>
+      <li>Click row → quote detail modal. Shows full item list, customer info, admin note field.</li>
+      <li>Admin can update status: Pending → Reviewed → Quote Sent → Won / Lost.</li>
+      <li>Add admin note (saved to Firestore).</li>
+      <li>WhatsApp reply button: pre-fills message with customer name and quote reference.</li>
+    </ul>
+  </div>
+
+  <div class="sub">
+    <h3>Settings — /admin/settings</h3>
+    <ul class="spec-list">
+      <li>Editable fields: Phone, Email, WhatsApp number, Address, Site tagline, Marquee ticker text, Hero headline, Hero subheadline.</li>
+      <li>All fields read from and write to /settings/site Firestore document.</li>
+      <li>Changes reflect on live site immediately (React Query invalidates cache on save).</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 13 SEO -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">13</div>
+    <h2>SEO <span>Strategy</span></h2>
+  </div>
+
+  <div class="sub">
+    <h3>Meta Tags — Per Page</h3>
+    <table class="anim-table">
+      <tr><th>Page</th><th>Title Tag</th><th>Meta Description</th></tr>
+      <tr><td>Home</td><td>Colour Tribe | Bulk Hospitality Uniform Manufacturer Delhi</td><td>India's trusted manufacturer of hotel, restaurant, chef, security uniforms. Minimum 10 pieces. Custom bulk pricing. Call 97173 55779.</td></tr>
+      <tr><td>Catalogue</td><td>Hospitality Uniform Catalogue | Colour Tribe</td><td>Browse 500+ uniform designs across 26 categories. Corporate, chef, steward, housekeeping, doorman uniforms. Bulk pricing available.</td></tr>
+      <tr><td>Category</td><td>[Category Name] | Bulk Uniforms | Colour Tribe</td><td>Buy [Category] uniforms in bulk from Colour Tribe, Delhi. Best quality, custom sizes, fast delivery. Request a free quote today.</td></tr>
+      <tr><td>Product</td><td>[SKU] [Product Name] | Colour Tribe</td><td>[Product Name] starting from ₹[price]/piece. Minimum order [MOQ] pieces. Custom colors and sizes available.</td></tr>
+      <tr><td>Contact</td><td>Contact Colour Tribe | Uniform Manufacturer Greater Noida</td><td>Get in touch for bulk uniform quotes. Phone: 97173 55779. Located in Greater Noida, serving Delhi NCR and all of India.</td></tr>
+    </table>
+  </div>
+
+  <div class="sub">
+    <h3>Technical SEO</h3>
+    <ul class="spec-list">
+      <li><strong>Dynamic titles:</strong> Managed via a useSEO() hook using document.title + meta tags. Or use react-helmet-async if SSR is added later.</li>
+      <li><strong>Sitemap:</strong> Generate sitemap.xml at build time (vite-plugin-sitemap or manual). Include all category and product URLs.</li>
+      <li><strong>robots.txt:</strong> Allow all, disallow /admin.</li>
+      <li><strong>Structured Data:</strong> Add JSON-LD Product schema on product pages. Organization schema on homepage.</li>
+      <li><strong>Lazy images:</strong> Use native loading="lazy" on all product images below fold.</li>
+      <li><strong>Core Web Vitals:</strong> LCP: Preload hero image. CLS: Set explicit width/height on all images. FID: Code-split all pages via React.lazy.</li>
+      <li><strong>Target keywords:</strong> "hotel uniform manufacturer Delhi", "bulk chef coat supplier India", "hospitality uniform supplier Greater Noida", "restaurant staff uniform bulk order", "security guard uniform manufacturer Delhi NCR".</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 14 ANIMATION MASTER -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">14</div>
+    <h2>Animation <span>Master Reference</span></h2>
+  </div>
+  <p class="section-intro">Every animation defined precisely so the developer builds exactly what's intended. No ambiguity.</p>
+
+  <table class="anim-table">
+    <tr>
+      <th>Component / Element</th>
+      <th>Trigger</th>
+      <th>Framer Motion Props</th>
+      <th>Duration / Easing</th>
+    </tr>
+    <tr>
+      <td>Lead Modal — Backdrop</td>
+      <td>Mount</td>
+      <td><code>opacity: 0→1</code></td>
+      <td>0.3s ease</td>
+    </tr>
+    <tr>
+      <td>Lead Modal — Box</td>
+      <td>Mount</td>
+      <td><code>scale: 0.85→1, y: 40→0</code></td>
+      <td>spring(300,25)</td>
+    </tr>
+    <tr>
+      <td>Hero — Headline words</td>
+      <td>Mount (stagger)</td>
+      <td><code>opacity:0→1, y:40→0</code></td>
+      <td>0.6s, stagger 0.12s</td>
+    </tr>
+    <tr>
+      <td>Hero — Cloth mesh (Three.js)</td>
+      <td>Continuous</td>
+      <td>Vertex shader sin wave on Y</td>
+      <td>∞, 0.0003 rad/frame Y rot</td>
+    </tr>
+    <tr>
+      <td>Navbar — scroll state</td>
+      <td>scroll > 80px</td>
+      <td>CSS transition: bg + blur</td>
+      <td>0.3s ease</td>
+    </tr>
+    <tr>
+      <td>Marquee strip</td>
+      <td>Continuous</td>
+      <td>CSS translateX 0→-50%</td>
+      <td>25s linear infinite</td>
+    </tr>
+    <tr>
+      <td>Category cards (home)</td>
+      <td>InView (0.2 threshold)</td>
+      <td><code>opacity:0→1, y:60→0, scale:0.95→1</code></td>
+      <td>0.55s spring, stagger 0.08s</td>
+    </tr>
+    <tr>
+      <td>Category card — hover image</td>
+      <td>hover</td>
+      <td><code>scale: 1→1.08</code></td>
+      <td>0.4s ease, overflow hidden</td>
+    </tr>
+    <tr>
+      <td>Stats counters</td>
+      <td>InView</td>
+      <td>Custom useCountUp hook, 0→target</td>
+      <td>1.8s easeOutQuart</td>
+    </tr>
+    <tr>
+      <td>Product card — "Add to Quote" btn</td>
+      <td>hover (AnimatePresence)</td>
+      <td><code>y:30→0, opacity:0→1</code></td>
+      <td>0.25s ease</td>
+    </tr>
+    <tr>
+      <td>Product card — hover lift</td>
+      <td>hover</td>
+      <td><code>y:-8, boxShadow up</code></td>
+      <td>0.2s ease</td>
+    </tr>
+    <tr>
+      <td>How it Works — step cards</td>
+      <td>InView (stagger)</td>
+      <td><code>opacity:0→1, y:50→0</code></td>
+      <td>0.5s, stagger 0.2s</td>
+    </tr>
+    <tr>
+      <td>How it Works — SVG path</td>
+      <td>After step cards</td>
+      <td>SVG pathLength 0→1</td>
+      <td>0.8s easeInOut, delay 0.3s</td>
+    </tr>
+    <tr>
+      <td>Why Choose Us — left panel</td>
+      <td>InView</td>
+      <td><code>x:-60→0, opacity:0→1</code></td>
+      <td>0.6s easeOut</td>
+    </tr>
+    <tr>
+      <td>Why Choose Us — right panel</td>
+      <td>InView</td>
+      <td><code>x:+60→0, opacity:0→1</code></td>
+      <td>0.6s easeOut</td>
+    </tr>
+    <tr>
+      <td>Testimonial transition</td>
+      <td>Auto 5s / dot click</td>
+      <td>Exit: x:-40, opacity:0. Enter: x:+40→0, opacity:0→1</td>
+      <td>0.4s ease</td>
+    </tr>
+    <tr>
+      <td>Quote Drawer</td>
+      <td>Icon click</td>
+      <td><code>x:+420→0</code></td>
+      <td>spring(300,30)</td>
+    </tr>
+    <tr>
+      <td>Product page — left panel</td>
+      <td>Mount</td>
+      <td><code>x:-30→0, opacity:0→1</code></td>
+      <td>0.5s ease</td>
+    </tr>
+    <tr>
+      <td>WhatsApp float — pulse ring</td>
+      <td>Continuous</td>
+      <td>scale 1→1.4, opacity 0.6→0</td>
+      <td>2s ease-out infinite</td>
+    </tr>
+    <tr>
+      <td>Page transitions</td>
+      <td>Route change</td>
+      <td>Exit: opacity→0. Enter: opacity:0→1</td>
+      <td>0.25s ease</td>
+    </tr>
+    <tr>
+      <td>Admin — table row actions</td>
+      <td>hover</td>
+      <td>Action buttons slide in from right</td>
+      <td>0.15s ease</td>
+    </tr>
+  </table>
+
+  <div class="callout warn">
+    <span class="callout-icon">⚠️</span>
+    <div class="callout-body">
+      <strong>Performance Rule</strong>
+      Always wrap scroll-triggered animations in useInView (react-intersection-observer). Never run animations on elements outside the viewport. Limit Three.js canvas to homepage hero only — do NOT use it on other pages. Disable complex animations on mobile (use prefers-reduced-motion media query check).
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 15 DEPLOYMENT -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">15</div>
+    <h2>Deployment &amp; <span>Performance</span></h2>
+  </div>
+
+  <div class="sub">
+    <h3>Firebase Hosting Setup</h3>
+    <div class="code-block"><pre><span class="cm"># .firebaserc</span>
+{
+  "projects": { "default": "colourtribe-app" }
+}
+
+<span class="cm"># firebase.json</span>
+{
+  "hosting": {
+    "public": "dist",
+    "rewrites": [{ "source": "**", "destination": "/index.html" }],
+    "headers": [{
+      "source": "**/*.@(js|css)",
+      "headers": [{ "key": "Cache-Control", "value": "max-age=31536000" }]
+    }]
+  }
+}
+
+<span class="cm"># Deploy commands:</span>
+npm run build      <span class="cm"># Vite production build → dist/</span>
+firebase deploy    <span class="cm"># Deploy to Firebase Hosting</span>
+
+<span class="cm"># Custom domain: colourtribe.in (point DNS to Firebase)</span></pre></div>
+  </div>
+
+  <div class="sub">
+    <h3>Performance Checklist</h3>
+    <ul class="spec-list">
+      <li>All images as WebP, max 800px width, &lt;120KB each. Use srcset for responsive sizing.</li>
+      <li>Route-based code splitting with React.lazy + Suspense. Each page loads its JS chunk on demand.</li>
+      <li>Google Fonts loaded with font-display: swap and preconnect hints in index.html.</li>
+      <li>Three.js loaded lazily only on homepage. HeroSection wraps canvas in dynamic import.</li>
+      <li>Firestore queries paginated (limit 24) with cursor-based pagination for catalogue.</li>
+      <li>React Query caches Firestore results for 5 minutes. No repeat fetches for same data.</li>
+      <li>Zustand quote store persisted to localStorage — survives page refresh.</li>
+      <li>Target Lighthouse scores: Performance 90+, Accessibility 95+, Best Practices 100, SEO 95+.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ 16 PHASES -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">16</div>
+    <h2>Build Phases <span>&amp; Timeline</span></h2>
+  </div>
+
+  <div class="sub">
+    <h3>Phase 1 — Foundation (Days 1–3)</h3>
+    <ol class="phase-list">
+      <li><strong>Project setup:</strong> Vite + React + Tailwind + Firebase config. Folder structure. Git init.</li>
+      <li><strong>Firebase setup:</strong> Create Firestore, Storage, Auth. Write security rules. Deploy rules.</li>
+      <li><strong>Seed database:</strong> Run seed script to create all 26 categories in Firestore. Upload placeholder product images to Storage.</li>
+      <li><strong>Routing:</strong> Set up React Router with all routes. Create blank page components.</li>
+      <li><strong>Global components:</strong> Navbar, Footer, WhatsApp float, PageWrapper with page transitions.</li>
+    </ol>
+  </div>
+
+  <div class="sub">
+    <h3>Phase 2 — Homepage (Days 4–7)</h3>
+    <ol class="phase-list">
+      <li><strong>Lead Capture Modal:</strong> Full UI + Framer Motion animations + Firestore write.</li>
+      <li><strong>HeroSection:</strong> Three.js cloth canvas + Framer Motion headline + CTAs + scroll indicator.</li>
+      <li><strong>MarqueeStrip:</strong> CSS animation ticker.</li>
+      <li><strong>CategoriesShowcase:</strong> Grid with Firestore data + scroll animations.</li>
+      <li><strong>StatsBar + useCountUp hook + FeaturedProducts carousel.</strong></li>
+      <li><strong>HowItWorks + WhyChooseUs + Testimonials + CTA Band.</strong></li>
+    </ol>
+  </div>
+
+  <div class="sub">
+    <h3>Phase 3 — Catalogue & Product (Days 8–12)</h3>
+    <ol class="phase-list">
+      <li><strong>CataloguePage:</strong> Sidebar filters + search + sort + product grid + infinite scroll.</li>
+      <li><strong>CategoryPage:</strong> Pre-filtered view + hero banner.</li>
+      <li><strong>ProductPage:</strong> Image gallery + bulk pricing table + quote configurator.</li>
+      <li><strong>QuoteDrawer:</strong> Zustand store + drawer UI + quantity editing.</li>
+      <li><strong>QuotePage:</strong> Full quote request form + Firestore write + success screen.</li>
+    </ol>
+  </div>
+
+  <div class="sub">
+    <h3>Phase 4 — Admin Panel (Days 13–17)</h3>
+    <ol class="phase-list">
+      <li><strong>Admin login + protected routes.</strong></li>
+      <li><strong>Dashboard KPIs + recent tables.</strong></li>
+      <li><strong>Products CRUD:</strong> List, form, image upload, delete.</li>
+      <li><strong>Categories CRUD + drag-to-reorder.</strong></li>
+      <li><strong>Leads table + status management + CSV export.</strong></li>
+      <li><strong>Quotes table + detail modal + admin notes.</strong></li>
+      <li><strong>Settings page.</strong></li>
+    </ol>
+  </div>
+
+  <div class="sub">
+    <h3>Phase 5 — Polish & Launch (Days 18–20)</h3>
+    <ol class="phase-list">
+      <li><strong>About page + Contact page.</strong></li>
+      <li><strong>SEO meta tags per page. Sitemap. robots.txt. JSON-LD.</strong></li>
+      <li><strong>Upload all product images from catalogue PDF. Enter all products into admin.</strong></li>
+      <li><strong>Mobile responsiveness audit — all breakpoints.</strong></li>
+      <li><strong>Lighthouse audit + performance fixes.</strong></li>
+      <li><strong>Firebase Hosting deploy. Custom domain (colourtribe.in) DNS config.</strong></li>
+      <li><strong>Final QA — all forms, animations, admin flows.</strong></li>
+    </ol>
+  </div>
+
+  <div class="callout success">
+    <span class="callout-icon">✅</span>
+    <div class="callout-body">
+      <strong>Estimated Timeline</strong>
+      20 working days for a solo developer with AI assistance (Claude Code / Cursor). The entire project — homepage, catalogue, product pages, quote engine, admin panel — is scoped to this roadmap. Every decision is pre-made. The developer just builds.
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════ FOOTER -->
+<footer>
+  <div>Built for <span>Colour Tribe</span> — Hospitality Uniform Manufacturer, Delhi NCR</div>
+  <div style="margin-top:8px">www.Colourtribe.in | adorabletradingk08@gmail.com | <span>97173 55779</span></div>
+  <div style="margin-top:8px; color: rgba(255,255,255,0.3)">Full-Stack Roadmap v1.0 — React 18 + Firebase + Framer Motion</div>
+</footer>
+
+</body>
+</html>
