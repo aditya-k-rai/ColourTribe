@@ -36,8 +36,13 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <div className="border-t border-white/10 mt-12 pt-8 text-center text-white/40 font-mono text-xs">
-        &copy; {new Date().getFullYear()} Colour Tribe. All rights reserved. <br/>Made in Delhi, India 🇮🇳
+      <div className="border-t border-white/10 mt-12 pt-8 flex flex-col items-center text-center text-white/40 font-mono text-xs gap-3">
+        <div>
+          &copy; {new Date().getFullYear()} Colour Tribe. All rights reserved. <br/>Made in Delhi, India 🇮🇳
+        </div>
+        <div className="bg-white/5 px-4 py-2 rounded-full text-white/50 text-[10px] sm:text-xs">
+          Developed by <a href="https://aditya-k-rai.github.io/P-Website/" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-gold transition-colors font-bold tracking-widest pl-1">Aditya Rai</a>
+        </div>
       </div>
     </footer>
   );

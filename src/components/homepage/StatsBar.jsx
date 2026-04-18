@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
 
-const useCountUp = (end, duration = 1800) => {
+const useCountUp = (end, duration = 1800, start = false) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
+    if (!start) return;
+
     let startTimestamp = null;
     let animationFrameId;
 
@@ -22,14 +24,14 @@ const useCountUp = (end, duration = 1800) => {
 
     animationFrameId = window.requestAnimationFrame(step);
     return () => window.cancelAnimationFrame(animationFrameId);
-  }, [end, duration]);
+  }, [end, duration, start]);
 
   return count;
 };
 
 const StatItem = ({ end, label, duration }) => {
   const { ref, inView } = useInView({ threshold: 0.5, triggerOnce: true });
-  const count = inView ? useCountUp(end, duration) : 0;
+  const count = useCountUp(end, duration, inView);
 
   return (
     <div ref={ref} className="flex flex-col items-center text-center">
