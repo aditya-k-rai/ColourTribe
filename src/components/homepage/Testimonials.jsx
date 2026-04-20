@@ -76,7 +76,7 @@ const Testimonials = () => {
               
               <div className="text-white">
                 <span className="font-bold tracking-wider">{testimonials[currentIndex].author}</span>
-                <span className="text-white/50 text-sm ml-2">â€” {testimonials[currentIndex].city}</span>
+                <span className="text-white/50 text-sm ml-2">— {testimonials[currentIndex].city}</span>
               </div>
             </motion.div>
           </AnimatePresence>

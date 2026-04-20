@@ -26,7 +26,7 @@ const CategoryCard = ({ category, index }) => {
         <h3 className="text-white font-display text-xl mb-1">{category.name}</h3>
         <div className="overflow-hidden">
           <p className="text-gold text-sm transform translate-y-full opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 font-bold">
-            Browse Ã¢â€ â€™
+            Browse Ã¢â€ ’
           </p>
         </div>
       </div>

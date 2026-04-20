@@ -65,7 +65,7 @@ const AboutPage = () => {
                 Operating out of Greater Noida, UP, Colour Tribe began with a simple mission: to provide the highest-grade professional wear at factory-direct pricing for B2B procurement over bloated retailer markups.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                By maintaining a 100% in-house manufacturing processâ€”from fabric sourcing and grading to expert tailoring, logo embroidery, and packagingâ€”we retain total control over output quality. This drastically slashes turn-around times while ensuring that whether you order 20 pieces or 500, every seam is flawless.
+                By maintaining a 100% in-house manufacturing process—from fabric sourcing and grading to expert tailoring, logo embroidery, and packaging—we retain total control over output quality. This drastically slashes turn-around times while ensuring that whether you order 20 pieces or 500, every seam is flawless.
               </p>
               <div className="pt-4 flex gap-8 border-t border-gray-200 mt-8">
                 <div>

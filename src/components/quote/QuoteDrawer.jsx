@@ -50,7 +50,7 @@ const QuoteDrawer = () => {
             {/* Header */}
             <div className="px-6 py-4 bg-navy text-white flex justify-between items-center shrink-0">
               <h2 className="font-display font-bold text-xl flex items-center gap-2">
-                <span className="text-gold">âœ¦</span> My Quote List
+                <span className="text-gold">✦</span> My Quote List
               </h2>
               <button 
                 onClick={() => setDrawerOpen(false)}
@@ -65,7 +65,7 @@ const QuoteDrawer = () => {
             <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6">
               {items.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center text-center opacity-50 space-y-4">
-                  <div className="text-6xl">ðŸ“</div>
+                  <div className="text-6xl">📋</div>
                   <p className="font-bold">Your quote list is empty.</p>
                   <p className="text-sm">Browse our catalogue to add items.</p>
                   <button 

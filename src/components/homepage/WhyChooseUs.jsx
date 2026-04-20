@@ -6,7 +6,7 @@ import { CheckCircle } from 'lucide-react';
 const USPList = [
   { title: "In-House Manufacturing", desc: "End-to-end production ensuring quality control and faster turnarounds." },
   { title: "Custom Logo Embroidery", desc: "Your brand identity stitched directly onto the uniform fabric." },
-  { title: "All Sizes XSâ€“3XL", desc: "Inclusive sizing to guarantee a perfect fit for all your staff." },
+  { title: "All Sizes XS–3XL", desc: "Inclusive sizing to guarantee a perfect fit for all your staff." },
   { title: "7-Day Standard Delivery", desc: "Lightning fast processing for standard catalogue items." },
   { title: "500+ Happy Clients", desc: "Trusted by top businesses, hospitals, and corporate chains across India." },
   { title: "Quality Cloth Guarantee", desc: "Durable, breathable fabrics designed for demanding work environments." }

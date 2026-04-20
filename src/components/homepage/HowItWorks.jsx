@@ -66,7 +66,7 @@ const HowItWorks = () => {
             number={2} 
             title="Request a Quote" 
             description="Submit your quote list. Our team calculates the best bulk pricing based on your order size." 
-            icon="ðŸ“"
+            icon="📋"
             index={1}
           />
           <StepCard 

@@ -6,37 +6,18 @@ function fixMojibake(filePath) {
 
   // The weird mojibake to actual characters mapping
   const replacements = [
-    { bad: 'ðŸ“±', good: '📱' },
     { bad: 'ðŸ“ ', good: '📋' },
-    { bad: 'ðŸšš', good: '🚚' },
-    { bad: 'â†’', good: '→' },
-    { bad: 'ðŸ‡®ðŸ‡³', good: '🇮🇳' },
-    { bad: 'ðŸ‘”', good: '👕' },
-    { bad: 'âœ“', good: '✓' },
-    { bad: 'â‚¹', good: '₹' },
-    { bad: 'â€¢', good: '•' },
-    { bad: 'âœ¨', good: '✨' },
-    { bad: 'â†‘', good: '↑' },
-    { bad: 'â™¥ï¸ ', good: '❤️' },
-    { bad: 'â™¥', good: '♥' },
-    { bad: 'ðŸŒŸ', good: '🌟' },
-    { bad: 'ðŸ”¥', good: '🔥' },
-    { bad: 'ðŸ‘•', good: '👔' },
-    { bad: 'ðŸ‘–', good: '👖' },
-    { bad: 'ðŸ‘‰', good: '👉' },
+    { bad: 'â€”', good: '—' },
+    { bad: 'â€“', good: '–' },
+    { bad: 'â€˜', good: '‘' },
+    { bad: 'â€™', good: '’' },
+    { bad: 'â€œ', good: '“' },
+    { bad: 'â€ ', good: '”' },
+    { bad: 'ðŸ—’ï¸ ', good: '🗒️' },
     { bad: 'ðŸŽ¯', good: '🎯' },
-    { bad: 'ðŸ›¡ï¸ ', good: '🛡️' },
-    { bad: 'ðŸ’¼', good: '💼' },
-    { bad: 'ðŸ” ', good: '🔍' },
-    { bad: 'ðŸ“ˆ', good: '📈' },
-    { bad: 'â˜Žï¸ ', good: '☎️' },
-    { bad: 'ðŸ“§', good: '📧' },
-    { bad: 'ðŸ“ ', good: '📍' },
-    { bad: 'âŒš', good: '⌚' },
-    { bad: 'ðŸŽ“', good: '🎓' },
-    { bad: 'ðŸ¥', good: '🏥' },
-    { bad: 'âœˆï¸ ', good: '✈️' },
-    { bad: 'ðŸš§', good: '🚧' }
+    { bad: 'ðŸ“±', good: '📱' },
+    { bad: 'ðŸšš', good: '🚚' },
+    { bad: 'â†’', good: '→' }
   ];
 
   let modified = false;
@@ -69,4 +50,4 @@ function walkDir(dir) {
 }
 
 walkDir(path.join(__dirname, 'src'));
-console.log('Done fixing encoding issues!');
+console.log('Done fixing encoding issues part 2!');
