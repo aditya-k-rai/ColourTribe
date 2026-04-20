@@ -70,7 +70,7 @@ const WhyChooseUs = () => {
                 </div>
               </div>
               <div className="bg-[#152336] h-48 rounded-xl shadow-md flex items-center justify-center hover:-translate-y-1 transition-transform">
-                <span className="text-4xl">ðŸ‘”</span>
+                <span className="text-4xl">👕</span>
               </div>
             </div>
             
@@ -79,7 +79,7 @@ const WhyChooseUs = () => {
                 <span className="text-4xl">ðŸª¡</span>
               </div>
               <div className="bg-[#152336] h-72 rounded-xl border border-gray-200 shadow-md flex items-center justify-center transform hover:rotate-1 transition-all origin-bottom-right">
-                <span className="text-6xl text-white opacity-50">âœ¨</span>
+                <span className="text-6xl text-white opacity-50">✨</span>
                 <p className="absolute bottom-4 left-4 text-white font-display text-lg">Perfect Fit.</p>
               </div>
             </div>

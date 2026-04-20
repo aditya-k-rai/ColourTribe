@@ -140,7 +140,7 @@ const LeadModal = () => {
                       onClick={handleSkip}
                       className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
                     >
-                      Browse without registering â†’
+                      Browse without registering →
                     </button>
                   </div>
                 </motion.div>

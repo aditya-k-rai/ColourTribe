@@ -96,13 +96,13 @@ const ProductPage = () => {
             className="w-full lg:w-1/2 flex flex-col gap-4"
           >
             <div className="bg-[#f0f4f8] w-full aspect-[4/5] rounded-2xl flex items-center justify-center text-9xl relative overflow-hidden group border border-gray-100">
-               {category?.icon || 'ðŸ‘”'}
+               {category?.icon || '👕'}
             </div>
             {/* Thumbnails placeholder */}
             <div className="flex gap-4">
                {[1,2,3,4].map(thumb => (
                  <div key={thumb} className="w-1/4 aspect-square bg-[#f0f4f8] rounded-lg border-2 border-transparent hover:border-gold cursor-pointer transition-colors flex items-center justify-center text-3xl">
-                   {category?.icon || 'ðŸ‘”'}
+                   {category?.icon || '👕'}
                  </div>
                ))}
             </div>

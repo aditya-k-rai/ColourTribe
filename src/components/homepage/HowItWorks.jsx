@@ -59,7 +59,7 @@ const HowItWorks = () => {
             number={1} 
             title="Browse & Select" 
             description="Explore our extensive catalogue, select your required products, sizes, and quantities." 
-            icon="ðŸ“±"
+            icon="📱"
             index={0}
           />
           <StepCard 
@@ -73,7 +73,7 @@ const HowItWorks = () => {
             number={3} 
             title="Confirm & Deliver" 
             description="Approve the sample, confirm production, and receive doorstep delivery across India." 
-            icon="ðŸšš"
+            icon="🚚"
             index={2}
           />
         </div>
@@ -85,7 +85,7 @@ const HowItWorks = () => {
           className="text-center"
         >
           <Link to="/products" className="inline-flex items-center justify-center gap-2 bg-navy text-white hover:bg-gold hover:text-navy font-bold border border-navy hover:border-gold py-4 px-10 rounded-full transition-all duration-300">
-            Start Your Order â†’
+            Start Your Order →
           </Link>
         </motion.div>
       </div>

@@ -110,7 +110,7 @@ const AdminLogin = () => {
                   type="text" 
                   required
                   maxLength="6"
-                  placeholder="â€¢â€¢â€¢â€¢â€¢â€¢"
+                  placeholder="••••••"
                   className="w-full bg-gray-50 border border-gray-200 p-4 rounded-lg outline-none focus:border-gold transition-colors text-center text-2xl font-mono tracking-[0.5em]"
                   value={inputCode}
                   onChange={e => setInputCode(e.target.value.replace(/[^0-9]/g, ''))}

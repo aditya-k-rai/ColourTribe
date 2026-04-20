@@ -93,7 +93,7 @@ const CataloguePage = ({ hub = 'products' }) => {
         <div className="absolute inset-0 opacity-20 bg-gradient-to-r from-gold/50 to-transparent"></div>
         <div className="container mx-auto px-6 relative z-10 flex items-center gap-4">
           <span className="text-6xl">
-            {activeCategoryData ? activeCategoryData.icon : (hub === 'industries' ? 'ðŸ­' : hub === 'uniforms' ? 'ðŸ‘”' : 'ðŸ“¦')}
+            {activeCategoryData ? activeCategoryData.icon : (hub === 'industries' ? 'ðŸ­' : hub === 'uniforms' ? '👕' : 'ðŸ“¦')}
           </span>
           <div>
             <h1 className="text-white font-display text-4xl mb-2">
@@ -217,7 +217,7 @@ const CataloguePage = ({ hub = 'products' }) => {
                     >
                       <Link to={`/product/${product.sku}`} className="block">
                         <div className="h-60 bg-[#f0f4f8] relative flex items-center justify-center overflow-hidden">
-                          <span className="text-6xl group-hover:scale-110 transition-transform duration-500">{cat?.icon || 'ðŸ‘”'}</span>
+                          <span className="text-6xl group-hover:scale-110 transition-transform duration-500">{cat?.icon || '👕'}</span>
                           <div className="absolute top-3 left-3 bg-navy text-white text-xs px-2 py-1 rounded font-medium shadow">
                             {cat?.name?.split(' / ')[0]}
                           </div>

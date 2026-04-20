@@ -110,7 +110,7 @@ const AboutPage = () => {
                 </div>
                 <div className="bg-white aspect-[4/5] rounded-2xl shadow-lg border border-gray-100 flex items-center justify-center p-6 text-center group hover:-translate-y-2 transition-transform duration-300">
                   <div>
-                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">ðŸšš</div>
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">🚚</div>
                     <h3 className="font-bold text-navy">Pan-India Reach</h3>
                     <p className="text-xs text-gray-500 mt-2">Direct shipping to your doorstep.</p>
                   </div>

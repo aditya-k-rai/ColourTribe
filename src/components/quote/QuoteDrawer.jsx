@@ -81,7 +81,7 @@ const QuoteDrawer = () => {
                   return (
                     <div key={`${item.productId}-${item.color}-${idx}`} className="flex gap-4 p-4 border border-gray-100 rounded-xl bg-gray-50/50">
                       <div className="w-20 h-24 bg-gray-200 rounded-lg flex items-center justify-center shrink-0 text-3xl">
-                        {cat?.icon || 'ðŸ‘”'}
+                        {cat?.icon || '👕'}
                       </div>
                       
                       <div className="flex-1 min-w-0 flex flex-col">

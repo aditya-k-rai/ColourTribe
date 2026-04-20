@@ -37,7 +37,7 @@ const ProductCard = ({ product }) => {
         
         <div className="flex justify-between items-center relative h-10 overflow-hidden">
           <Link to={`/product/${product.sku}`} className="text-sm font-semibold text-navy flex items-center gap-1 hover:text-gold transition-colors block w-full absolute top-2">
-            View Details â†’
+            View Details →
           </Link>
           
           <AnimatePresence>
