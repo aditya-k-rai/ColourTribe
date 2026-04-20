@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Colour Tribe — SEO + AEO Strategy Document</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Playfair+Display:wght@700&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy: #0f1b2d;
+      --gold: #c9a84c;
+      --cream: #f8f5ef;
+      --white: #ffffff;
+      --gray: #6b7280;
+      --light: #f1f5f9;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: #1e293b;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    /* ── Cover Page ── */
+    .cover {
+      background: var(--navy);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 60px 40px;
+      page-break-after: always;
+      position: relative;
+      overflow: hidden;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(201,168,76,0.15) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 20%, rgba(201,168,76,0.08) 0%, transparent 50%);
+    }
+    .cover .badge {
+      background: var(--gold);
+      color: var(--navy);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 100px;
+      display: inline-block;
+      margin-bottom: 28px;
+    }
+    .cover h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      color: var(--white);
+      line-height: 1.15;
+      max-width: 720px;
+      margin-bottom: 20px;
+    }
+    .cover h1 em { color: var(--gold); font-style: normal; }
+    .cover p {
+      color: rgba(255,255,255,0.65);
+      max-width: 540px;
+      font-size: 16px;
+      margin-bottom: 48px;
+    }
+    .cover .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 640px;
+      width: 100%;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 40px;
+    }
+    .cover .meta-item {
+      text-align: center;
+    }
+    .cover .meta-item .label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      display: block;
+      margin-bottom: 4px;
+    }
+    .cover .meta-item .value {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    /* ── Page Sections ── */
+    .page {
+      padding: 56px 60px;
+      max-width: 900px;
+      margin: 0 auto;
+      page-break-inside: avoid;
+    }
+    .page + .page {
+      border-top: 1px solid #e2e8f0;
+    }
+
+    /* Section Header */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .section-number {
+      width: 36px;
+      height: 36px;
+      background: var(--navy);
+      color: var(--gold);
+      font-weight: 900;
+      font-size: 14px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: var(--navy);
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--navy);
+      margin: 24px 0 10px;
+    }
+    p { margin-bottom: 12px; color: #374151; }
+
+    /* ── Cards / Grids ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 20px 0;
+    }
+    .card {
+      background: var(--light);
+      border-radius: 12px;
+      padding: 20px;
+      border-left: 4px solid var(--gold);
+    }
+    .card .card-title {
+      font-weight: 700;
+      color: var(--navy);
+      font-size: 13px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .card p { margin: 0; font-size: 13px; line-height: 1.6; }
+
+    /* ── Table ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+    th {
+      background: var(--navy);
+      color: var(--gold);
+      text-align: left;
+      padding: 10px 14px;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e2e8f0;
+      color: #374151;
+    }
+    tr:nth-child(even) td { background: #f8fafc; }
+    tr:hover td { background: #fefce8; }
+
+    /* ── Checklist ── */
+    .checklist { list-style: none; padding: 0; margin: 14px 0; }
+    .checklist li {
+      padding: 8px 0 8px 30px;
+      position: relative;
+      border-bottom: 1px dashed #e2e8f0;
+      font-size: 13px;
+      color: #374151;
+    }
+    .checklist li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 900;
+    }
+
+    /* ── Highlight boxes ── */
+    .highlight {
+      background: linear-gradient(135deg, #fefce8, #fffbeb);
+      border: 1px solid var(--gold);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+    .highlight strong { color: var(--navy); }
+
+    .info-box {
+      background: #eff6ff;
+      border-left: 4px solid #3b82f6;
+      border-radius: 0 8px 8px 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 13px;
+    }
+
+    /* ── Route Table colors ── */
+    .tag {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 100px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .tag-done { background: #dcfce7; color: #166534; }
+    .tag-seo  { background: #fef9c3; color: #854d0e; }
+    .tag-aeo  { background: #ede9fe; color: #5b21b6; }
+
+    /* ── Page break ── */
+    .break { page-break-after: always; }
+
+    /* ── Print ── */
+    @media print {
+      body { font-size: 12px; }
+      .cover { min-height: 100vh; }
+      .page { padding: 40px 50px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════ COVER ══════════════════════════════════════════ -->
+<div class="cover">
+  <span class="badge">Confidential Strategy Document</span>
+  <h1>Colour Tribe<br/><em>SEO + AEO</em><br/>Implementation Plan</h1>
+  <p>A comprehensive roadmap to maximise search engine visibility and position Colour Tribe as the authoritative answer for B2B uniform queries in AI-powered search engines.</p>
+  <div class="meta-grid">
+    <div class="meta-item">
+      <span class="label">Prepared For</span>
+      <span class="value">Colour Tribe</span>
+    </div>
+    <div class="meta-item">
+      <span class="label">Date</span>
+      <span class="value">April 2026</span>
+    </div>
+    <div class="meta-item">
+      <span class="label">Version</span>
+      <span class="value">1.0 — Live</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════ EXECUTIVE SUMMARY ══════════════════════════════ -->
+<div class="page break">
+  <div class="section-header">
+    <div class="section-number">01</div>
+    <h2 class="section-title">Executive Summary</h2>
+  </div>
+
+  <p>This document describes the full SEO (Search Engine Optimisation) and AEO (Answer Engine Optimisation) strategy implemented on the <strong>Colour Tribe</strong> website (<em>colourtribe.co.in</em>). The goal is twofold:</p>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title">🔍 SEO — Rank Higher</div>
+      <p>Ensure every page on the site is technically optimised to appear in the top results when B2B buyers search for uniform manufacturers, hotel uniform suppliers, chef wear, and related queries on Google.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">🤖 AEO — Get Cited by AI</div>
+      <p>Ensure Colour Tribe's answers appear in AI-powered search results (Google AI Mode, ChatGPT, Perplexity, Gemini) when buyers ask questions like "best uniform manufacturer in India" or "where to buy chef uniforms in bulk".</p>
+    </div>
+  </div>
+
+  <div class="highlight">
+    <strong>Target Market:</strong> Indian B2B buyers — hotel chains, restaurant groups, hospitals, corporate HR teams, and industrial firms — procuring uniforms in bulk (10–1000+ pieces).
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════ WHAT WE IMPLEMENTED ═══════════════════════════ -->
+<div class="page break">
+  <div class="section-header">
+    <div class="section-number">02</div>
+    <h2 class="section-title">What Was Implemented</h2>
+  </div>
+
+  <h3>A. index.html — Base-Layer SEO</h3>
+  <ul class="checklist">
+    <li>Descriptive keyword-rich <code>&lt;title&gt;</code> tag targeting "B2B Uniform Manufacturer India"</li>
+    <li>180-character <code>&lt;meta name="description"&gt;</code> with primary keywords + USPs</li>
+    <li><code>&lt;meta name="keywords"&gt;</code> covering chef uniform, hotel uniform, corporate workwear, housekeeping, Greater Noida</li>
+    <li><code>&lt;meta name="robots" content="index, follow"&gt;</code></li>
+    <li><code>&lt;link rel="canonical"&gt;</code> pointing to the production domain</li>
+    <li>Full Open Graph tags (og:title, og:description, og:image, og:url, og:type)</li>
+    <li>Twitter Card meta tags (summary_large_image)</li>
+    <li>Colour Tribe logo set as favicon + Apple Touch Icon</li>
+    <li><code>&lt;meta name="theme-color"&gt;</code> set to navy (#0f1b2d)</li>
+  </ul>
+
+  <h3>B. JSON-LD Structured Data (Static in HTML)</h3>
+  <ul class="checklist">
+    <li><strong>Organization schema</strong> — name, URL, logo, telephone, address, areaServed</li>
+    <li><strong>ClothingStore / LocalBusiness schema</strong> — includes opening hours, priceRange, full address, telephone, description</li>
+  </ul>
+
+  <div class="info-box">
+    <strong>Why JSON-LD?</strong> Structured data allows Google and AI engines to understand who Colour Tribe is without reading prose — dramatically increasing the chance of earning a Knowledge Panel, Rich Result, or AI citation.
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════ PAGE-LEVEL META ═══════════════════════════════ -->
+<div class="page break">
+  <div class="section-header">
+    <div class="section-number">03</div>
+    <h2 class="section-title">Dynamic Per-Page SEO Metadata</h2>
+  </div>
+
+  <p>A centralised <code>src/utils/seo.js</code> module was built to manage all dynamic SEO metadata in React. It injects and updates title, description, Open Graph, and Twitter Card tags on every route change without a full page reload.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Page</th>
+        <th>Dynamic Title</th>
+        <th>Meta Description Focus</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Homepage (/)</strong></td>
+        <td>Colour Tribe | Premium B2B Uniform Manufacturer in India</td>
+        <td>Full brand intro, key industries, USPs (factory-direct, custom embroidery)</td>
+        <td><span class="tag tag-done">Done</span></td>
+      </tr>
+      <tr>
+        <td><strong>Products (/products)</strong></td>
+        <td>All Products | Colour Tribe</td>
+        <td>Hub-level description for all product types</td>
+        <td><span class="tag tag-done">Done</span></td>
+      </tr>
+      <tr>
+        <td><strong>Uniforms (/uniforms)</strong></td>
+        <td>Professional Uniforms | Colour Tribe</td>
+        <td>Targets uniform-specific searches</td>
+        <td><span class="tag tag-done">Done</span></td>
+      </tr>
+      <tr>
+        <td><strong>Industries (/industries)</strong></td>
+        <td>Industry Solutions | Colour Tribe</td>
+        <td>Targets hospitality/corporate/industrial B2B queries</td>
+        <td><span class="tag tag-done">Done</span></td>
+      </tr>
+      <tr>
+        <td><strong>Category Page (e.g. /uniforms/chef-uniform)</strong></td>
+        <td>[Category Name] | Colour Tribe</td>
+        <td>Category-specific description (e.g. "Shop Chef Uniforms…")</td>
+        <td><span class="tag tag-done">Done</span></td>
+      </tr>
+      <tr>
+        <td><strong>Product Detail (/product/:sku)</strong></td>
+        <td>[Product Name] | Colour Tribe B2B Uniforms</td>
+        <td>Per-product: name, SKU, category, key features</td>
+        <td><span class="tag tag-done">Done</span></td>
+      </tr>
+      <tr>
+        <td><strong>About (/about)</strong></td>
+        <td>About Colour Tribe | B2B Uniform Manufacturer in Greater Noida</td>
+        <td>15 years, 500+ clients, in-house manufacturing</td>
+        <td><span class="tag tag-done">Done</span></td>
+      </tr>
+      <tr>
+        <td><strong>Contact (/contact)</strong></td>
+        <td>Contact Colour Tribe | Bulk Uniform Orders &amp; Enquiries</td>
+        <td>Phone, Greater Noida hub, WhatsApp orders</td>
+        <td><span class="tag tag-done">Done</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ══════════════════════════════════════════ JSON-LD SCHEMAS ════════════════════════════════ -->
+<div class="page break">
+  <div class="section-header">
+    <div class="section-number">04</div>
+    <h2 class="section-title">JSON-LD Schema Strategy</h2>
+  </div>
+
+  <p>Each schema type targets a specific Google Rich Result format and AI citation opportunity:</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Schema Type</th>
+        <th>Injected On</th>
+        <th>Google Rich Result</th>
+        <th>AEO Benefit</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Organization</strong></td>
+        <td>All pages (static in HTML)</td>
+        <td>Knowledge Panel, Sitelinks</td>
+        <td>AI engines identify brand entity</td>
+      </tr>
+      <tr>
+        <td><strong>ClothingStore / LocalBusiness</strong></td>
+        <td>All pages (static in HTML)</td>
+        <td>Local Pack, Maps listing boost</td>
+        <td>AI can cite business hours, address, phone</td>
+      </tr>
+      <tr>
+        <td><strong>Product</strong></td>
+        <td>Every /product/:sku page</td>
+        <td>Product Rich Snippet (name, price, availability)</td>
+        <td>AI engines can cite specific product specs</td>
+      </tr>
+      <tr>
+        <td><strong>FAQPage</strong></td>
+        <td>Homepage, About, Contact</td>
+        <td>FAQ Accordion in search results</td>
+        <td>Highest AEO value — direct AI answer sourcing</td>
+      </tr>
+      <tr>
+        <td><strong>BreadcrumbList</strong></td>
+        <td>Catalogue + Product pages</td>
+        <td>Breadcrumb trail in search snippet</td>
+        <td>Improves page hierarchy understanding</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="highlight">
+    <strong>Critical Insight — FAQPage Schema:</strong> When an AI engine (Google Gemini, ChatGPT, Perplexity) is asked "what is the minimum order for uniforms in India?", the presence of a FAQPage schema with that exact Q&A makes Colour Tribe a primary citation candidate.
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════ AEO FAQS ══════════════════════════════════════ -->
+<div class="page break">
+  <div class="section-header">
+    <div class="section-number">05</div>
+    <h2 class="section-title">AEO — Answer Engine Optimisation</h2>
+  </div>
+
+  <p>AEO focuses on ensuring Colour Tribe's content is the <strong>authoritative, cited answer</strong> when buyers use AI-powered search tools. We implemented two layers:</p>
+
+  <h3>Layer 1: FAQPage JSON-LD (Machine-Readable)</h3>
+  <p>Injected invisibly in <code>&lt;head&gt;</code> on Homepage, About, and Contact pages. AI engines read this directly.</p>
+
+  <h3>Layer 2: Visible FAQ Accordions (Human + Machine)</h3>
+  <p>Native HTML <code>&lt;details&gt;&lt;summary&gt;</code> accordions added visibly to About and Contact pages — readable by both crawlers and users.</p>
+
+  <table>
+    <thead>
+      <tr><th>Page</th><th>FAQ Questions Targeting</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Homepage</strong></td>
+        <td>Minimum order? Custom logo? Delivery time? Which industries? Pan-India delivery? What fabric?</td>
+      </tr>
+      <tr>
+        <td><strong>About</strong></td>
+        <td>Where located? How many years experience? Manufacturer or reseller?</td>
+      </tr>
+      <tr>
+        <td><strong>Contact</strong></td>
+        <td>How to place bulk order? Business hours? Sample policy? WhatsApp orders?</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box">
+    <strong>Homepage AEO:</strong> The 6 FAQ items on the homepage are also rendered as screen-reader-accessible <code>aria-hidden="false"</code> HTML, ensuring AI crawlers can parse the answers even if JavaScript is slow to execute.
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════ URL STRUCTURE ══════════════════════════════════ -->
+<div class="page break">
+  <div class="section-header">
+    <div class="section-number">06</div>
+    <h2 class="section-title">SEO-Friendly URL Structure</h2>
+  </div>
+
+  <p>The routing was completely restructured from a monolithic <code>/catalogue</code> to targeted, keyword-rich hubs:</p>
+
+  <table>
+    <thead>
+      <tr><th>Route</th><th>Purpose</th><th>Keywords Targeted</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>/products</code></td><td>All individual product listings</td><td>uniform products india, buy uniform online b2b</td></tr>
+      <tr><td><code>/products/:categorySlug</code></td><td>Category-specific product grid</td><td>men formal suit supplier, polo tshirt manufacturer</td></tr>
+      <tr><td><code>/uniforms</code></td><td>Professional uniform hub</td><td>uniform manufacturer india, professional uniforms bulk</td></tr>
+      <tr><td><code>/uniforms/:categorySlug</code></td><td>Specific uniform type</td><td>chef uniform, housekeeping uniform, hotel staff uniform</td></tr>
+      <tr><td><code>/industries</code></td><td>Industry-focused landing hub</td><td>hospitality uniform, hospital uniform, corporate workwear</td></tr>
+      <tr><td><code>/industries/:categorySlug</code></td><td>Industry + product combo page</td><td>bellboy uniform, banquet jacket, steward uniform</td></tr>
+      <tr><td><code>/product/:sku</code></td><td>Individual product detail</td><td>[Product Name] uniform, [SKU] uniform</td></tr>
+      <tr><td><code>/about</code></td><td>Brand authority page</td><td>colour tribe manufacturer, uniform company greater noida</td></tr>
+      <tr><td><code>/contact</code></td><td>Local SEO + lead conversion</td><td>uniform supplier contact, bulk order uniform india</td></tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- ══════════════════════════════════════════ NEXT STEPS ════════════════════════════════════ -->
+<div class="page break">
+  <div class="section-header">
+    <div class="section-number">07</div>
+    <h2 class="section-title">Recommended Next Steps</h2>
+  </div>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title">🗺️ Submit Sitemap to Google</div>
+      <p>Generate a sitemap.xml listing all routes and submit via Google Search Console to trigger fast indexing of all new URL hubs.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">📍 Google Business Profile</div>
+      <p>Claim and optimise the Google Business Profile for Colour Tribe at Greater Noida. Add photos, categories ("Clothing Manufacturer"), and link to the website.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">🔗 Backlink Building</div>
+      <p>List Colour Tribe on JustDial, IndiaMART, Sulekha, TradeIndia, and LinkedIn. These backlinks signal authority to Google and AI crawlers.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">📸 Real Product Images</div>
+      <p>Replace emoji placeholders with real product photos. Product Image schema requires an imageUrl. Actual photos dramatically improve click-through rates from search.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">✍️ Blog / Content Hub</div>
+      <p>Add a blog at <code>/blog</code> with articles like "How to choose hotel uniforms", "5 benefits of polyviscose for workwear". Long-form content drives AEO citations.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">⭐ Review Schema</div>
+      <p>Collect Google reviews from B2B clients and add AggregateRating schema to the homepage for visible star ratings in search results.</p>
+    </div>
+  </div>
+
+  <div class="highlight" style="margin-top:24px">
+    <strong>Priority:</strong> Steps 1 (Sitemap) and 2 (Google Business Profile) are free and can be completed in under 30 minutes each. They are the single highest-ROI actions after this technical implementation.
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════ TECHNICAL SUMMARY ══════════════════════════════ -->
+<div class="page">
+  <div class="section-header">
+    <div class="section-number">08</div>
+    <h2 class="section-title">Technical File Summary</h2>
+  </div>
+
+  <table>
+    <thead>
+      <tr><th>File</th><th>Changes Made</th><th>Type</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>index.html</code></td><td>Full SEO meta, OG, Twitter Cards, canonical, Organization + LocalBusiness JSON-LD, logo favicon</td><td><span class="tag tag-seo">SEO</span></td></tr>
+      <tr><td><code>src/utils/seo.js</code></td><td>New utility — setPageMeta, setJsonLd, removeJsonLd, buildProductSchema, buildFaqSchema, buildBreadcrumbSchema</td><td><span class="tag tag-seo">SEO</span> <span class="tag tag-aeo">AEO</span></td></tr>
+      <tr><td><code>src/pages/HomePage.jsx</code></td><td>Dynamic meta via useEffect, FAQPage JSON-LD (6 Q&amp;As), accessible hidden AEO FAQ block</td><td><span class="tag tag-aeo">AEO</span></td></tr>
+      <tr><td><code>src/pages/AboutPage.jsx</code></td><td>Dynamic meta, FAQPage JSON-LD (3 Q&amp;As), visible FAQ accordion section</td><td><span class="tag tag-aeo">AEO</span></td></tr>
+      <tr><td><code>src/pages/ContactPage.jsx</code></td><td>Dynamic meta, FAQPage JSON-LD (4 Q&amp;As), visible FAQ accordion section</td><td><span class="tag tag-aeo">AEO</span></td></tr>
+      <tr><td><code>src/pages/ProductPage.jsx</code></td><td>Per-product dynamic meta title+description, Product JSON-LD schema, BreadcrumbList JSON-LD</td><td><span class="tag tag-seo">SEO</span></td></tr>
+      <tr><td><code>src/pages/CataloguePage.jsx</code></td><td>Hub-aware meta (products/uniforms/industries), category-level meta override, BreadcrumbList JSON-LD with cleanup</td><td><span class="tag tag-seo">SEO</span></td></tr>
+      <tr><td><code>src/App.jsx</code></td><td>New routes: /products, /uniforms, /industries (each with :categorySlug)</td><td><span class="tag tag-seo">SEO</span></td></tr>
+      <tr><td><code>src/components/layout/NavBar.jsx</code></td><td>New nav links: Products, Uniforms, Industries, Contact Us, About</td><td><span class="tag tag-seo">SEO</span></td></tr>
+      <tr><td><code>src/components/layout/Footer.jsx</code></td><td>Updated Quick Links + Categories to reflect new URL structure</td><td><span class="tag tag-seo">SEO</span></td></tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:48px; padding-top:24px; border-top:1px solid #e2e8f0; text-align:center; color:#94a3b8; font-size:12px;">
+    <strong style="color:#0f1b2d;">Colour Tribe</strong> &nbsp;·&nbsp; SEO + AEO Strategy Document &nbsp;·&nbsp; April 2026 &nbsp;·&nbsp; Confidential
+  </div>
+</div>
+
+</body>
+</html>
