@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ChevronRight, ShieldCheck, Clock, Layers, Plus, Minus } from 'lucide-react';
+import { ChevronRight, ShieldCheck, Layers, Plus, Minus, Info } from 'lucide-react';
 import { useQuoteStore } from '../store/quoteStore';
 import { PRODUCTS } from '../data/products.seed';
 import { CATEGORIES } from '../data/categories.seed';
@@ -197,6 +197,18 @@ const ProductPage = () => {
               </a>
             </div>
 
+            {/* Important Note */}
+            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-8 text-sm shadow-sm">
+              <p className="text-navy font-bold mb-3 flex items-center gap-2">
+                <Info size={16} className="text-gold" /> Important Order Information
+              </p>
+              <ul className="text-gray-600 space-y-2 list-disc list-outside ml-4 text-xs leading-relaxed">
+                <li><strong>Customization:</strong> Please provide a Reference / Sample image for any uniform design customization.</li>
+                <li><strong>Delivery Time:</strong> Standard delivery is 15-20 days for 100 pieces (depends on total quantity).</li>
+                <li><strong>Fast Delivery:</strong> Available in 10 days with additional charges.</li>
+              </ul>
+            </div>
+
             {/* Accordion Info */}
             <div className="border-t border-gray-200 pt-6 space-y-4">
               <div className="flex items-start gap-4">
@@ -204,13 +216,6 @@ const ProductPage = () => {
                 <div>
                   <h4 className="font-bold text-navy text-sm">Quality Guaranteed</h4>
                   <p className="text-xs text-gray-500 mt-1">Premium 65/35 Polyviscose blend designed for everyday duty. Breathable and color-fast.</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-4">
-                <Clock className="text-gold mt-1 shrink-0" size={20} />
-                <div>
-                  <h4 className="font-bold text-navy text-sm">Production Time</h4>
-                  <p className="text-xs text-gray-500 mt-1">Standard 7-10 days for orders under 100 pcs. Custom embroidery adds 2 days.</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
