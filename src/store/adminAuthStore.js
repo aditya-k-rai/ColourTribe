@@ -3,14 +3,11 @@ import { create } from 'zustand';
 export const useAdminAuthStore = create((set) => ({
   isAuthenticated: false,
   adminUser: null,
-  login: (email, password) => {
-    // Mock login for development
-    if (email === 'admin@colourtribe.in' && password === 'admin123') {
-      window.sessionStorage.setItem('ct_admin_auth', 'true');
-      set({ isAuthenticated: true, adminUser: { email, name: 'Main Admin' } });
-      return true;
-    }
-    return false;
+  login: (email) => {
+    // Admin array verification should be handled by the component before calling this
+    window.sessionStorage.setItem('ct_admin_auth', 'true');
+    set({ isAuthenticated: true, adminUser: { email, name: email === 'adtyamighty@gmail.com' ? 'Aditya' : 'Lotwaala' } });
+    return true;
   },
   logout: () => {
     window.sessionStorage.removeItem('ct_admin_auth');
