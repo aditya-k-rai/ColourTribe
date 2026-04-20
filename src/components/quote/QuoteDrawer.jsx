@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { CATEGORIES } from '../../data/categories.seed';
 
 const QuoteDrawer = () => {
-  const { items, isDrawerOpen, setDrawerOpen, updateQty, removeItem, getApproxTotal, clearAll } = useQuoteStore();
+  const { items, isDrawerOpen, setDrawerOpen, updateQty, removeItem, clearAll } = useQuoteStore();
   const navigate = useNavigate();
 
   // Prevent background scrolling when drawer is open
@@ -50,7 +50,7 @@ const QuoteDrawer = () => {
             {/* Header */}
             <div className="px-6 py-4 bg-navy text-white flex justify-between items-center shrink-0">
               <h2 className="font-display font-bold text-xl flex items-center gap-2">
-                <span className="text-gold">✦</span> My Quote List
+                <span className="text-gold">âœ¦</span> My Quote List
               </h2>
               <button 
                 onClick={() => setDrawerOpen(false)}
@@ -65,11 +65,11 @@ const QuoteDrawer = () => {
             <div className="flex-1 overflow-y-auto px-6 py-4 space-y-6">
               {items.length === 0 ? (
                 <div className="h-full flex flex-col items-center justify-center text-center opacity-50 space-y-4">
-                  <div className="text-6xl">📝</div>
+                  <div className="text-6xl">ðŸ“</div>
                   <p className="font-bold">Your quote list is empty.</p>
                   <p className="text-sm">Browse our catalogue to add items.</p>
                   <button 
-                    onClick={() => { setDrawerOpen(false); navigate('/catalogue'); }}
+                    onClick={() => { setDrawerOpen(false); navigate('/products'); }}
                     className="mt-4 px-6 py-2 border border-navy rounded-full hover:bg-navy hover:text-white transition-colors"
                   >
                     Start Browsing
@@ -81,7 +81,7 @@ const QuoteDrawer = () => {
                   return (
                     <div key={`${item.productId}-${item.color}-${idx}`} className="flex gap-4 p-4 border border-gray-100 rounded-xl bg-gray-50/50">
                       <div className="w-20 h-24 bg-gray-200 rounded-lg flex items-center justify-center shrink-0 text-3xl">
-                        {cat?.icon || '👔'}
+                        {cat?.icon || 'ðŸ‘”'}
                       </div>
                       
                       <div className="flex-1 min-w-0 flex flex-col">
@@ -113,10 +113,6 @@ const QuoteDrawer = () => {
                             </button>
                           </div>
                           
-                          <div className="text-right">
-                            <div className="text-xs text-gray-500">Approx. ₹{item.unitPrice}/pc</div>
-                            <div className="font-bold text-navy">₹{item.lineTotal.toLocaleString()}</div>
-                          </div>
                         </div>
                       </div>
                     </div>
@@ -128,14 +124,6 @@ const QuoteDrawer = () => {
             {/* Footer */}
             {items.length > 0 && (
               <div className="px-6 py-6 bg-gray-50 border-t border-gray-200 shrink-0">
-                <div className="flex justify-between items-end mb-4">
-                  <span className="text-gray-500 font-bold">Approximate Total</span>
-                  <span className="font-display font-bold text-2xl text-gold">₹{getApproxTotal().toLocaleString()}</span>
-                </div>
-                <p className="text-xs text-gray-400 text-center mb-6">
-                  * Final price depends on customization, embroidery, and fabric choices.
-                </p>
-                
                 <div className="flex flex-col gap-3">
                   <button 
                     onClick={handleCheckout}

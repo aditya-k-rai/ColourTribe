@@ -59,21 +59,21 @@ const HowItWorks = () => {
             number={1} 
             title="Browse & Select" 
             description="Explore our extensive catalogue, select your required products, sizes, and quantities." 
-            icon="📱"
+            icon="ðŸ“±"
             index={0}
           />
           <StepCard 
             number={2} 
             title="Request a Quote" 
             description="Submit your quote list. Our team calculates the best bulk pricing based on your order size." 
-            icon="📝"
+            icon="ðŸ“"
             index={1}
           />
           <StepCard 
             number={3} 
             title="Confirm & Deliver" 
             description="Approve the sample, confirm production, and receive doorstep delivery across India." 
-            icon="🚚"
+            icon="ðŸšš"
             index={2}
           />
         </div>
@@ -84,8 +84,8 @@ const HowItWorks = () => {
           transition={{ duration: 0.5, delay: 1 }}
           className="text-center"
         >
-          <Link to="/catalogue" className="inline-flex items-center justify-center gap-2 bg-navy text-white hover:bg-gold hover:text-navy font-bold border border-navy hover:border-gold py-4 px-10 rounded-full transition-all duration-300">
-            Start Your Order →
+          <Link to="/products" className="inline-flex items-center justify-center gap-2 bg-navy text-white hover:bg-gold hover:text-navy font-bold border border-navy hover:border-gold py-4 px-10 rounded-full transition-all duration-300">
+            Start Your Order â†’
           </Link>
         </motion.div>
       </div>

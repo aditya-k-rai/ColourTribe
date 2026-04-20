@@ -4,7 +4,7 @@ import { useLeadStore } from '../store/leadStore';
 import { useNavigate } from 'react-router-dom';
 
 const QuotePage = () => {
-  const { items, getApproxTotal, clearAll } = useQuoteStore();
+  const { items, clearAll } = useQuoteStore();
   const { name, phone, email, businessName, city, updateLead } = useLeadStore();
   const navigate = useNavigate();
   
@@ -29,7 +29,7 @@ const QuotePage = () => {
     return (
       <div className="min-h-screen bg-cream pt-32 pb-20 flex justify-center items-center font-body">
         <div className="bg-white p-12 rounded-2xl shadow-xl max-w-lg text-center mx-4">
-          <div className="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">✓</div>
+          <div className="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">âœ“</div>
           <h2 className="font-display text-3xl text-navy font-bold mb-4">Quote Submitted!</h2>
           <p className="text-gray-500 mb-8 leading-relaxed">
             Thank you, {formData.name}. We have received your bulk order request. Our team will contact you at {formData.phone} within 24 hours with a finalized exact price.
@@ -38,7 +38,7 @@ const QuotePage = () => {
             Reference No: CT-{Math.floor(Math.random() * 1000000)}
           </div>
           <button 
-            onClick={() => navigate('/catalogue')}
+            onClick={() => navigate('/products')}
             className="w-full bg-navy text-white font-bold py-4 rounded-full transition-colors hover:bg-gold hover:text-navy"
           >
             Continue Browsing
@@ -52,7 +52,7 @@ const QuotePage = () => {
     return (
       <div className="min-h-screen bg-cream pt-32 pb-20 text-center font-body">
         <h2 className="font-display text-3xl text-navy mb-4">Your Quote List is Empty</h2>
-        <button onClick={() => navigate('/catalogue')} className="text-gold underline font-bold">Return to Catalogue</button>
+        <button onClick={() => navigate('/products')} className="text-gold underline font-bold">Return to Products</button>
       </div>
     );
   }
@@ -74,17 +74,8 @@ const QuotePage = () => {
                      <h4 className="font-bold text-sm text-navy">{item.name}</h4>
                      <p className="text-xs text-gray-400 mt-1">Color: {item.color} | Qty: {item.qty}</p>
                    </div>
-                   <div className="font-bold text-navy text-sm">₹{item.lineTotal.toLocaleString()}</div>
-                </div>
+                 </div>
               ))}
-            </div>
-
-            <div className="bg-navy/5 p-4 rounded-xl border border-navy/10">
-              <div className="flex justify-between text-navy font-bold text-lg mb-2">
-                <span>Approximate Total</span>
-                <span>₹{getApproxTotal().toLocaleString()}</span>
-              </div>
-              <p className="text-xs text-gray-500 italic">This is an estimated total based on standard bulk tiers. Price varies with customization.</p>
             </div>
           </div>
 

@@ -6,12 +6,12 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 // Mock featured products
 const FEATURED_PRODUCTS = [
-  { id: '1', sku: 'HO-01', name: 'Premium Corporate Suit', categoryId: '1', price: 2999 },
-  { id: '2', sku: 'FC-12', name: 'Executive Chef Coat', categoryId: '15', price: 1093 },
-  { id: '3', sku: 'HK-04', name: 'Housekeeping Tunic Set', categoryId: '21', price: 834 },
-  { id: '4', sku: 'ST-09', name: 'Steward Waistcoat', categoryId: '6', price: 776 },
-  { id: '5', sku: 'SD-11', name: 'Security Safari Suit', categoryId: '14', price: 978 },
-  { id: '6', sku: 'FO-02', name: 'Front Desk Saree Set', categoryId: '2', price: 3100 },
+  { id: '1', sku: 'HO-01', name: 'Premium Corporate Suit', categoryId: '1' },
+  { id: '2', sku: 'FC-12', name: 'Executive Chef Coat', categoryId: '15' },
+  { id: '3', sku: 'HK-04', name: 'Housekeeping Tunic Set', categoryId: '21' },
+  { id: '4', sku: 'ST-09', name: 'Steward Waistcoat', categoryId: '6' },
+  { id: '5', sku: 'SD-11', name: 'Security Safari Suit', categoryId: '14' },
+  { id: '6', sku: 'FO-02', name: 'Front Desk Saree Set', categoryId: '2' },
 ];
 
 const ProductCard = ({ product }) => {
@@ -33,11 +33,11 @@ const ProductCard = ({ product }) => {
       <div className="p-5">
         <div className="text-xs font-mono text-gray-500 mb-1">{product.sku}</div>
         <h4 className="font-display text-lg font-bold text-navy mb-2 truncate">{product.name}</h4>
-        <div className="text-gold font-bold text-xl mb-4">from ₹{product.price}/pc</div>
+        <div className="text-gold text-xs font-bold uppercase tracking-wider mt-1 mb-4">Customize</div>
         
         <div className="flex justify-between items-center relative h-10 overflow-hidden">
           <Link to={`/product/${product.sku}`} className="text-sm font-semibold text-navy flex items-center gap-1 hover:text-gold transition-colors block w-full absolute top-2">
-            View Details →
+            View Details â†’
           </Link>
           
           <AnimatePresence>
@@ -93,7 +93,7 @@ const FeaturedProducts = () => {
       <div className="container mx-auto px-6 lg:px-12 mb-10 flex justify-between items-end">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-gold text-sm">✦</span>
+            <span className="text-gold text-sm">âœ¦</span>
             <span className="text-gold font-bold tracking-widest uppercase text-xs">Top Picks</span>
           </div>
           <h2 className="font-display text-4xl text-navy font-bold">Bestselling Uniforms</h2>

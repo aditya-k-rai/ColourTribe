@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ChevronRight, ShieldCheck, Clock, Layers, Plus, Minus, Info } from 'lucide-react';
+import { ChevronRight, ShieldCheck, Clock, Layers, Plus, Minus } from 'lucide-react';
 import { useQuoteStore } from '../store/quoteStore';
 import { PRODUCTS } from '../data/products.seed';
 import { CATEGORIES } from '../data/categories.seed';
+import { setPageMeta, setJsonLd, removeJsonLd, buildProductSchema, buildBreadcrumbSchema } from '../utils/seo';
 
 const ProductPage = () => {
   const { sku } = useParams();
@@ -23,26 +24,40 @@ const ProductPage = () => {
     window.scrollTo(0, 0);
     const foundProduct = PRODUCTS.find(p => p.sku === sku);
     if (foundProduct) {
+      const foundCategory = CATEGORIES.find(c => c.id === foundProduct.categoryId);
       setProduct(foundProduct);
-      setCategory(CATEGORIES.find(c => c.id === foundProduct.categoryId));
-      setQty(10); // reset minimum to 10
+      setCategory(foundCategory);
+      setQty(10);
+
+      // SEO: dynamic title + meta per product
+      setPageMeta({
+        title: `${foundProduct.name} | Colour Tribe B2B Uniforms`,
+        description: `Buy ${foundProduct.name} (SKU: ${foundProduct.sku}) from Colour Tribe. Premium quality ${foundCategory?.name || 'uniform'} — custom embroidery, bulk pricing, pan-India delivery. Min. 10 pcs.`,
+      });
+
+      // JSON-LD: Product schema
+      setJsonLd('ld-product', buildProductSchema(foundProduct, foundCategory));
+
+      // JSON-LD: Breadcrumb schema
+      setJsonLd('ld-breadcrumb', buildBreadcrumbSchema([
+        { name: 'Home', path: '/' },
+        { name: 'Products', path: '/products' },
+        { name: foundCategory?.name || 'Category', path: `/products/${foundCategory?.slug}` },
+        { name: foundProduct.name, path: `/product/${foundProduct.sku}` },
+      ]));
     }
+    return () => {
+      removeJsonLd('ld-product');
+      removeJsonLd('ld-breadcrumb');
+    };
   }, [sku]);
 
-  // Bulk tier pricing logic
-  const currentPrice = useMemo(() => {
-    if (!product) return 0;
-    if (qty >= 100) return Math.floor(product.basePrice * 0.80);
-    if (qty >= 50) return Math.floor(product.basePrice * 0.87);
-    if (qty >= 10) return Math.floor(product.basePrice * 0.94);
-    return product.basePrice;
-  }, [product, qty]);
 
   if (!product) return (
     <div className="min-h-screen flex items-center justify-center pt-20 bg-cream">
        <div className="text-center">
          <h2 className="text-3xl font-display text-navy mb-4">Product Not Found</h2>
-         <button onClick={() => navigate('/catalogue')} className="text-gold hover:underline">Return to Catalogue</button>
+         <button onClick={() => navigate('/products')} className="text-gold hover:underline">Return to Products</button>
        </div>
     </div>
   );
@@ -51,8 +66,6 @@ const ProductPage = () => {
     addItem(product, {
       qty,
       color: selectedColor,
-      unitPrice: currentPrice,
-      lineTotal: currentPrice * qty
     });
   };
 
@@ -64,9 +77,9 @@ const ProductPage = () => {
         <div className="flex items-center gap-2 text-xs text-gray-500 mb-8 uppercase tracking-wider font-semibold">
           <Link to="/" className="hover:text-navy">Home</Link>
           <ChevronRight size={14} />
-          <Link to="/catalogue" className="hover:text-navy">Catalogue</Link>
+          <Link to="/products" className="hover:text-navy">Products</Link>
           <ChevronRight size={14} />
-          <Link to={`/catalogue/${category?.slug}`} className="hover:text-navy">{category?.name}</Link>
+          <Link to={`/products/${category?.slug}`} className="hover:text-navy">{category?.name}</Link>
           <ChevronRight size={14} />
           <span className="text-navy">{product.sku}</span>
         </div>
@@ -81,13 +94,13 @@ const ProductPage = () => {
             className="w-full lg:w-1/2 flex flex-col gap-4"
           >
             <div className="bg-[#f0f4f8] w-full aspect-[4/5] rounded-2xl flex items-center justify-center text-9xl relative overflow-hidden group border border-gray-100">
-               {category?.icon || '👔'}
+               {category?.icon || 'ðŸ‘”'}
             </div>
             {/* Thumbnails placeholder */}
             <div className="flex gap-4">
                {[1,2,3,4].map(thumb => (
                  <div key={thumb} className="w-1/4 aspect-square bg-[#f0f4f8] rounded-lg border-2 border-transparent hover:border-gold cursor-pointer transition-colors flex items-center justify-center text-3xl">
-                   {category?.icon || '👔'}
+                   {category?.icon || 'ðŸ‘”'}
                  </div>
                ))}
             </div>
@@ -104,34 +117,10 @@ const ProductPage = () => {
               SKU: {product.sku}
             </div>
             
-            <h1 className="font-display text-3xl md:text-4xl text-navy font-bold leading-tight mb-4">
+            <h1 className="font-display text-3xl md:text-4xl text-navy font-bold leading-tight mb-2">
               {product.name}
             </h1>
-            
-            <div className="mb-6">
-              <div className="text-3xl font-display text-gold font-bold">₹{currentPrice.toLocaleString()} <span className="text-sm text-gray-500 font-body outline-none font-normal">/ piece</span></div>
-              <p className="text-sm text-gray-400 mt-1">Bulk price applied based on quantity.</p>
-            </div>
-
-            {/* Bulk Table */}
-            <div className="border border-gray-200 rounded-xl overflow-hidden mb-8">
-              <div className="bg-gray-50 flex text-xs font-bold text-gray-500 uppercase tracking-wider">
-                <div className="flex-1 p-3">Quantity</div>
-                <div className="flex-1 p-3 border-l border-gray-200">Price / Pc</div>
-              </div>
-              <div className={`flex text-sm transition-colors ${qty >= 10 && qty < 50 ? 'bg-gold/10 font-bold text-navy' : 'text-gray-600'}`}>
-                <div className="flex-1 p-3">10 - 49 pcs</div>
-                <div className="flex-1 p-3 border-l border-gray-200">₹{Math.floor(product.basePrice * 0.94).toLocaleString()}</div>
-              </div>
-              <div className={`flex text-sm border-t border-gray-100 transition-colors ${qty >= 50 && qty < 100 ? 'bg-gold/10 font-bold text-navy' : 'text-gray-600'}`}>
-                <div className="flex-1 p-3">50 - 99 pcs</div>
-                <div className="flex-1 p-3 border-l border-gray-200">₹{Math.floor(product.basePrice * 0.87).toLocaleString()}</div>
-              </div>
-              <div className={`flex text-sm border-t border-gray-100 transition-colors ${qty >= 100 ? 'bg-gold/10 font-bold text-navy' : 'text-gray-600'}`}>
-                <div className="flex-1 p-3">100+ pcs</div>
-                <div className="flex-1 p-3 border-l border-gray-200">₹{Math.floor(product.basePrice * 0.80).toLocaleString()}</div>
-              </div>
-            </div>
+            <p className="text-sm text-gray-500 mb-6">Contact us for pricing — bulk rates available for all orders.</p>
 
             {/* Configurator */}
             <div className="space-y-6 mb-8">
@@ -154,8 +143,23 @@ const ProductPage = () => {
               {/* Quantity */}
               <div>
                 <label className="block text-sm font-bold text-navy mb-3">Total Quantity (Min: 10)</label>
+                
+                {/* Quick Select Options */}
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {[10, 20, 30, 50, 100].map(amount => (
+                    <button
+                      key={amount}
+                      onClick={() => setQty(amount)}
+                      className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${qty === amount ? 'bg-navy text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                    >
+                      {amount}
+                    </button>
+                  ))}
+                  <div className="text-gray-400 text-sm flex items-center px-2">or specify:</div>
+                </div>
+
                 <div className="flex items-center gap-4">
-                  <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden bg-white h-12">
+                  <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden bg-white h-12 w-full max-w-[160px]">
                     <button 
                       onClick={() => setQty(Math.max(10, qty - 1))}
                       className="px-4 h-full hover:bg-gray-100 text-gray-600 transition-colors"
@@ -166,7 +170,7 @@ const ProductPage = () => {
                       type="number" 
                       value={qty}
                       onChange={(e) => setQty(Math.max(10, parseInt(e.target.value) || 10))}
-                      className="w-16 h-full text-center font-bold text-lg border-x border-gray-300 outline-none"
+                      className="w-full h-full text-center font-bold text-lg border-x border-gray-300 outline-none"
                     />
                     <button 
                       onClick={() => setQty(qty + 1)}
@@ -174,10 +178,6 @@ const ProductPage = () => {
                     >
                       <Plus size={18} />
                     </button>
-                  </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs text-gray-500 uppercase tracking-widest font-bold">Line Total</span>
-                    <span className="text-xl font-bold text-navy font-display">₹{(currentPrice * qty).toLocaleString()}</span>
                   </div>
                 </div>
               </div>

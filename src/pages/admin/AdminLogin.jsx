@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAdminAuthStore } from '../../store/adminAuthStore';
 import { Lock } from 'lucide-react';
+import logo from '../../assets/logo.jpeg';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('admin@colourtribe.in');
@@ -27,9 +28,7 @@ const AdminLogin = () => {
         <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-gold to-brand-accent"></div>
         
         <div className="flex justify-center mb-6">
-          <div className="w-16 h-16 bg-navy/5 rounded-full flex items-center justify-center text-gold">
-            <Lock size={28} />
-          </div>
+          <img src={logo} alt="Colour Tribe Logo" className="h-20 w-auto object-contain rounded-md" />
         </div>
 
         <h2 className="font-display text-3xl font-bold text-navy text-center mb-2">Admin Portal</h2>

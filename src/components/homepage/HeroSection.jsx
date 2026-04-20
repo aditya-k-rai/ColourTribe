@@ -140,7 +140,7 @@ const HeroSection = () => {
             transition={{ duration: 0.6, delay: 1.2, type: "spring" }}
             className="flex flex-col sm:flex-row items-center gap-6 w-full justify-center md:justify-start"
           >
-            <Link to="/catalogue" className="group relative flex items-center justify-center gap-3 bg-gradient-to-r from-gold to-[#aa8529] text-navy font-bold py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_40px_rgba(201,168,76,0.4)] overflow-hidden">
+            <Link to="/products" className="group relative flex items-center justify-center gap-3 bg-gradient-to-r from-gold to-[#aa8529] text-navy font-bold py-4 px-10 rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_40px_rgba(201,168,76,0.4)] overflow-hidden">
               <div className="absolute inset-0 w-full h-full bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-500 ease-out skew-x-12"></div>
               <span className="relative z-10 text-[15px] uppercase tracking-wider">Explore Catalogue</span>
               <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />

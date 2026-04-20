@@ -4,8 +4,9 @@ import { motion } from 'framer-motion';
 import { Filter, Search, ChevronDown, Check, ArrowDownUp } from 'lucide-react';
 import { CATEGORIES } from '../data/categories.seed';
 import { PRODUCTS } from '../data/products.seed';
+import { setJsonLd, removeJsonLd, buildBreadcrumbSchema, setPageMeta } from '../utils/seo';
 
-const CataloguePage = () => {
+const CataloguePage = ({ hub = 'products' }) => {
   const { categorySlug } = useParams();
   
   const [searchTerm, setSearchTerm] = useState('');
@@ -24,6 +25,36 @@ const CataloguePage = () => {
       setSelectedCategory('all');
     }
   }, [categorySlug]);
+
+  // Set SEO Metadata
+  useEffect(() => {
+    let title = 'Premium Uniforms & Workwear | Colour Tribe';
+    if (hub === 'products') title = 'All Products | Colour Tribe';
+    if (hub === 'uniforms') title = 'Professional Uniforms | Colour Tribe';
+    if (hub === 'industries') title = 'Industry Solutions | Colour Tribe';
+    
+    // Override if a category is selected
+    if (selectedCategory !== 'all') {
+      const cat = CATEGORIES.find(c => c.id === selectedCategory);
+      if (cat) title = `${cat.name} | Colour Tribe`;
+    }
+
+    const hubLabel = hub === 'industries' ? 'Industry Solutions' : hub === 'uniforms' ? 'Professional Uniforms' : 'All Products';
+    const description = selectedCategory !== 'all'
+      ? `Shop ${CATEGORIES.find(c => c.id === selectedCategory)?.name || ''} uniforms at Colour Tribe. Factory-direct B2B pricing, custom embroidery, pan-India delivery.`
+      : `Browse Colour Tribe's ${hubLabel} — premium B2B uniforms for hotels, restaurants, hospitals & corporates. Factory-direct pricing, min. 10 pcs.`;
+
+    setPageMeta({ title, description });
+
+    // Breadcrumb JSON-LD
+    const crumbs = [{ name: 'Home', path: '/' }, { name: hubLabel, path: `/${hub}` }];
+    if (selectedCategory !== 'all') {
+      const cat = CATEGORIES.find(c => c.id === selectedCategory);
+      if (cat) crumbs.push({ name: cat.name, path: `/${hub}/${cat.slug}` });
+    }
+    setJsonLd('ld-catalogue-breadcrumb', buildBreadcrumbSchema(crumbs));
+    return () => removeJsonLd('ld-catalogue-breadcrumb');
+  }, [hub, selectedCategory]);
 
   const filteredProducts = useMemo(() => {
     let result = [...PRODUCTS];
@@ -57,19 +88,24 @@ const CataloguePage = () => {
 
   return (
     <div className="bg-cream min-h-screen pt-24 font-body">
-      {/* Category Hero if a specific category is selected */}
-      {activeCategoryData && (
-        <div className="bg-navy py-12 relative overflow-hidden mb-8">
-          <div className="absolute inset-0 opacity-20 bg-gradient-to-r from-gold/50 to-transparent"></div>
-          <div className="container mx-auto px-6 relative z-10 flex items-center gap-4">
-            <span className="text-6xl">{activeCategoryData.icon}</span>
-            <div>
-              <h1 className="text-white font-display text-4xl mb-2">{activeCategoryData.name}</h1>
-              <p className="text-white/70 text-sm">Explore our specialized collection crafted for premium fit and comfort.</p>
-            </div>
+      {/* Hero Section */}
+      <div className="bg-navy py-12 relative overflow-hidden mb-8">
+        <div className="absolute inset-0 opacity-20 bg-gradient-to-r from-gold/50 to-transparent"></div>
+        <div className="container mx-auto px-6 relative z-10 flex items-center gap-4">
+          <span className="text-6xl">
+            {activeCategoryData ? activeCategoryData.icon : (hub === 'industries' ? 'ðŸ­' : hub === 'uniforms' ? 'ðŸ‘”' : 'ðŸ“¦')}
+          </span>
+          <div>
+            <h1 className="text-white font-display text-4xl mb-2">
+              {activeCategoryData ? activeCategoryData.name : (
+                hub === 'industries' ? 'Industry Solutions' : 
+                hub === 'uniforms' ? 'Professional Uniforms' : 'All Products'
+              )}
+            </h1>
+            <p className="text-white/70 text-sm">Explore our specialized collection crafted for premium fit and comfort.</p>
           </div>
         </div>
-      )}
+      </div>
 
       {/* Main Content */}
       <div className="container mx-auto px-6 pb-20">
@@ -107,8 +143,6 @@ const CataloguePage = () => {
                 className="bg-gray-50 border border-gray-200 text-sm rounded-lg py-2 px-3 outline-none focus:border-gold"
               >
                 <option value="popular">Most Popular</option>
-                <option value="price_low">Price: Low to High</option>
-                <option value="price_high">Price: High to Low</option>
                 <option value="newest">Newest Arrivals</option>
               </select>
             </div>
@@ -159,7 +193,7 @@ const CataloguePage = () => {
           <div className="flex-1">
             {filteredProducts.length === 0 ? (
               <div className="bg-white rounded-xl border border-gray-200 p-16 flex flex-col items-center justify-center text-center">
-                <div className="text-5xl mb-4">🔍</div>
+                <div className="text-5xl mb-4">ðŸ”</div>
                 <h3 className="text-xl font-bold text-navy mb-2">No products found</h3>
                 <p className="text-gray-500 mb-6">We couldn't find anything matching your current filters.</p>
                 <button 
@@ -183,7 +217,7 @@ const CataloguePage = () => {
                     >
                       <Link to={`/product/${product.sku}`} className="block">
                         <div className="h-60 bg-[#f0f4f8] relative flex items-center justify-center overflow-hidden">
-                          <span className="text-6xl group-hover:scale-110 transition-transform duration-500">{cat?.icon || '👔'}</span>
+                          <span className="text-6xl group-hover:scale-110 transition-transform duration-500">{cat?.icon || 'ðŸ‘”'}</span>
                           <div className="absolute top-3 left-3 bg-navy text-white text-xs px-2 py-1 rounded font-medium shadow">
                             {cat?.name?.split(' / ')[0]}
                           </div>
@@ -195,8 +229,7 @@ const CataloguePage = () => {
                           </h4>
                           <div className="flex justify-between items-end mt-4">
                             <div>
-                               <div className="text-gold font-bold text-lg leading-none">₹{product.basePrice}</div>
-                               <div className="text-[10px] text-gray-400 mt-1 uppercase">Approx</div>
+                               <div className="text-gold text-xs font-bold uppercase tracking-wider mt-1">Customize</div>
                             </div>
                             <span className="text-sm font-bold text-navy group-hover:text-gold transition-colors flex items-center gap-1">
                               Details <ArrowDownUp className="w-3 h-3 rotate-90" />

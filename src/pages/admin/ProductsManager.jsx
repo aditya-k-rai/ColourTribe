@@ -112,7 +112,7 @@ const ProductsManager = () => {
                       {category?.name || 'Uncategorized'}
                     </td>
                     <td className="px-6 py-4 font-bold text-navy">
-                      ₹{product.basePrice}
+                      â‚¹{product.basePrice}
                     </td>
                     <td className="px-6 py-4">
                       <span className={`px-2 py-1 text-xs rounded-full font-semibold ${product.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600'}`}>
@@ -168,7 +168,7 @@ const ProductsManager = () => {
                     <input required name="sku" defaultValue={editingProduct?.sku} className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg outline-none focus:border-gold focus:bg-white transition-colors" />
                   </div>
                   <div>
-                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Base Price (₹)</label>
+                    <label className="block text-xs font-bold text-gray-500 uppercase tracking-widest mb-2">Base Price (â‚¹)</label>
                     <input required type="number" name="basePrice" defaultValue={editingProduct?.basePrice} className="w-full bg-gray-50 border border-gray-200 p-3 rounded-lg outline-none focus:border-gold focus:bg-white transition-colors" />
                   </div>
                   <div className="md:col-span-2">

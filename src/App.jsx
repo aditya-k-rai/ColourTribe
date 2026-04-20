@@ -3,7 +3,7 @@ import { Routes, Route, Outlet } from 'react-router-dom';
 import NavBar from './components/layout/NavBar';
 import Footer from './components/layout/Footer';
 import HomePage from './pages/HomePage';
-import CataloguePage from './pages/CataloguePage';
+import CataloguePage from './pages/productsPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import ProductPage from './pages/ProductPage';
@@ -32,8 +32,12 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
-        <Route path="catalogue" element={<CataloguePage />} />
-        <Route path="catalogue/:categorySlug" element={<CataloguePage />} />
+        <Route path="products" element={<CataloguePage hub="products" />} />
+        <Route path="products/:categorySlug" element={<CataloguePage hub="products" />} />
+        <Route path="uniforms" element={<CataloguePage hub="uniforms" />} />
+        <Route path="uniforms/:categorySlug" element={<CataloguePage hub="uniforms" />} />
+        <Route path="industries" element={<CataloguePage hub="industries" />} />
+        <Route path="industries/:categorySlug" element={<CataloguePage hub="industries" />} />
         <Route path="product/:sku" element={<ProductPage />} />
         <Route path="get-quote" element={<QuotePage />} />
         <Route path="about" element={<AboutPage />} />

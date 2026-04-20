@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, ShoppingBag, Users, Settings, LogOut, FileText } from 'lucide-react';
 import { useAdminAuthStore } from '../../store/adminAuthStore';
+import logo from '../../assets/logo.jpeg';
 
 const AdminLayout = () => {
   const { logout, adminUser } = useAdminAuthStore();
@@ -26,9 +27,12 @@ const AdminLayout = () => {
       {/* Sidebar */}
       <aside className="w-64 bg-navy text-white flex flex-col shadow-xl shrink-0">
         <div className="p-6 border-b border-white/10 shrink-0">
-          <h1 className="font-display font-bold text-2xl tracking-widest uppercase text-gold">
-            Colour Tribe
-          </h1>
+          <div className="flex items-center gap-3">
+            <img src={logo} alt="Colour Tribe Logo" className="h-10 w-auto object-contain rounded-md" />
+            <h1 className="font-display font-bold text-xl tracking-widest uppercase text-gold">
+              Colour Tribe
+            </h1>
+          </div>
           <p className="text-xs text-white/50 mt-1 uppercase tracking-wider">Admin Portal</p>
         </div>
 

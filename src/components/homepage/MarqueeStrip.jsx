@@ -7,7 +7,7 @@ const MarqueeStrip = () => {
         {/* Repeat 3 times for seamless loop */}
         {[...Array(3)].map((_, i) => (
           <span key={i} className="text-navy font-mono text-xs font-bold uppercase tracking-[0.2em] px-4">
-            HOTELS ✦ RESTAURANTS ✦ HOSPITALS ✦ CORPORATE ✦ SECURITY ✦ SCHOOLS ✦ FACTORIES ✦ AVIATION ✦ RETAIL ✦ SALONS ✦
+            HOTELS âœ¦ RESTAURANTS âœ¦ HOSPITALS âœ¦ CORPORATE âœ¦ SECURITY âœ¦ SCHOOLS âœ¦ FACTORIES âœ¦ AVIATION âœ¦ RETAIL âœ¦ SALONS âœ¦
           </span>
         ))}
       </div>

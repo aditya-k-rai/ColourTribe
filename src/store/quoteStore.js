@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware';
 export const useQuoteStore = create(
   persist(
     (set, get) => ({
-      items: [],  // { productId, sku, name, categoryId, image, qty, color, sizes, unitPrice, lineTotal }
+      items: [],  // { productId, sku, name, categoryId, qty, color }
       
       isDrawerOpen: false,
       setDrawerOpen: (isOpen) => set({ isDrawerOpen: isOpen }),
@@ -16,7 +16,6 @@ export const useQuoteStore = create(
         if (existingIndex >= 0) {
           const newItems = [...state.items];
           newItems[existingIndex].qty += config.qty;
-          newItems[existingIndex].lineTotal = newItems[existingIndex].qty * newItems[existingIndex].unitPrice;
           return { items: newItems, isDrawerOpen: true };
         }
         
@@ -26,7 +25,8 @@ export const useQuoteStore = create(
             sku: product.sku,
             name: product.name,
             categoryId: product.categoryId,
-            ...config 
+            qty: config.qty,
+            color: config.color,
           }],
           isDrawerOpen: true
         };
@@ -35,7 +35,7 @@ export const useQuoteStore = create(
       updateQty: (productId, color, newQty) => set(state => ({
         items: state.items.map(i => {
           if (i.productId === productId && i.color === color) {
-            return { ...i, qty: newQty, lineTotal: newQty * i.unitPrice };
+            return { ...i, qty: newQty };
           }
           return i;
         })
@@ -47,8 +47,7 @@ export const useQuoteStore = create(
 
       clearAll: () => set({ items: [] }),
 
-      getApproxTotal: () => get().items.reduce((sum, i) => sum + i.lineTotal, 0),
-      getItemCount:   () => get().items.reduce((sum, i) => sum + i.qty, 0),
+      getItemCount: () => get().items.reduce((sum, i) => sum + i.qty, 0),
     }),
     { name: 'ct-quote-cart' }
   )

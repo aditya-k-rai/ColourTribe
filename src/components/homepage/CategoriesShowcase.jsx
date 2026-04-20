@@ -26,16 +26,13 @@ const CategoryCard = ({ category, index }) => {
         <h3 className="text-white font-display text-xl mb-1">{category.name}</h3>
         <div className="overflow-hidden">
           <p className="text-gold text-sm transform translate-y-full opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 font-bold">
-            Browse →
+            Browse Ã¢â€ â€™
           </p>
         </div>
       </div>
+      <div className="absolute top-4 right-4 z-20 bg-gold text-navy text-xs font-bold px-2 py-1 rounded-full shadow-md">Request Quote</div>
       
-      <div className="absolute top-4 right-4 z-20 bg-gold text-navy text-xs font-bold px-2 py-1 rounded-full shadow-md font-mono">
-        {category.priceRange[0] !== category.priceRange[1] ? `from ₹${category.priceRange[0]}` : `₹${category.priceRange[0]}`}
-      </div>
-      
-      <Link to={`/catalogue/${category.slug}`} className="absolute inset-0 z-30" aria-label={`Browse ${category.name}`}></Link>
+      <Link to={`/products/${category.slug}`} className="absolute inset-0 z-30" aria-label={`Browse ${category.name}`}></Link>
     </motion.div>
   );
 };
@@ -59,7 +56,7 @@ const CategoriesShowcase = () => {
         </div>
         
         <div className="mt-12 text-center">
-          <Link to="/catalogue" className="inline-block border-2 border-navy text-navy hover:bg-navy hover:text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300">
+          <Link to="/products" className="inline-block border-2 border-navy text-navy hover:bg-navy hover:text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300">
             View Full Catalogue
           </Link>
         </div>

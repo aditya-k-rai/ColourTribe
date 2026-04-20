@@ -1,8 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
+import { setPageMeta, setJsonLd, removeJsonLd, buildFaqSchema } from '../utils/seo';
+
+const CONTACT_FAQS = [
+  {
+    q: 'How do I place a bulk uniform order with Colour Tribe?',
+    a: 'You can place an order by calling +91 97173 55779, emailing adorabletradingk08@gmail.com, or using the quote builder on our website to add items and submit a quote request.',
+  },
+  {
+    q: 'What are Colour Tribe\'s business hours?',
+    a: 'Our team is available Monday to Saturday, 9 AM to 7 PM IST. Orders placed outside business hours will be addressed the next working day.',
+  },
+  {
+    q: 'Can I request a sample uniform before placing a bulk order?',
+    a: 'Yes. You can request a sample by contacting our team via phone or email. Sample costs are adjusted against your final bulk order invoice.',
+  },
+  {
+    q: 'Does Colour Tribe take WhatsApp orders?',
+    a: 'Yes. You can chat directly with us on WhatsApp at +91 97173 55779 to discuss your uniform requirements, share artwork for embroidery, or check order status.',
+  },
+];
 
 const ContactPage = () => {
+  useEffect(() => {
+    setPageMeta({
+      title: 'Contact Colour Tribe | Bulk Uniform Orders & Enquiries',
+      description:
+        'Get in touch with Colour Tribe for bulk uniform orders, custom embroidery quotes, and B2B enquiries. Call +91 97173 55779 or visit our Greater Noida manufacturing hub.',
+    });
+    setJsonLd('ld-contact-faq', buildFaqSchema(CONTACT_FAQS));
+    return () => removeJsonLd('ld-contact-faq');
+  }, []);
   return (
     <div className="bg-cream min-h-screen pt-24 pb-20 font-body">
       {/* Header */}
@@ -73,9 +103,9 @@ const ContactPage = () => {
                <div className="absolute top-0 right-0 -mr-6 -mt-6 w-24 h-24 border-4 border-gold/20 rounded-full"></div>
                <h3 className="font-display text-xl font-bold mb-2">Need a Bulk Quote?</h3>
                <p className="text-white/70 text-sm mb-4">Use our specialized quoting system to build your cart and request exact bulk pricing instantly.</p>
-               <a href="/catalogue" className="inline-block bg-gold text-navy font-bold px-6 py-2 rounded-full hover:bg-white transition-colors">
+               <Link to="/products" className="inline-block bg-gold text-navy font-bold px-6 py-2 rounded-full hover:bg-white transition-colors">
                  Build Your Quote
-               </a>
+               </Link>
             </div>
           </motion.div>
 
@@ -127,6 +157,23 @@ const ContactPage = () => {
 
         </div>
       </div>
+      {/* AEO FAQ Section */}
+      <section className="py-16 px-6 bg-white">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="font-display text-3xl text-navy font-bold text-center mb-10">Common Questions</h2>
+          <div className="space-y-4">
+            {CONTACT_FAQS.map(({ q, a }) => (
+              <details key={q} className="bg-gray-50 border border-gray-200 rounded-xl px-6 py-4 group">
+                <summary className="font-bold text-navy cursor-pointer list-none flex justify-between items-center">
+                  {q}
+                  <span className="text-gold text-xl group-open:rotate-45 transition-transform">+</span>
+                </summary>
+                <p className="text-gray-600 mt-3 text-sm leading-relaxed">{a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
