@@ -14,6 +14,7 @@ import ProtectedRoute from './components/admin/ProtectedRoute';
 import Dashboard from './pages/admin/Dashboard';
 import ProductsManager from './pages/admin/ProductsManager';
 import QuotesManager from './pages/admin/QuotesManager';
+import CustomizationRequests from './pages/admin/CustomizationRequests';
 
 const Layout = () => {
   return (
@@ -50,6 +51,7 @@ function App() {
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="products" element={<ProductsManager />} />
           <Route path="quotes" element={<QuotesManager />} />
+          <Route path="customizations" element={<CustomizationRequests />} />
         </Route>
       </Route>
     </Routes>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { LayoutDashboard, ShoppingBag, Users, Settings, LogOut, FileText } from 'lucide-react';
+import { LayoutDashboard, ShoppingBag, Users, Settings, LogOut, FileText, Palette } from 'lucide-react';
 import { useAdminAuthStore } from '../../store/adminAuthStore';
 import logo from '../../assets/logo.jpeg';
 
@@ -17,6 +17,7 @@ const AdminLayout = () => {
     { icon: LayoutDashboard, label: 'Dashboard', path: '/admin/dashboard' },
     { icon: ShoppingBag, label: 'Products', path: '/admin/products' },
     { icon: FileText, label: 'Quotes & Leads', path: '/admin/quotes' },
+    { icon: Palette, label: 'Customizations', path: '/admin/customizations' },
     { icon: Users, label: 'Customers', path: '/admin/customers' },
     { icon: Settings, label: 'Settings', path: '/admin/settings' },
   ];

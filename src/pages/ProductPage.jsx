@@ -6,6 +6,7 @@ import { useQuoteStore } from '../store/quoteStore';
 import { PRODUCTS } from '../data/products.seed';
 import { CATEGORIES } from '../data/categories.seed';
 import { setPageMeta, setJsonLd, removeJsonLd, buildProductSchema, buildBreadcrumbSchema } from '../utils/seo';
+import CustomizationModal from '../components/product/CustomizationModal';
 
 const ProductPage = () => {
   const { sku } = useParams();
@@ -17,6 +18,7 @@ const ProductPage = () => {
   const [qty, setQty] = useState(10);
   const [selectedColor, setSelectedColor] = useState('Navy Blue');
   const [activeTab, setActiveTab] = useState('description');
+  const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
 
   const colors = ['Navy Blue', 'Black', 'Charcoal Grey', 'White'];
 
@@ -184,17 +186,26 @@ const ProductPage = () => {
             </div>
 
             {/* Actions */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+            <div className="flex flex-col sm:flex-row gap-4 mb-4">
               <button 
                 onClick={handleAddToQuote}
-                className="flex-1 bg-navy text-white hover:bg-gold hover:text-navy font-bold py-4 px-6 rounded-full transition-all duration-300 flex justify-center shadow-lg"
+                className="flex-1 bg-navy text-white hover:bg-gold hover:text-navy font-bold py-4 px-4 rounded-full transition-all duration-300 flex justify-center shadow-lg text-sm md:text-base"
               >
                 + Add to Quote List
               </button>
               <a href={`https://wa.me/919717355779?text=I am interested in ${qty} pcs of ${product.sku} - ${product.name}`} target="_blank" rel="noreferrer" 
-                 className="flex-1 border-2 border-navy text-navy hover:bg-gray-50 font-bold py-4 px-6 rounded-full transition-colors flex justify-center text-center">
+                 className="flex-1 border-2 border-navy text-navy hover:bg-gray-50 font-bold py-4 px-4 rounded-full transition-colors flex justify-center text-center text-sm md:text-base items-center">
                 Chat on WhatsApp
               </a>
+            </div>
+            
+            <div className="mb-8">
+              <button 
+                onClick={() => setIsCustomModalOpen(true)}
+                className="w-full bg-gray-100 text-navy border border-gray-200 hover:border-gold hover:bg-gold/10 font-bold py-3 px-6 rounded-full transition-all duration-300 flex justify-center items-center gap-2"
+              >
+                 <Layers size={18} className="text-gold" /> Request Customization
+              </button>
             </div>
 
             {/* Important Note */}
@@ -230,6 +241,13 @@ const ProductPage = () => {
           </motion.div>
         </div>
       </div>
+      
+      <CustomizationModal 
+        isOpen={isCustomModalOpen} 
+        onClose={() => setIsCustomModalOpen(false)} 
+        product={product} 
+        selectedColor={selectedColor} 
+      />
     </div>
   );
 };
