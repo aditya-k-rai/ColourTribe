@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { CATEGORIES } from '../../data/categories.seed';
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 const CategoryCard = ({ category, index }) => {
   const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
@@ -27,7 +28,7 @@ const CategoryCard = ({ category, index }) => {
           <h3 className="text-white font-display text-xl mb-1">{category.name}</h3>
           <div className="overflow-hidden">
             <p className="text-gold text-sm transform translate-y-full opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100 font-bold flex items-center gap-1">
-              Browse Category <span className="text-lg leading-none">&rsaquo;</span>
+              Browse Category <ArrowRight size={14} className="ml-1" />
             </p>
           </div>
         </div>
@@ -77,11 +78,9 @@ const CategoriesShowcase = () => {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="mt-16 text-center"
         >
-          <Link to="/products" className="group inline-flex items-center gap-3 border-2 border-navy bg-transparent text-navy hover:bg-navy hover:text-white hover:border-navy font-bold py-4 px-10 rounded-full transition-all duration-300">
+          <Link to="/products" className="group inline-flex items-center gap-3 border-2 border-navy bg-transparent text-navy hover:bg-navy hover:text-white hover:border-navy font-bold py-4 px-10 rounded-full transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(15,27,45,0.2)]">
             <span>View Full Catalogue</span>
-            <span className="w-0 overflow-hidden group-hover:w-4 transition-all duration-300 -ml-2 group-hover:ml-0 flex justify-center text-xl leading-none">
-              &rsaquo;
-            </span>
+            <span className="group-hover:translate-x-1 transition-transform duration-300 text-lg leading-none"><ArrowRight size={20} /></span>
           </Link>
         </motion.div>
       </div>

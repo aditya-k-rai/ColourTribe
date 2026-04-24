@@ -1,21 +1,19 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { CATEGORIES } from '../../data/categories.seed';
+import { useProductStore } from '../../store/productStore';
+import { useQuoteStore } from '../../store/quoteStore';
 import { Link } from 'react-router-dom';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-
-// Mock featured products
-const FEATURED_PRODUCTS = [
-  { id: '1', sku: 'HO-01', name: 'Premium Corporate Suit', categoryId: '1' },
-  { id: '2', sku: 'FC-12', name: 'Executive Chef Coat', categoryId: '15' },
-  { id: '3', sku: 'HK-04', name: 'Housekeeping Tunic Set', categoryId: '21' },
-  { id: '4', sku: 'ST-09', name: 'Steward Waistcoat', categoryId: '6' },
-  { id: '5', sku: 'SD-11', name: 'Security Safari Suit', categoryId: '14' },
-  { id: '6', sku: 'FO-02', name: 'Front Desk Saree Set', categoryId: '2' },
-];
+import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 
 const ProductCard = ({ product }) => {
   const category = CATEGORIES.find(c => c.id === product.categoryId) || CATEGORIES[0];
+  const addItem = useQuoteStore(state => state.addItem);
+  
+  const handleAddToQuote = (e) => {
+    e.preventDefault();
+    addItem(product, { qty: 10, color: 'Navy Blue' });
+  };
   
   return (
     <motion.div 
@@ -25,7 +23,7 @@ const ProductCard = ({ product }) => {
       <div className="h-64 bg-[#f0f4f8] relative flex items-center justify-center overflow-hidden">
         {/* Mock image placeholder */}
         <div className="text-6xl group-hover:scale-110 transition-transform duration-500">{category.icon}</div>
-        <div className="absolute top-3 left-3 bg-navy text-white text-xs px-2 py-1 rounded font-medium">
+        <div className="absolute top-3 left-3 bg-navy text-white text-xs px-2 py-1 rounded font-medium shadow-md">
           {category.name.split(' / ')[0]}
         </div>
       </div>
@@ -37,9 +35,12 @@ const ProductCard = ({ product }) => {
         
         <div className="flex justify-between items-center relative h-10 overflow-hidden">
           <Link to={`/product/${product.sku}`} className="text-sm font-semibold text-navy flex items-center gap-1 hover:text-gold transition-colors block w-full absolute top-2">
-            View Details &#8594;
+            View Details <ArrowRight size={14} className="ml-1" />
           </Link>
-          <button className="absolute inset-x-0 bottom-0 top-0 bg-navy text-white text-sm font-bold rounded flex items-center justify-center transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-250 ease-out z-10 hover:bg-navy/90">
+          <button 
+            onClick={handleAddToQuote}
+            className="absolute inset-x-0 bottom-0 top-0 bg-navy text-white text-sm font-bold rounded flex items-center justify-center transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out z-10 hover:bg-gold hover:text-navy shadow-md"
+          >
             + Add to Quote
           </button>
         </div>
@@ -52,6 +53,10 @@ const FeaturedProducts = () => {
   const carouselRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const { products } = useProductStore();
+  
+  // Use first 6 active products as featured
+  const featuredProducts = products.filter(p => p.isActive !== false).slice(0, 6);
 
   const checkScroll = () => {
     if (carouselRef.current) {
@@ -112,7 +117,7 @@ const FeaturedProducts = () => {
           drag="x"
           dragConstraints={carouselRef}
         >
-          {FEATURED_PRODUCTS.map(product => (
+          {featuredProducts.map(product => (
              <ProductCard key={product.id} product={product} />
           ))}
         </motion.div>

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Plus, Search, Edit2, Trash2, Image as ImageIcon } from 'lucide-react';
-import { PRODUCTS } from '../../data/products.seed';
 import { CATEGORIES } from '../../data/categories.seed';
+import { useProductStore } from '../../store/productStore';
 
 const ProductsManager = () => {
-  const [products, setProducts] = useState(PRODUCTS);
+  const { products, addProduct, updateProduct, deleteProduct } = useProductStore();
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
@@ -26,7 +26,7 @@ const ProductsManager = () => {
 
   const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
-      setProducts(products.filter(p => p.id !== id));
+      deleteProduct(id);
     }
   };
 
@@ -47,9 +47,9 @@ const ProductsManager = () => {
     };
 
     if (editingProduct) {
-      setProducts(products.map(p => p.id === editingProduct.id ? newProduct : p));
+      updateProduct(editingProduct.id, newProduct);
     } else {
-      setProducts([newProduct, ...products]);
+      addProduct(newProduct);
     }
     setIsModalOpen(false);
   };

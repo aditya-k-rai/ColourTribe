@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ChevronRight, ShieldCheck, Clock, Layers, Plus, Minus } from 'lucide-react';
 import { useQuoteStore } from '../store/quoteStore';
-import { PRODUCTS } from '../data/products.seed';
+import { useProductStore } from '../store/productStore';
 import { CATEGORIES } from '../data/categories.seed';
 import { setPageMeta, setJsonLd, removeJsonLd, buildProductSchema, buildBreadcrumbSchema } from '../utils/seo';
 
@@ -11,6 +11,7 @@ const ProductPage = () => {
   const { sku } = useParams();
   const navigate = useNavigate();
   const addItem = useQuoteStore(state => state.addItem);
+  const { products } = useProductStore();
   
   const [product, setProduct] = useState(null);
   const [category, setCategory] = useState(null);
@@ -22,7 +23,7 @@ const ProductPage = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    const foundProduct = PRODUCTS.find(p => p.sku === sku);
+    const foundProduct = products.find(p => p.sku === sku);
     if (foundProduct) {
       const foundCategory = CATEGORIES.find(c => c.id === foundProduct.categoryId);
       setProduct(foundProduct);

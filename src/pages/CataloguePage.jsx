@@ -3,11 +3,12 @@ import { useParams, Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Filter, Search, ChevronDown, Check, ArrowDownUp } from 'lucide-react';
 import { CATEGORIES } from '../data/categories.seed';
-import { PRODUCTS } from '../data/products.seed';
+import { useProductStore } from '../store/productStore';
 import { setJsonLd, removeJsonLd, buildBreadcrumbSchema, setPageMeta } from '../utils/seo';
 
 const CataloguePage = ({ hub = 'products' }) => {
   const { categorySlug } = useParams();
+  const { products } = useProductStore();
   
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState(
@@ -57,7 +58,8 @@ const CataloguePage = ({ hub = 'products' }) => {
   }, [hub, selectedCategory]);
 
   const filteredProducts = useMemo(() => {
-    let result = [...PRODUCTS];
+    // Only show active products to public
+    let result = products.filter(p => p.isActive !== false);
     
     // Category Filter
     if (selectedCategory && selectedCategory !== 'all') {
