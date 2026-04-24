@@ -89,7 +89,7 @@ const CataloguePage = ({ hub = 'products' }) => {
   return (
     <div className="bg-cream min-h-screen pt-24 font-body">
       {/* Hero Section */}
-      <div className="bg-navy py-12 relative overflow-hidden mb-8">
+      <div className="bg-[#0d1726] py-12 relative overflow-hidden mb-8">
         <div className="absolute inset-0 opacity-20 bg-gradient-to-r from-gold/50 to-transparent"></div>
         <div className="container mx-auto px-6 relative z-10 flex items-center gap-4">
           <span className="text-6xl">
@@ -102,7 +102,7 @@ const CataloguePage = ({ hub = 'products' }) => {
                 hub === 'uniforms' ? 'Professional Uniforms' : 'All Products'
               )}
             </h1>
-            <p className="text-white/70 text-sm">Explore our specialized collection crafted for premium fit and comfort.</p>
+            <p className="text-white/80 text-sm">Explore our specialized collection crafted for premium fit and comfort.</p>
           </div>
         </div>
       </div>
@@ -169,7 +169,7 @@ const CataloguePage = ({ hub = 'products' }) => {
               <div className="space-y-1 max-h-[60vh] overflow-y-auto pr-2 custom-scrollbar">
                 <button 
                   onClick={() => setSelectedCategory('all')}
-                  className={`w-full text-left px-3 py-2 rounded-lg text-sm flex justify-between items-center transition-colors ${selectedCategory === 'all' ? 'bg-navy/5 text-navy font-bold' : 'text-gray-600 hover:bg-gray-50'}`}
+                  className={`w-full text-left px-3 py-2 rounded-lg text-sm flex justify-between items-center transition-colors ${selectedCategory === 'all' ? 'bg-navy/5 text-navy font-bold' : 'text-navy/80 hover:bg-gray-50'}`}
                 >
                   All Uniforms
                   {selectedCategory === 'all' && <Check size={14} className="text-gold" />}
@@ -179,7 +179,7 @@ const CataloguePage = ({ hub = 'products' }) => {
                   <button 
                     key={cat.id}
                     onClick={() => setSelectedCategory(cat.id)}
-                    className={`w-full text-left px-3 py-2 rounded-lg text-sm flex justify-between items-center transition-colors ${selectedCategory === cat.id ? 'bg-navy/5 text-navy font-bold' : 'text-gray-600 hover:bg-gray-50'}`}
+                    className={`w-full text-left px-3 py-2 rounded-lg text-sm flex justify-between items-center transition-colors ${selectedCategory === cat.id ? 'bg-navy/5 text-navy font-bold' : 'text-navy/80 hover:bg-gray-50'}`}
                   >
                     <span className="truncate mr-2">{cat.name}</span>
                     {selectedCategory === cat.id && <Check size={14} className="text-gold shrink-0" />}

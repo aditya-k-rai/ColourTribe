@@ -3,6 +3,7 @@ import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import NavBar from './components/layout/NavBar';
 import Footer from './components/layout/Footer';
+import ScrollToTop from './components/layout/ScrollToTop';
 
 // Lazy loaded pages for performance optimization
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -60,6 +61,7 @@ const Layout = () => {
 function App() {
   return (
     <Suspense fallback={<PageLoader />}>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
