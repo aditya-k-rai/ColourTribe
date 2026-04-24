@@ -19,6 +19,8 @@ const ProtectedRoute = lazy(() => import('./components/admin/ProtectedRoute'));
 const Dashboard = lazy(() => import('./pages/admin/Dashboard'));
 const ProductsManager = lazy(() => import('./pages/admin/ProductsManager'));
 const QuotesManager = lazy(() => import('./pages/admin/QuotesManager'));
+const CustomersManager = lazy(() => import('./pages/admin/CustomersManager'));
+const SettingsManager = lazy(() => import('./pages/admin/SettingsManager'));
 
 const PageLoader = () => (
   <div className="min-h-screen flex items-center justify-center bg-cream">
@@ -79,6 +81,8 @@ function App() {
             <Route path="dashboard" element={<Dashboard />} />
             <Route path="products" element={<ProductsManager />} />
             <Route path="quotes" element={<QuotesManager />} />
+            <Route path="customers" element={<CustomersManager />} />
+            <Route path="settings" element={<SettingsManager />} />
           </Route>
         </Route>
       </Routes>
