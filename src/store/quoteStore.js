@@ -47,8 +47,42 @@ export const useQuoteStore = create(
 
       clearAll: () => set({ items: [] }),
 
+      submittedQuotes: [],
+      submitQuote: (leadData) => {
+        const newQuote = {
+          id: `CT-${Math.floor(1000 + Math.random() * 9000)}`,
+          items: [...get().items],
+          client: leadData.name,
+          businessName: leadData.businessName,
+          email: leadData.email,
+          phone: leadData.phone,
+          location: leadData.city,
+          message: leadData.message,
+          value: get().items.reduce((sum, item) => sum + (item.qty * 100), 0), // Mock value calculation
+          status: 'pending',
+          date: new Date().toISOString()
+        };
+        set(state => ({
+          submittedQuotes: [newQuote, ...state.submittedQuotes],
+          items: [],
+          isDrawerOpen: false
+        }));
+        return newQuote;
+      },
+
+      updateQuoteStatus: (id, status) => set(state => ({
+        submittedQuotes: state.submittedQuotes.map(q => q.id === id ? { ...q, status } : q)
+      })),
+
+      deleteQuote: (id) => set(state => ({
+        submittedQuotes: state.submittedQuotes.filter(q => q.id !== id)
+      })),
+
       getItemCount: () => get().items.reduce((sum, i) => sum + i.qty, 0),
     }),
-    { name: 'ct-quote-cart' }
+    { 
+      name: 'ct-quote-cart-v2',
+      version: 2
+    }
   )
 );

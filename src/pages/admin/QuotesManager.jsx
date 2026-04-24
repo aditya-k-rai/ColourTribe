@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { Search, Eye, MoreVertical } from 'lucide-react';
-
-const MOCK_QUOTES = [];
+import { Search, Eye, MoreVertical, Trash2 } from 'lucide-react';
+import { useQuoteStore } from '../../store/quoteStore';
 
 const QuotesManager = () => {
+  const { submittedQuotes, updateQuoteStatus, deleteQuote } = useQuoteStore();
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
 
-  const filteredQuotes = MOCK_QUOTES.filter(q => {
+  const filteredQuotes = (submittedQuotes || []).filter(q => {
     const matchesSearch = q.client.toLowerCase().includes(searchTerm.toLowerCase()) || q.id.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesStatus = statusFilter === 'all' || q.status === statusFilter;
     return matchesSearch && matchesStatus;
@@ -92,8 +92,11 @@ const QuotesManager = () => {
                     <button className="text-navy bg-gold/10 hover:bg-gold hover:text-navy px-3 py-1.5 rounded text-xs font-bold transition-colors inline-flex items-center gap-1">
                       <Eye size={14} /> View Details
                     </button>
-                    <button className="text-gray-400 hover:text-navy p-2 transition-colors ml-2">
-                       <MoreVertical size={16} />
+                    <button 
+                      onClick={() => { if(window.confirm('Delete this quote?')) deleteQuote(quote.id) }} 
+                      className="text-gray-400 hover:text-red-500 p-2 transition-colors ml-2"
+                    >
+                       <Trash2 size={16} />
                     </button>
                   </td>
                 </tr>

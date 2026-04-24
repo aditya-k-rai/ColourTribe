@@ -4,24 +4,26 @@ import { useLeadStore } from '../store/leadStore';
 import { useNavigate } from 'react-router-dom';
 
 const QuotePage = () => {
-  const { items, clearAll } = useQuoteStore();
+  const { items, submitQuote } = useQuoteStore();
   const { name, phone, email, businessName, city, updateLead } = useLeadStore();
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({ name, phone, email, businessName, city, message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submittedRef, setSubmittedRef] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate API call to /quotes collection
+    // Process submission via store
     setTimeout(() => {
+      const result = submitQuote(formData);
       updateLead(formData);
+      setSubmittedRef(result.id);
       setIsSubmitting(false);
       setIsSuccess(true);
-      clearAll();
     }, 1200);
   };
 
@@ -35,7 +37,7 @@ const QuotePage = () => {
             Thank you, {formData.name}. We have received your bulk order request. Our team will contact you at {formData.phone} within 24 hours with a finalized exact price.
           </p>
           <div className="bg-gray-50 p-4 rounded-lg mb-8 font-mono text-sm text-gray-500">
-            Reference No: CT-{Math.floor(Math.random() * 1000000)}
+            Reference No: {submittedRef}
           </div>
           <button 
             onClick={() => navigate('/products')}

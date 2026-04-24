@@ -8,6 +8,7 @@ const ProductsManager = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
+  const [previewImage, setPreviewImage] = useState(null);
 
   const filteredProducts = products.filter(p => 
     p.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
@@ -16,17 +17,30 @@ const ProductsManager = () => {
 
   const handleEdit = (product) => {
     setEditingProduct(product);
+    setPreviewImage(null);
     setIsModalOpen(true);
   };
 
   const handleAddNew = () => {
     setEditingProduct(null);
+    setPreviewImage(null);
     setIsModalOpen(true);
   };
 
   const handleDelete = (id) => {
     if (window.confirm('Are you sure you want to delete this product?')) {
       deleteProduct(id);
+    }
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreviewImage(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -40,6 +54,7 @@ const ProductsManager = () => {
       categoryId: formData.get('categoryId'),
       basePrice: Number(formData.get('basePrice')),
       isActive: formData.get('isActive') === 'on',
+      image: previewImage || editingProduct?.image,
       // Maintain existing values if editing
       isFeatured: editingProduct?.isFeatured || false,
       viewCount: editingProduct?.viewCount || 0,
@@ -51,6 +66,7 @@ const ProductsManager = () => {
     } else {
       addProduct(newProduct);
     }
+    setPreviewImage(null);
     setIsModalOpen(false);
   };
 
@@ -100,8 +116,12 @@ const ProductsManager = () => {
                 return (
                   <tr key={product.id} className="border-b border-gray-50 hover:bg-gray-50/50 transition-colors">
                     <td className="px-6 py-4 flex items-center gap-4">
-                      <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center text-xl shrink-0">
-                        {category?.icon || <ImageIcon size={20} className="text-gray-400" />}
+                      <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center text-xl shrink-0 overflow-hidden">
+                        {product.image ? (
+                          <img src={product.image} alt={product.name} className="w-full h-full object-cover" />
+                        ) : (
+                          category?.icon || <ImageIcon size={20} className="text-gray-400" />
+                        )}
                       </div>
                       <div>
                         <div className="font-bold text-navy">{product.name}</div>
@@ -112,7 +132,7 @@ const ProductsManager = () => {
                       {category?.name || 'Uncategorized'}
                     </td>
                     <td className="px-6 py-4 font-bold text-navy">
-                    ₹{product.basePrice}
+                      ₹{product.basePrice}
                     </td>
                     <td className="px-6 py-4">
                       <span className={`px-2 py-1 text-xs rounded-full font-semibold ${product.isActive ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-600'}`}>
@@ -130,6 +150,11 @@ const ProductsManager = () => {
                   </tr>
                 );
               })}
+              {filteredProducts.length === 0 && (
+                <tr>
+                  <td colSpan="5" className="px-6 py-10 text-center text-gray-500 italic">No products found.</td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
@@ -143,18 +168,23 @@ const ProductsManager = () => {
               <h2 className="font-display font-bold text-2xl text-navy">
                 {editingProduct ? 'Edit Product' : 'Add New Product'}
               </h2>
-              <button onClick={() => setIsModalOpen(false)} className="text-gray-400 hover:text-navy text-2xl leading-none">&times;</button>
+              <button onClick={() => { setIsModalOpen(false); setPreviewImage(null); }} className="text-gray-400 hover:text-navy text-2xl leading-none">&times;</button>
             </div>
             
             <div className="p-6 overflow-y-auto">
               <form id="productForm" onSubmit={handleSave} className="space-y-6">
                 
                 <div className="flex items-center gap-6 pb-6 border-b border-gray-100">
-                  <div className="w-24 h-24 border-2 border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center text-gray-400 bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors relative">
-                    <ImageIcon size={24} className="mb-2" />
-                    <span className="text-[10px] uppercase font-bold tracking-wider">Upload</span>
-                    {/* Simulated file input */}
-                    <input type="file" className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                  <div className="w-24 h-24 border-2 border-dashed border-gray-300 rounded-xl flex flex-col items-center justify-center text-gray-400 bg-gray-50 hover:bg-gray-100 cursor-pointer transition-colors relative overflow-hidden">
+                    {previewImage || editingProduct?.image ? (
+                      <img src={previewImage || editingProduct.image} alt="Preview" className="w-full h-full object-cover" />
+                    ) : (
+                      <>
+                        <ImageIcon size={24} className="mb-2" />
+                        <span className="text-[10px] uppercase font-bold tracking-wider">Upload</span>
+                      </>
+                    )}
+                    <input type="file" accept="image/*" onChange={handleImageChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
                   </div>
                   <div>
                     <h4 className="font-bold text-sm text-navy">Product Image</h4>
@@ -195,7 +225,7 @@ const ProductsManager = () => {
             </div>
 
             <div className="p-6 border-t border-gray-100 flex justify-end gap-3 shrink-0 bg-gray-50">
-              <button onClick={() => setIsModalOpen(false)} className="px-6 py-2 rounded-lg font-bold text-gray-600 hover:bg-gray-200 transition-colors">Cancel</button>
+              <button onClick={() => { setIsModalOpen(false); setPreviewImage(null); }} className="px-6 py-2 rounded-lg font-bold text-gray-600 hover:bg-gray-200 transition-colors">Cancel</button>
               <button form="productForm" type="submit" className="px-6 py-2 rounded-lg font-bold bg-navy text-white hover:bg-gold hover:text-navy transition-colors">Save Product</button>
             </div>
           </div>
