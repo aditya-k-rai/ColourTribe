@@ -17,31 +17,40 @@ const ProductCard = ({ product }) => {
   
   return (
     <motion.div 
-      whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(0,0,0,0.15)" }}
-      className="min-w-[280px] md:min-w-[320px] bg-white rounded-xl overflow-hidden border border-gray-200 snap-start relative group"
+      whileHover={{ y: -10, boxShadow: "0 30px 60px rgba(15,27,45,0.15)" }}
+      className="min-w-[280px] md:min-w-[320px] bg-white rounded-2xl overflow-hidden border border-gray-100 snap-start relative group transition-all duration-500"
     >
       <div className="h-64 bg-[#f0f4f8] relative flex items-center justify-center overflow-hidden">
         {/* Mock image placeholder */}
-        <div className="text-6xl group-hover:scale-110 transition-transform duration-500">{category.icon}</div>
-        <div className="absolute top-3 left-3 bg-navy text-white text-xs px-2 py-1 rounded font-medium shadow-md">
+        <motion.div 
+          whileHover={{ scale: 1.2, rotate: -2 }}
+          transition={{ type: "spring", stiffness: 200, damping: 15 }}
+          className="text-7xl group-hover:drop-shadow-2xl transition-all duration-500"
+        >
+          {category.icon}
+        </motion.div>
+        
+        <div className="absolute top-4 left-4 bg-navy text-white text-[10px] px-2 py-1 rounded-full font-bold uppercase tracking-widest shadow-lg z-20">
           {category.name.split(' / ')[0]}
         </div>
+        
+        <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       </div>
       
-      <div className="p-5">
-        <div className="text-xs font-mono text-navy/50 mb-1">{product.sku}</div>
-        <h4 className="font-display text-lg font-bold text-navy mb-2 truncate">{product.name}</h4>
-        <div className="text-gold text-xs font-bold uppercase tracking-wider mt-1 mb-4">Customize</div>
+      <div className="p-6">
+        <div className="text-[10px] font-mono text-navy/40 mb-2 tracking-widest uppercase">{product.sku}</div>
+        <h4 className="font-display text-xl font-bold text-navy mb-3 truncate group-hover:text-gold transition-colors duration-300">{product.name}</h4>
+        <div className="text-gold text-[10px] font-bold uppercase tracking-widest mt-1 mb-6 border-b border-gold/20 pb-2 inline-block">Bespoke Design</div>
         
-        <div className="flex justify-between items-center relative h-10 overflow-hidden">
-          <Link to={`/product/${product.sku}`} className="text-sm font-semibold text-navy flex items-center gap-1 hover:text-gold transition-colors block w-full absolute top-2">
-            View Details <ArrowRight size={14} className="ml-1" />
+        <div className="flex justify-between items-center relative h-12 overflow-hidden">
+          <Link to={`/product/${product.sku}`} className="text-sm font-bold text-navy flex items-center gap-2 hover:text-gold transition-all duration-300 block w-full absolute top-3">
+            Explore Details <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
           </Link>
           <button 
             onClick={handleAddToQuote}
-            className="absolute inset-x-0 bottom-0 top-0 bg-navy text-white text-sm font-bold rounded flex items-center justify-center transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300 ease-out z-10 hover:bg-gold hover:text-navy shadow-md"
+            className="absolute inset-x-0 bottom-0 top-0 bg-navy text-white text-sm font-bold rounded-xl flex items-center justify-center transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 ease-out z-10 hover:bg-gold hover:text-navy shadow-xl"
           >
-            + Add to Quote
+            + Quick Add to Quote
           </button>
         </div>
       </div>

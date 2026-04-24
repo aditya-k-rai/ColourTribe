@@ -212,30 +212,41 @@ const CataloguePage = ({ hub = 'products' }) => {
                       <motion.div 
                         layout
                         key={product.id}
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9 }}
-                        transition={{ duration: 0.3 }}
-                        className="bg-white rounded-xl border border-gray-200 overflow-hidden group hover:shadow-xl transition-shadow"
+                        transition={{ duration: 0.4, ease: "easeOut" }}
+                        className="bg-white rounded-2xl border border-gray-100 overflow-hidden group hover:shadow-[0_20px_50px_rgba(15,27,45,0.1)] transition-all duration-500"
                       >
                         <Link to={`/product/${product.sku}`} className="block">
-                          <div className="h-60 bg-[#f0f4f8] relative flex items-center justify-center overflow-hidden">
-                            <span className="text-6xl group-hover:scale-110 transition-transform duration-500">{cat?.icon || '👔'}</span>
-                            <div className="absolute top-3 left-3 bg-navy text-white text-xs px-2 py-1 rounded font-medium shadow">
+                          <div className="h-64 bg-[#f0f4f8] relative flex items-center justify-center overflow-hidden">
+                            {/* Animated Background Element */}
+                            <div className="absolute inset-0 bg-gradient-to-tr from-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                            
+                            <motion.div 
+                              whileHover={{ scale: 1.15, rotate: 2 }}
+                              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                              className="text-7xl relative z-10 drop-shadow-xl"
+                            >
+                              {cat?.icon || '👔'}
+                            </motion.div>
+
+                            <div className="absolute top-4 left-4 bg-navy text-white text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-full font-bold shadow-lg z-20">
                               {cat?.name?.split(' / ')[0]}
                             </div>
+                            
+                            {/* Hover Overlay */}
+                            <div className="absolute inset-0 bg-navy/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           </div>
-                          <div className="p-5">
-                            <div className="text-xs font-mono text-gray-500 mb-1">{product.sku}</div>
-                            <h4 className="font-display text-lg font-bold text-navy mb-2 leading-tight min-h-[3.5rem]">
+                          <div className="p-6">
+                            <div className="text-[10px] font-mono text-navy/40 mb-2 tracking-tighter uppercase">{product.sku}</div>
+                            <h4 className="font-display text-lg font-bold text-navy mb-3 leading-tight min-h-[3.5rem] group-hover:text-gold transition-colors duration-300">
                               {product.name}
                             </h4>
-                            <div className="flex justify-between items-end mt-4">
-                              <div>
-                                 <div className="text-gold text-xs font-bold uppercase tracking-wider mt-1">Customize</div>
-                              </div>
-                              <span className="text-sm font-bold text-navy group-hover:text-gold transition-colors flex items-center gap-1">
-                                Details <ArrowDownUp className="w-3 h-3 rotate-90" />
+                            <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-50">
+                              <span className="text-[10px] font-bold text-gold uppercase tracking-widest">In-house Crafted</span>
+                              <span className="text-xs font-bold text-navy flex items-center gap-1.5 opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-300">
+                                View <ArrowDownUp className="w-3 h-3 rotate-90" />
                               </span>
                             </div>
                           </div>
