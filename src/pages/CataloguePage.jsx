@@ -119,7 +119,7 @@ const CataloguePage = ({ hub = 'products' }) => {
               placeholder="Search products, SKUs..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="bg-transparent border-none outline-none text-sm w-full md:w-64"
+              className="bg-transparent border-none outline-none text-sm text-navy w-full md:w-64"
             />
           </div>
           

@@ -29,7 +29,7 @@ const ProductCard = ({ product }) => {
       </div>
       
       <div className="p-5">
-        <div className="text-xs font-mono text-gray-500 mb-1">{product.sku}</div>
+        <div className="text-xs font-mono text-navy/50 mb-1">{product.sku}</div>
         <h4 className="font-display text-lg font-bold text-navy mb-2 truncate">{product.name}</h4>
         <div className="text-gold text-xs font-bold uppercase tracking-wider mt-1 mb-4">Customize</div>
         
@@ -95,14 +95,14 @@ const FeaturedProducts = () => {
           <button 
             onClick={() => scroll('left')} 
             disabled={!canScrollLeft}
-            className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-colors ${canScrollLeft ? 'border-navy text-navy hover:bg-navy hover:text-white' : 'border-gray-300 text-gray-300 cursor-not-allowed'}`}
+            className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-colors ${canScrollLeft ? 'border-navy text-navy hover:bg-navy hover:text-white' : 'border-navy/20 text-navy/20 cursor-not-allowed'}`}
           >
             <ChevronLeft />
           </button>
           <button 
             onClick={() => scroll('right')} 
             disabled={!canScrollRight}
-            className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-colors ${canScrollRight ? 'border-navy text-navy hover:bg-navy hover:text-white' : 'border-gray-300 text-gray-300 cursor-not-allowed'}`}
+            className={`w-12 h-12 rounded-full border-2 flex items-center justify-center transition-colors ${canScrollRight ? 'border-navy text-navy hover:bg-navy hover:text-white' : 'border-navy/20 text-navy/20 cursor-not-allowed'}`}
           >
             <ChevronRight />
           </button>

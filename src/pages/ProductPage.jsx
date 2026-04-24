@@ -75,12 +75,12 @@ const ProductPage = () => {
       <div className="container mx-auto px-6 max-w-6xl">
         
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-xs text-gray-500 mb-8 uppercase tracking-wider font-semibold">
-          <Link to="/" className="hover:text-navy">Home</Link>
+        <div className="flex items-center gap-2 text-xs text-navy/60 mb-8 uppercase tracking-wider font-semibold">
+          <Link to="/" className="hover:text-navy transition-colors">Home</Link>
           <ChevronRight size={14} />
-          <Link to="/products" className="hover:text-navy">Products</Link>
+          <Link to="/products" className="hover:text-navy transition-colors">Products</Link>
           <ChevronRight size={14} />
-          <Link to={`/products/${category?.slug}`} className="hover:text-navy">{category?.name}</Link>
+          <Link to={`/products/${category?.slug}`} className="hover:text-navy transition-colors">{category?.name}</Link>
           <ChevronRight size={14} />
           <span className="text-navy">{product.sku}</span>
         </div>
@@ -139,13 +139,13 @@ const ProductPage = () => {
             <h1 className="font-display text-3xl md:text-4xl text-navy font-bold leading-tight mb-2">
               {product.name}
             </h1>
-            <p className="text-sm text-gray-500 mb-6">Contact us for pricing — bulk rates available for all orders.</p>
+            <p className="text-sm text-navy/60 mb-6 font-medium">Contact us for pricing — bulk rates available for all orders.</p>
 
             {/* Configurator */}
             <div className="space-y-6 mb-8">
               {/* Color */}
               <div>
-                <label className="block text-sm font-bold text-navy mb-3">Color Preference: <span className="text-gray-500 font-normal">{selectedColor}</span></label>
+                <label className="block text-sm font-bold text-navy mb-3">Color Preference: <span className="text-navy/50 font-normal">{selectedColor}</span></label>
                 <div className="flex gap-3">
                   {colors.map(c => (
                     <button 
@@ -169,19 +169,19 @@ const ProductPage = () => {
                     <button
                       key={amount}
                       onClick={() => setQty(amount)}
-                      className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${qty === amount ? 'bg-navy text-white' : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}`}
+                      className={`px-4 py-2 rounded-lg text-sm font-bold transition-colors ${qty === amount ? 'bg-navy text-white' : 'bg-navy/5 text-navy/60 hover:bg-navy/10'}`}
                     >
                       {amount}
                     </button>
                   ))}
-                  <div className="text-gray-400 text-sm flex items-center px-2">or specify:</div>
+                  <div className="text-navy/40 text-sm flex items-center px-2">or specify:</div>
                 </div>
 
                 <div className="flex items-center gap-4">
                   <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden bg-white h-12 w-full max-w-[160px]">
                     <button 
                       onClick={() => setQty(Math.max(10, qty - 1))}
-                      className="px-4 h-full hover:bg-gray-100 text-gray-600 transition-colors"
+                      className="px-4 h-full hover:bg-gray-100 text-navy/60 transition-colors"
                     >
                       <Minus size={18} />
                     </button>
@@ -189,11 +189,11 @@ const ProductPage = () => {
                       type="number" 
                       value={qty}
                       onChange={(e) => setQty(Math.max(10, parseInt(e.target.value) || 10))}
-                      className="w-full h-full text-center font-bold text-lg border-x border-gray-300 outline-none"
+                      className="w-full h-full text-center font-bold text-lg border-x border-gray-300 outline-none text-navy"
                     />
                     <button 
                       onClick={() => setQty(qty + 1)}
-                      className="px-4 h-full hover:bg-gray-100 text-gray-600 transition-colors"
+                      className="px-4 h-full hover:bg-gray-100 text-navy/60 transition-colors"
                     >
                       <Plus size={18} />
                     </button>
@@ -211,7 +211,7 @@ const ProductPage = () => {
                 + Add to Quote List
               </button>
               <a href={`https://wa.me/919717355779?text=I am interested in ${qty} pcs of ${product.sku} - ${product.name}`} target="_blank" rel="noreferrer" 
-                 className="flex-1 border-2 border-navy text-navy hover:bg-gray-50 font-bold py-4 px-6 rounded-full transition-colors flex justify-center text-center">
+                 className="flex-1 border-2 border-navy text-navy hover:bg-navy/5 font-bold py-4 px-6 rounded-full transition-colors flex justify-center text-center">
                 Chat on WhatsApp
               </a>
             </div>
@@ -222,21 +222,21 @@ const ProductPage = () => {
                 <ShieldCheck className="text-gold mt-1 shrink-0" size={20} />
                 <div>
                   <h4 className="font-bold text-navy text-sm">Quality Guaranteed</h4>
-                  <p className="text-xs text-gray-500 mt-1">Premium 65/35 Polyviscose blend designed for everyday duty. Breathable and color-fast.</p>
+                  <p className="text-xs text-navy/70 mt-1 leading-relaxed">Premium 65/35 Polyviscose blend designed for everyday duty. Breathable and color-fast.</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
                 <Clock className="text-gold mt-1 shrink-0" size={20} />
                 <div>
                   <h4 className="font-bold text-navy text-sm">Production Time</h4>
-                  <p className="text-xs text-gray-500 mt-1">Standard 7-10 days for orders under 100 pcs. Custom embroidery adds 2 days.</p>
+                  <p className="text-xs text-navy/70 mt-1 leading-relaxed">Standard 7-10 days for orders under 100 pcs. Custom embroidery adds 2 days.</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
                 <Layers className="text-gold mt-1 shrink-0" size={20} />
                 <div>
                   <h4 className="font-bold text-navy text-sm">Sizes & Fits</h4>
-                  <p className="text-xs text-gray-500 mt-1">Available in XS to 3XL. Custom measurements can be accommodated for large orders.</p>
+                  <p className="text-xs text-navy/70 mt-1 leading-relaxed">Available in XS to 3XL. Custom measurements can be accommodated for large orders.</p>
                 </div>
               </div>
             </div>
