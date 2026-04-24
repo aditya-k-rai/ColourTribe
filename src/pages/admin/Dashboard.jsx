@@ -1,6 +1,7 @@
 import React from 'react';
 import { Users, ShoppingBag, FileText, TrendingUp, DollarSign } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useProductStore } from '../../store/productStore';
 
 const StatCard = ({ title, value, increment, icon: Icon, delay }) => (
   <motion.div 
@@ -23,6 +24,8 @@ const StatCard = ({ title, value, increment, icon: Icon, delay }) => (
 );
 
 const Dashboard = () => {
+  const { products } = useProductStore();
+
   return (
     <div>
       <div className="mb-8">
@@ -32,7 +35,7 @@ const Dashboard = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         <StatCard title="Active Quotes" value="24" increment="+12% this week" icon={FileText} delay={0.1} />
-        <StatCard title="Total Products" value="86" increment="+3 new" icon={ShoppingBag} delay={0.2} />
+        <StatCard title="Total Products" value={products.length} increment="+3 new" icon={ShoppingBag} delay={0.2} />
         <StatCard title="Leads Captured" value="1,204" increment="+48 this month" icon={Users} delay={0.3} />
         <StatCard title="Est. Pipeline" value="₹4.2M" increment="+8% vs last month" icon={DollarSign} delay={0.4} />
       </div>
