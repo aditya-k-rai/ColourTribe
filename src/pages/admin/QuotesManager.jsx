@@ -86,7 +86,7 @@ const QuotesManager = () => {
                      <div className="text-xs text-gray-400 mt-1">{quote.location} &bull; {quote.items} Items</div>
                   </td>
                   <td className="px-6 py-4 font-bold text-navy">
-                    &#8377;{quote.value.toLocaleString()}
+                    ₹{quote.value.toLocaleString()}
                   </td>
                   <td className="px-6 py-4">
                     {getStatusBadge(quote.status)}

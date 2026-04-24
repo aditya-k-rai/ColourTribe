@@ -50,7 +50,7 @@ const QuoteDrawer = () => {
             {/* Header */}
             <div className="px-6 py-4 bg-navy text-white flex justify-between items-center shrink-0">
               <h2 className="font-display font-bold text-xl flex items-center gap-2">
-                <span className="text-gold">&#10022;</span> My Quote List
+                <span className="text-gold">✦</span> My Quote List
               </h2>
               <button 
                 onClick={() => setDrawerOpen(false)}

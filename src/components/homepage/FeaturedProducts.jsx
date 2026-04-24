@@ -85,7 +85,7 @@ const FeaturedProducts = () => {
       <div className="container mx-auto px-6 lg:px-12 mb-10 flex justify-between items-end">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-gold text-sm">&#10022;</span>
+            <span className="text-gold text-sm">✦</span>
             <span className="text-gold font-bold tracking-widest uppercase text-xs">Top Picks</span>
           </div>
           <h2 className="font-display text-4xl text-navy font-bold">Bestselling Uniforms</h2>

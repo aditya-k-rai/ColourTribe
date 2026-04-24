@@ -27,7 +27,7 @@ const WhyChooseUs = () => {
           className="w-full lg:w-1/2"
         >
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-gold text-sm">&#10022;</span>
+            <span className="text-gold text-sm">✦</span>
             <span className="text-gold font-bold tracking-widest uppercase text-xs">Our Advantage</span>
           </div>
           <h2 className="font-display text-4xl lg:text-5xl text-navy font-bold mb-10 leading-tight">
