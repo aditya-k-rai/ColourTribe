@@ -1,14 +1,30 @@
 import React, { useState } from 'react';
-import { Search, User, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
-
-const MOCK_CUSTOMERS = [];
+import { Search, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
+import { useQuoteStore } from '../../store/quoteStore';
 
 const CustomersManager = () => {
+  const { submittedQuotes } = useQuoteStore();
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredCustomers = MOCK_CUSTOMERS.filter(c => 
+  // Derive unique customers from submitted quotes
+  const uniqueCustomers = (submittedQuotes || []).reduce((acc, quote) => {
+    if (!acc.find(c => c.email === quote.email)) {
+      acc.push({
+        id: quote.id,
+        name: quote.client,
+        contact: quote.client,
+        email: quote.email,
+        phone: quote.phone,
+        location: quote.location,
+        totalQuotes: (submittedQuotes || []).filter(q => q.email === quote.email).length,
+        status: 'Lead'
+      });
+    }
+    return acc;
+  }, []);
+
+  const filteredCustomers = uniqueCustomers.filter(c => 
     c.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    c.contact.toLowerCase().includes(searchTerm.toLowerCase()) ||
     c.email.toLowerCase().includes(searchTerm.toLowerCase())
   );
 

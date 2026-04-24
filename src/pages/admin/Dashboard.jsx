@@ -25,6 +25,9 @@ const StatCard = ({ title, value, increment, icon: Icon, delay }) => (
 
 const Dashboard = () => {
   const { products } = useProductStore();
+  const { submittedQuotes } = useQuoteStore();
+
+  const recentQuotes = (submittedQuotes || []).slice(0, 5);
 
   return (
     <div>
@@ -34,10 +37,10 @@ const Dashboard = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-        <StatCard title="Active Quotes" value="0" increment="Waiting for leads" icon={FileText} delay={0.1} />
+        <StatCard title="Active Quotes" value={submittedQuotes.length} increment={submittedQuotes.length > 0 ? "+New Leads" : "Waiting"} icon={FileText} delay={0.1} />
         <StatCard title="Total Products" value={products.length} increment="+0 new" icon={ShoppingBag} delay={0.2} />
-        <StatCard title="Leads Captured" value="0" increment="---" icon={Users} delay={0.3} />
-        <StatCard title="Est. Pipeline" value="₹0" increment="---" icon={DollarSign} delay={0.4} />
+        <StatCard title="Leads Captured" value={submittedQuotes.length} increment="---" icon={Users} delay={0.3} />
+        <StatCard title="Est. Pipeline" value={`₹${submittedQuotes.reduce((sum, q) => sum + q.value, 0).toLocaleString()}`} increment="---" icon={DollarSign} delay={0.4} />
       </div>
 
       {/* Recent Activity Mockup */}
@@ -66,9 +69,28 @@ const Dashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                   <td colSpan="5" className="px-4 py-10 text-center text-gray-400 italic">No recent activity found.</td>
-                </tr>
+                {recentQuotes.map((quote) => (
+                  <motion.tr key={quote.id} whileHover={{ backgroundColor: '#f9fafb' }} className="border-b border-gray-50 transition-colors cursor-pointer">
+                    <td className="px-4 py-4 font-mono text-gray-500">{quote.id}</td>
+                    <td className="px-4 py-4 font-bold text-navy">{quote.client}</td>
+                    <td className="px-4 py-4 font-medium">₹{quote.value.toLocaleString()}</td>
+                    <td className="px-4 py-4">
+                      <span className={`px-2 py-1 text-xs rounded-full font-semibold ${
+                        quote.status === 'pending' ? 'bg-yellow-100 text-yellow-800' : 
+                        quote.status === 'sent' ? 'bg-blue-100 text-blue-800' : 
+                        'bg-green-100 text-green-800'
+                      }`}>
+                        {quote.status === 'pending' ? 'Pending Review' : quote.status === 'sent' ? 'Quote Sent' : 'Approved'}
+                      </span>
+                    </td>
+                    <td className="px-4 py-4 text-gray-500 text-xs">{new Date(quote.date).toLocaleDateString()}</td>
+                  </motion.tr>
+                ))}
+                {recentQuotes.length === 0 && (
+                  <tr>
+                     <td colSpan="5" className="px-4 py-10 text-center text-gray-400 italic">No recent activity found.</td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
