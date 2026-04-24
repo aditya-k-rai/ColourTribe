@@ -43,6 +43,7 @@ const Footer = () => {
             <li><Link to="/industries" className="hover:text-white transition-colors flex items-center gap-2 group"><span className="w-0 overflow-hidden group-hover:w-2 transition-all">›</span>Industries</Link></li>
             <li><Link to="/about" className="hover:text-white transition-colors flex items-center gap-2 group"><span className="w-0 overflow-hidden group-hover:w-2 transition-all">›</span>About Us</Link></li>
             <li><Link to="/contact" className="hover:text-white transition-colors flex items-center gap-2 group"><span className="w-0 overflow-hidden group-hover:w-2 transition-all">›</span>Contact</Link></li>
+            <li><Link to="/admin/login" className="hover:text-white/40 transition-colors flex items-center gap-2 group pt-2 italic text-xs"><span className="w-0 overflow-hidden group-hover:w-2 transition-all">›</span>Admin Portal</Link></li>
           </ul>
         </motion.div>
         <motion.div variants={itemVariants}>
