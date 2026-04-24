@@ -80,12 +80,14 @@ const HowItWorks = () => {
 
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 1 }}
-          className="text-center"
+          className="text-center mt-8"
         >
-          <Link to="/products" className="inline-flex items-center justify-center gap-2 bg-navy text-white hover:bg-gold hover:text-navy font-bold border border-navy hover:border-gold py-4 px-10 rounded-full transition-all duration-300">
-            Start Your Order &#8594;
+          <Link to="/products" className="group inline-flex items-center justify-center gap-3 bg-navy text-white hover:bg-gold hover:text-navy font-bold border-2 border-navy hover:border-gold py-4 px-10 rounded-full transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(201,168,76,0.3)]">
+            <span>Start Your Order</span>
+            <span className="group-hover:translate-x-1 transition-transform duration-300 text-lg leading-none">&rarr;</span>
           </Link>
         </motion.div>
       </div>

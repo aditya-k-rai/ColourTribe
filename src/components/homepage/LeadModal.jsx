@@ -82,7 +82,7 @@ const LeadModal = () => {
                   transition={{ delay: 0.48 }}
                   className="text-sm text-gray-500 font-light"
                 >
-                  Tell us who you are &#8212; we'll show you the right prices.
+                  Tell us who you are — we'll show you the right prices.
                 </motion.p>
               </div>
 
@@ -129,18 +129,22 @@ const LeadModal = () => {
                   <button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="w-full bg-navy text-gold hover:bg-gold hover:text-navy font-bold py-3 rounded-lg transition-colors flex justify-center"
+                    className="w-full bg-navy text-gold hover:bg-gold hover:text-navy font-bold py-3 rounded-lg transition-colors flex justify-center shadow-md hover:shadow-lg"
                   >
-                    {isSubmitting ? 'Saving...' : 'See Bulk Prices'}
+                    {isSubmitting ? (
+                      <span className="flex items-center gap-2">
+                        <span className="w-4 h-4 border-2 border-navy border-t-transparent rounded-full animate-spin"></span> Processing...
+                      </span>
+                    ) : 'See Bulk Prices'}
                   </button>
                   
                   <div className="text-center mt-4">
                     <button 
                       type="button" 
                       onClick={handleSkip}
-                      className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+                      className="text-xs text-gray-400 hover:text-navy transition-colors group flex items-center justify-center gap-1 w-full"
                     >
-                      Browse without registering &#8594;
+                      Browse without registering <span className="group-hover:translate-x-1 transition-transform">&rarr;</span>
                     </button>
                   </div>
                 </motion.div>

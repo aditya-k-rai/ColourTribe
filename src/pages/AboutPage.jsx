@@ -65,7 +65,7 @@ const AboutPage = () => {
                 Operating out of Greater Noida, UP, Colour Tribe began with a simple mission: to provide the highest-grade professional wear at factory-direct pricing for B2B procurement over bloated retailer markups.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                By maintaining a 100% in-house manufacturing process&#8212;from fabric sourcing and grading to expert tailoring, logo embroidery, and packaging&#8212;we retain total control over output quality. This drastically slashes turn-around times while ensuring that whether you order 20 pieces or 500, every seam is flawless.
+                By maintaining a 100% in-house manufacturing process—from fabric sourcing and grading to expert tailoring, logo embroidery, and packaging—we retain total control over output quality. This drastically slashes turn-around times while ensuring that whether you order 20 pieces or 500, every seam is flawless.
               </p>
               <div className="pt-4 flex gap-8 border-t border-gray-200 mt-8">
                 <div>
@@ -128,12 +128,12 @@ const AboutPage = () => {
           <h2 className="font-display text-3xl text-navy font-bold text-center mb-10">Frequently Asked Questions</h2>
           <div className="space-y-4">
             {ABOUT_FAQS.map(({ q, a }) => (
-              <details key={q} className="bg-white border border-gray-200 rounded-xl px-6 py-4 group">
-                <summary className="font-bold text-navy cursor-pointer list-none flex justify-between items-center">
+              <details key={q} className="bg-white border border-gray-200 rounded-xl px-6 py-4 group hover:shadow-md transition-shadow">
+                <summary className="font-bold text-navy cursor-pointer list-none flex justify-between items-center outline-none">
                   {q}
-                  <span className="text-gold text-xl group-open:rotate-45 transition-transform">+</span>
+                  <span className="text-gold text-xl group-open:rotate-45 transition-transform duration-300">+</span>
                 </summary>
-                <p className="text-gray-600 mt-3 text-sm leading-relaxed">{a}</p>
+                <p className="text-gray-600 mt-3 text-sm leading-relaxed border-t border-gray-100 pt-3">{a}</p>
               </details>
             ))}
           </div>
@@ -144,8 +144,9 @@ const AboutPage = () => {
       <section className="bg-gradient-to-t from-navy to-navy/90 py-24 text-center text-white px-6">
         <h2 className="font-display text-3xl md:text-5xl font-bold mb-6">Ready to Outfit Your Team?</h2>
         <p className="text-white/70 max-w-xl mx-auto mb-10 text-lg">Join hundreds of successful businesses across India who trust Colour Tribe for their daily operations.</p>
-        <a href="/products" className="inline-block bg-gold text-navy hover:bg-white font-bold py-4 px-10 rounded-full transition-all duration-300 hover:-translate-y-1 hover:shadow-xl shadow-gold/20">
-          Browse Our Catalogue
+        <a href="/products" className="group inline-flex items-center gap-3 bg-gold text-navy font-bold py-4 px-10 rounded-full transition-all duration-300 shadow-lg hover:shadow-[0_0_20px_rgba(201,168,76,0.3)]">
+          <span>Browse Our Catalogue</span>
+          <span className="group-hover:translate-x-1 transition-transform duration-300 text-lg leading-none">&rarr;</span>
         </a>
       </section>
     </div>
