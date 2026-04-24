@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import { Search, User, Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
 
-const MOCK_CUSTOMERS = [
-  { id: 'c1', name: 'Hotel Royal Orchid', contact: 'Mr. Sharma', email: 'procurement@royalorchid.com', phone: '+91 98765 43210', location: 'Bengaluru', totalQuotes: 3, status: 'Active' },
-  { id: 'c2', name: 'Spice Route Dining', contact: 'Anjali Gupta', email: 'anjali@spiceroute.in', phone: '+91 91234 56789', location: 'Mumbai', totalQuotes: 1, status: 'Lead' },
-  { id: 'c3', name: 'Vistara Aviation', contact: 'Capt. Vikram', email: 'uniforms@vistara.aero', phone: '+91 99887 76655', location: 'Delhi', totalQuotes: 2, status: 'Active' },
-  { id: 'c4', name: 'Taj Palace', contact: 'Rajesh Khanna', email: 'r.khanna@tajhotels.com', phone: '+91 95555 44444', location: 'Delhi', totalQuotes: 5, status: 'Inactive' },
-  { id: 'c5', name: 'Ritz Carlton', contact: 'Elena Gilbert', email: 'elena@ritz.pune.com', phone: '+91 90000 11111', location: 'Pune', totalQuotes: 2, status: 'Lead' },
-];
+const MOCK_CUSTOMERS = [];
 
 const CustomersManager = () => {
   const [searchTerm, setSearchTerm] = useState('');

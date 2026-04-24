@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Eye, MoreVertical } from 'lucide-react';
 
-const MOCK_QUOTES = [
-  { id: 'CT-092', client: 'Hotel Royal Orchid', location: 'Bengaluru', value: 245000, items: 3, status: 'pending', date: '2023-10-24' },
-  { id: 'CT-091', client: 'Spice Route Dining', location: 'Mumbai', value: 45500, items: 1, status: 'sent', date: '2023-10-23' },
-  { id: 'CT-090', client: 'Vistara Aviation', location: 'Delhi', value: 180000, items: 2, status: 'approved', date: '2023-10-22' },
-  { id: 'CT-089', client: 'Taj Palace', location: 'Delhi', value: 320000, items: 5, status: 'rejected', date: '2023-10-20' },
-  { id: 'CT-088', client: 'Ritz Carlton', location: 'Pune', value: 155000, items: 2, status: 'sent', date: '2023-10-18' },
-];
+const MOCK_QUOTES = [];
 
 const QuotesManager = () => {
   const [searchTerm, setSearchTerm] = useState('');
