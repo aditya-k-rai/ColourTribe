@@ -115,9 +115,13 @@ const HeroSection = () => {
                   }}
                   className={
                     isGold 
-                      ? "text-transparent bg-clip-text bg-gradient-to-r from-[#d4af37] via-[#fff4cc] to-[#aa8529] animate-shimmer bg-[length:200%_auto] pb-2" 
+                      ? "text-transparent bg-clip-text pb-2 animate-shimmer bg-[length:200%_auto]" 
                       : "text-white"
                   }
+                  style={isGold ? {
+                    backgroundImage: 'linear-gradient(90deg, #d4af37 0%, #fff4cc 40%, #aa8529 60%, #d4af37 100%)',
+                    backgroundSize: '200% auto',
+                  } : undefined}
                 >
                   {word}
                 </motion.span>

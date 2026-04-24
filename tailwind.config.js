@@ -28,8 +28,8 @@ export default {
           '50%': { transform: 'translateY(-10px)' },
         },
         shimmer: {
-          '0%': { backgroundPosition: '-200% 0' },
-          '100%': { backgroundPosition: '200% 0' },
+          '0%': { backgroundPosition: '200% center' },
+          '100%': { backgroundPosition: '0% center' },
         },
         marquee: {
           '0%': { transform: 'translateX(0)' },

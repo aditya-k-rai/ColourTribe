@@ -65,7 +65,7 @@ const AboutPage = () => {
                 Operating out of Greater Noida, UP, Colour Tribe began with a simple mission: to provide the highest-grade professional wear at factory-direct pricing for B2B procurement over bloated retailer markups.
               </p>
               <p className="text-gray-600 leading-relaxed">
-                By maintaining a 100% in-house manufacturing process—from fabric sourcing and grading to expert tailoring, logo embroidery, and packaging—we retain total control over output quality. This drastically slashes turn-around times while ensuring that whether you order 20 pieces or 500, every seam is flawless.
+                By maintaining a 100% in-house manufacturing process&#8212;from fabric sourcing and grading to expert tailoring, logo embroidery, and packaging&#8212;we retain total control over output quality. This drastically slashes turn-around times while ensuring that whether you order 20 pieces or 500, every seam is flawless.
               </p>
               <div className="pt-4 flex gap-8 border-t border-gray-200 mt-8">
                 <div>
@@ -89,14 +89,14 @@ const AboutPage = () => {
               <div className="space-y-4 pt-12">
                 <div className="bg-white aspect-[4/5] rounded-2xl shadow-lg border border-gray-100 flex items-center justify-center p-6 text-center group hover:-translate-y-2 transition-transform duration-300">
                   <div>
-                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">ðŸ§µ</div>
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">🥁</div>
                     <h3 className="font-bold text-navy">Premium Blends</h3>
                     <p className="text-xs text-gray-500 mt-2">Durable polyviscose & breathable cottons.</p>
                   </div>
                 </div>
                 <div className="bg-navy aspect-square rounded-2xl shadow-lg border border-gray-100 flex items-center justify-center p-6 text-center">
                   <div>
-                    <div className="text-4xl mb-4">ðŸª¡</div>
+                    <div className="text-4xl mb-4">🧵</div>
                     <h3 className="font-bold text-white">Custom Logos</h3>
                   </div>
                 </div>
@@ -104,13 +104,13 @@ const AboutPage = () => {
               <div className="space-y-4">
                 <div className="bg-gold aspect-square rounded-2xl shadow-lg border border-gold-dark flex items-center justify-center p-6 text-center">
                   <div>
-                    <div className="text-4xl mb-4">âš¡</div>
+                    <div className="text-4xl mb-4">✳️</div>
                     <h3 className="font-bold text-navy">Fast Turnaround</h3>
                   </div>
                 </div>
                 <div className="bg-white aspect-[4/5] rounded-2xl shadow-lg border border-gray-100 flex items-center justify-center p-6 text-center group hover:-translate-y-2 transition-transform duration-300">
                   <div>
-                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">🚚</div>
+                    <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">📦</div>
                     <h3 className="font-bold text-navy">Pan-India Reach</h3>
                     <p className="text-xs text-gray-500 mt-2">Direct shipping to your doorstep.</p>
                   </div>

@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Filter, Search, ChevronDown, Check, ArrowDownUp } from 'lucide-react';
 import { CATEGORIES } from '../data/categories.seed';
 import { PRODUCTS } from '../data/products.seed';
@@ -75,8 +75,6 @@ const CataloguePage = ({ hub = 'products' }) => {
 
     // Sort
     switch(sortBy) {
-      case 'price_low': result.sort((a,b) => a.basePrice - b.basePrice); break;
-      case 'price_high': result.sort((a,b) => b.basePrice - a.basePrice); break;
       case 'newest': result.sort((a,b) => b.id.localeCompare(a.id)); break;
       case 'popular': default: result.sort((a,b) => b.viewCount - a.viewCount); break;
     }
@@ -93,7 +91,7 @@ const CataloguePage = ({ hub = 'products' }) => {
         <div className="absolute inset-0 opacity-20 bg-gradient-to-r from-gold/50 to-transparent"></div>
         <div className="container mx-auto px-6 relative z-10 flex items-center gap-4">
           <span className="text-6xl">
-            {activeCategoryData ? activeCategoryData.icon : (hub === 'industries' ? 'ðŸ­' : hub === 'uniforms' ? '👕' : 'ðŸ“¦')}
+            {activeCategoryData ? activeCategoryData.icon : (hub === 'industries' ? '🏭' : hub === 'uniforms' ? '👔' : '🛍️')}
           </span>
           <div>
             <h1 className="text-white font-display text-4xl mb-2">
@@ -193,7 +191,7 @@ const CataloguePage = ({ hub = 'products' }) => {
           <div className="flex-1">
             {filteredProducts.length === 0 ? (
               <div className="bg-white rounded-xl border border-gray-200 p-16 flex flex-col items-center justify-center text-center">
-                <div className="text-5xl mb-4">ðŸ”</div>
+                <div className="text-5xl mb-4">🤷</div>
                 <h3 className="text-xl font-bold text-navy mb-2">No products found</h3>
                 <p className="text-gray-500 mb-6">We couldn't find anything matching your current filters.</p>
                 <button 
@@ -204,45 +202,48 @@ const CataloguePage = ({ hub = 'products' }) => {
                 </button>
               </div>
             ) : (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredProducts.map((product, i) => {
-                  const cat = CATEGORIES.find(c => c.id === product.categoryId);
-                  return (
-                    <motion.div 
-                      key={product.id}
-                      initial={{ opacity: 0, y: 30 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.05, duration: 0.4 }}
-                      className="bg-white rounded-xl border border-gray-200 overflow-hidden group hover:shadow-xl transition-shadow"
-                    >
-                      <Link to={`/product/${product.sku}`} className="block">
-                        <div className="h-60 bg-[#f0f4f8] relative flex items-center justify-center overflow-hidden">
-                          <span className="text-6xl group-hover:scale-110 transition-transform duration-500">{cat?.icon || '👕'}</span>
-                          <div className="absolute top-3 left-3 bg-navy text-white text-xs px-2 py-1 rounded font-medium shadow">
-                            {cat?.name?.split(' / ')[0]}
-                          </div>
-                        </div>
-                        <div className="p-5">
-                          <div className="text-xs font-mono text-gray-500 mb-1">{product.sku}</div>
-                          <h4 className="font-display text-lg font-bold text-navy mb-2 leading-tight min-h-[3.5rem]">
-                            {product.name}
-                          </h4>
-                          <div className="flex justify-between items-end mt-4">
-                            <div>
-                               <div className="text-gold text-xs font-bold uppercase tracking-wider mt-1">Customize</div>
+              <motion.div layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <AnimatePresence mode="popLayout">
+                  {filteredProducts.map((product, i) => {
+                    const cat = CATEGORIES.find(c => c.id === product.categoryId);
+                    return (
+                      <motion.div 
+                        layout
+                        key={product.id}
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        transition={{ duration: 0.3 }}
+                        className="bg-white rounded-xl border border-gray-200 overflow-hidden group hover:shadow-xl transition-shadow"
+                      >
+                        <Link to={`/product/${product.sku}`} className="block">
+                          <div className="h-60 bg-[#f0f4f8] relative flex items-center justify-center overflow-hidden">
+                            <span className="text-6xl group-hover:scale-110 transition-transform duration-500">{cat?.icon || '👔'}</span>
+                            <div className="absolute top-3 left-3 bg-navy text-white text-xs px-2 py-1 rounded font-medium shadow">
+                              {cat?.name?.split(' / ')[0]}
                             </div>
-                            <span className="text-sm font-bold text-navy group-hover:text-gold transition-colors flex items-center gap-1">
-                              Details <ArrowDownUp className="w-3 h-3 rotate-90" />
-                            </span>
                           </div>
-                        </div>
-                      </Link>
-                    </motion.div>
-                  )
-                })}
-              </div>
+                          <div className="p-5">
+                            <div className="text-xs font-mono text-gray-500 mb-1">{product.sku}</div>
+                            <h4 className="font-display text-lg font-bold text-navy mb-2 leading-tight min-h-[3.5rem]">
+                              {product.name}
+                            </h4>
+                            <div className="flex justify-between items-end mt-4">
+                              <div>
+                                 <div className="text-gold text-xs font-bold uppercase tracking-wider mt-1">Customize</div>
+                              </div>
+                              <span className="text-sm font-bold text-navy group-hover:text-gold transition-colors flex items-center gap-1">
+                                Details <ArrowDownUp className="w-3 h-3 rotate-90" />
+                              </span>
+                            </div>
+                          </div>
+                        </Link>
+                      </motion.div>
+                    )
+                  })}
+                </AnimatePresence>
+              </motion.div>
             )}
-            
             {/* Load More Placeholder */}
             {filteredProducts.length > 0 && (
                <div className="mt-12 text-center">

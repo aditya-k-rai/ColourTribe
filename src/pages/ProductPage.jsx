@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ChevronRight, ShieldCheck, Layers, Plus, Minus, Info } from 'lucide-react';
+import { ChevronRight, ShieldCheck, Clock, Layers, Plus, Minus } from 'lucide-react';
 import { useQuoteStore } from '../store/quoteStore';
 import { PRODUCTS } from '../data/products.seed';
 import { CATEGORIES } from '../data/categories.seed';
 import { setPageMeta, setJsonLd, removeJsonLd, buildProductSchema, buildBreadcrumbSchema } from '../utils/seo';
-import CustomizationModal from '../components/product/CustomizationModal';
 
 const ProductPage = () => {
   const { sku } = useParams();
@@ -18,7 +17,6 @@ const ProductPage = () => {
   const [qty, setQty] = useState(10);
   const [selectedColor, setSelectedColor] = useState('Navy Blue');
   const [activeTab, setActiveTab] = useState('description');
-  const [isCustomModalOpen, setIsCustomModalOpen] = useState(false);
 
   const colors = ['Navy Blue', 'Black', 'Charcoal Grey', 'White'];
 
@@ -92,18 +90,36 @@ const ProductPage = () => {
           <motion.div 
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, staggerChildren: 0.1 }}
             className="w-full lg:w-1/2 flex flex-col gap-4"
           >
-            <div className="bg-[#f0f4f8] w-full aspect-[4/5] rounded-2xl flex items-center justify-center text-9xl relative overflow-hidden group border border-gray-100">
-               {category?.icon || '👕'}
-            </div>
+            <motion.div 
+              layoutId={`product-image-${product.sku}`}
+              className="bg-[#f0f4f8] w-full aspect-[4/5] rounded-2xl flex items-center justify-center text-9xl relative overflow-hidden group border border-gray-100 shadow-inner"
+            >
+               <motion.span
+                 initial={{ scale: 0.8 }}
+                 animate={{ scale: 1 }}
+                 transition={{ duration: 0.5 }}
+                 className="group-hover:scale-110 transition-transform duration-500"
+               >
+                 {category?.icon || '👔'}
+               </motion.span>
+            </motion.div>
+            
             {/* Thumbnails placeholder */}
             <div className="flex gap-4">
-               {[1,2,3,4].map(thumb => (
-                 <div key={thumb} className="w-1/4 aspect-square bg-[#f0f4f8] rounded-lg border-2 border-transparent hover:border-gold cursor-pointer transition-colors flex items-center justify-center text-3xl">
-                   {category?.icon || '👕'}
-                 </div>
+               {[1,2,3,4].map((thumb, idx) => (
+                 <motion.div 
+                   key={thumb} 
+                   initial={{ opacity: 0, y: 20 }}
+                   animate={{ opacity: 1, y: 0 }}
+                   transition={{ delay: 0.3 + (idx * 0.1) }}
+                   whileHover={{ scale: 1.05 }}
+                   className="w-1/4 aspect-square bg-[#f0f4f8] rounded-xl border-2 border-transparent hover:border-gold cursor-pointer transition-colors flex items-center justify-center text-3xl shadow-sm hover:shadow-md"
+                 >
+                   {category?.icon || '👔'}
+                 </motion.div>
                ))}
             </div>
           </motion.div>
@@ -186,38 +202,17 @@ const ProductPage = () => {
             </div>
 
             {/* Actions */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-4">
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
               <button 
                 onClick={handleAddToQuote}
-                className="flex-1 bg-navy text-white hover:bg-gold hover:text-navy font-bold py-4 px-4 rounded-full transition-all duration-300 flex justify-center shadow-lg text-sm md:text-base"
+                className="flex-1 bg-navy text-white hover:bg-gold hover:text-navy font-bold py-4 px-6 rounded-full transition-all duration-300 flex justify-center shadow-lg"
               >
                 + Add to Quote List
               </button>
               <a href={`https://wa.me/919717355779?text=I am interested in ${qty} pcs of ${product.sku} - ${product.name}`} target="_blank" rel="noreferrer" 
-                 className="flex-1 border-2 border-navy text-navy hover:bg-gray-50 font-bold py-4 px-4 rounded-full transition-colors flex justify-center text-center text-sm md:text-base items-center">
+                 className="flex-1 border-2 border-navy text-navy hover:bg-gray-50 font-bold py-4 px-6 rounded-full transition-colors flex justify-center text-center">
                 Chat on WhatsApp
               </a>
-            </div>
-            
-            <div className="mb-8">
-              <button 
-                onClick={() => setIsCustomModalOpen(true)}
-                className="w-full bg-gray-100 text-navy border border-gray-200 hover:border-gold hover:bg-gold/10 font-bold py-3 px-6 rounded-full transition-all duration-300 flex justify-center items-center gap-2"
-              >
-                 <Layers size={18} className="text-gold" /> Request Customization
-              </button>
-            </div>
-
-            {/* Important Note */}
-            <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-4 mb-8 text-sm shadow-sm">
-              <p className="text-navy font-bold mb-3 flex items-center gap-2">
-                <Info size={16} className="text-gold" /> Important Order Information
-              </p>
-              <ul className="text-gray-600 space-y-2 list-disc list-outside ml-4 text-xs leading-relaxed">
-                <li><strong>Customization:</strong> Please provide a Reference / Sample image for any uniform design customization.</li>
-                <li><strong>Delivery Time:</strong> Standard delivery is 15-20 days for 100 pieces (depends on total quantity).</li>
-                <li><strong>Fast Delivery:</strong> Available in 10 days with additional charges.</li>
-              </ul>
             </div>
 
             {/* Accordion Info */}
@@ -227,6 +222,13 @@ const ProductPage = () => {
                 <div>
                   <h4 className="font-bold text-navy text-sm">Quality Guaranteed</h4>
                   <p className="text-xs text-gray-500 mt-1">Premium 65/35 Polyviscose blend designed for everyday duty. Breathable and color-fast.</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-4">
+                <Clock className="text-gold mt-1 shrink-0" size={20} />
+                <div>
+                  <h4 className="font-bold text-navy text-sm">Production Time</h4>
+                  <p className="text-xs text-gray-500 mt-1">Standard 7-10 days for orders under 100 pcs. Custom embroidery adds 2 days.</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -241,13 +243,6 @@ const ProductPage = () => {
           </motion.div>
         </div>
       </div>
-      
-      <CustomizationModal 
-        isOpen={isCustomModalOpen} 
-        onClose={() => setIsCustomModalOpen(false)} 
-        product={product} 
-        selectedColor={selectedColor} 
-      />
     </div>
   );
 };

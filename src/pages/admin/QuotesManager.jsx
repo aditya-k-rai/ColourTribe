@@ -83,10 +83,10 @@ const QuotesManager = () => {
                   </td>
                   <td className="px-6 py-4">
                      <div className="font-bold text-navy">{quote.client}</div>
-                     <div className="text-xs text-gray-400 mt-1">{quote.location} • {quote.items} Items</div>
+                     <div className="text-xs text-gray-400 mt-1">{quote.location} &bull; {quote.items} Items</div>
                   </td>
                   <td className="px-6 py-4 font-bold text-navy">
-                    ₹{quote.value.toLocaleString()}
+                    &#8377;{quote.value.toLocaleString()}
                   </td>
                   <td className="px-6 py-4">
                     {getStatusBadge(quote.status)}

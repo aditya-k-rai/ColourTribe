@@ -67,46 +67,46 @@ const ContactPage = () => {
             </div>
 
             <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center text-gold shrink-0">
-                  <MapPin size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-navy text-lg">Manufacturing Hub</h4>
-                  <p className="text-gray-500 mt-1">KH 58, Tigri Gol Chakkar<br/>Greater Noida, UP<br/>India</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center text-gold shrink-0">
-                  <Phone size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-navy text-lg">Phone</h4>
-                  <p className="text-gray-500 mt-1">+91 97173 55779</p>
-                  <p className="text-xs text-gray-400 mt-1">Mon-Sat, 9AM to 7PM</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-gold/20 rounded-full flex items-center justify-center text-gold shrink-0">
-                  <Mail size={24} />
-                </div>
-                <div>
-                  <h4 className="font-bold text-navy text-lg">Email</h4>
-                  <p className="text-gray-500 mt-1">adorabletradingk08@gmail.com</p>
-                </div>
-              </div>
+              {[
+                { icon: MapPin, title: 'Manufacturing Hub', lines: ['KH 58, Tigri Gol Chakkar', 'Greater Noida, UP', 'India'] },
+                { icon: Phone, title: 'Phone', lines: ['+91 97173 55779'], sub: 'Mon-Sat, 9AM to 7PM' },
+                { icon: Mail, title: 'Email', lines: ['adorabletradingk08@gmail.com'] }
+              ].map((item, idx) => (
+                <motion.div 
+                  key={idx}
+                  whileHover={{ scale: 1.02, x: 10 }}
+                  className="flex items-start gap-4 p-4 rounded-2xl hover:bg-white hover:shadow-lg transition-all duration-300 border border-transparent hover:border-gray-100 cursor-default"
+                >
+                  <div className="w-12 h-12 bg-gold/10 rounded-full flex items-center justify-center text-gold shrink-0">
+                    <item.icon size={24} />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-navy text-lg">{item.title}</h4>
+                    {item.lines.map((line, i) => (
+                      <p key={i} className="text-gray-500 mt-1">{line}</p>
+                    ))}
+                    {item.sub && <p className="text-xs text-gray-400 mt-1">{item.sub}</p>}
+                  </div>
+                </motion.div>
+              ))}
             </div>
 
-            <div className="mt-12 p-6 bg-navy text-white rounded-2xl shadow-lg relative overflow-hidden">
-               <div className="absolute top-0 right-0 -mr-6 -mt-6 w-24 h-24 border-4 border-gold/20 rounded-full"></div>
-               <h3 className="font-display text-xl font-bold mb-2">Need a Bulk Quote?</h3>
-               <p className="text-white/70 text-sm mb-4">Use our specialized quoting system to build your cart and request exact bulk pricing instantly.</p>
-               <Link to="/products" className="inline-block bg-gold text-navy font-bold px-6 py-2 rounded-full hover:bg-white transition-colors">
-                 Build Your Quote
-               </Link>
-            </div>
+            <motion.div 
+              whileHover={{ scale: 1.02 }}
+              className="mt-12 p-8 bg-gradient-to-br from-navy to-[#1a2c47] text-white rounded-3xl shadow-xl relative overflow-hidden group"
+            >
+               <div className="absolute top-0 right-0 w-32 h-32 bg-gold/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-700"></div>
+               <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-accent/20 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-700 delay-100"></div>
+               <div className="absolute top-0 right-0 -mr-6 -mt-6 w-24 h-24 border-4 border-gold/20 rounded-full group-hover:rotate-90 transition-transform duration-700"></div>
+               
+               <div className="relative z-10">
+                 <h3 className="font-display text-2xl font-bold mb-2 text-white">Need a Bulk Quote?</h3>
+                 <p className="text-white/80 text-sm mb-6 max-w-sm leading-relaxed">Use our specialized quoting system to build your cart and request exact bulk pricing instantly.</p>
+                 <Link to="/products" className="inline-block bg-gold text-navy font-bold px-8 py-3 rounded-full hover:bg-white transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                   Build Your Quote
+                 </Link>
+               </div>
+            </motion.div>
           </motion.div>
 
           {/* Contact Form */}

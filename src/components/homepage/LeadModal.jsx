@@ -82,7 +82,7 @@ const LeadModal = () => {
                   transition={{ delay: 0.48 }}
                   className="text-sm text-gray-500 font-light"
                 >
-                  Tell us who you are — we'll show you the right prices.
+                  Tell us who you are &#8212; we'll show you the right prices.
                 </motion.p>
               </div>
 
@@ -140,7 +140,7 @@ const LeadModal = () => {
                       onClick={handleSkip}
                       className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
                     >
-                      Browse without registering →
+                      Browse without registering &#8594;
                     </button>
                   </div>
                 </motion.div>

@@ -27,7 +27,7 @@ const WhyChooseUs = () => {
           className="w-full lg:w-1/2"
         >
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-gold text-sm">âœ¦</span>
+            <span className="text-gold text-sm">&#10022;</span>
             <span className="text-gold font-bold tracking-widest uppercase text-xs">Our Advantage</span>
           </div>
           <h2 className="font-display text-4xl lg:text-5xl text-navy font-bold mb-10 leading-tight">
@@ -62,26 +62,42 @@ const WhyChooseUs = () => {
         >
           <div className="grid grid-cols-2 gap-4 h-full relative z-10 w-full max-w-[500px] mx-auto lg:ml-auto">
             <div className="flex flex-col gap-4 mt-8">
-              <div className="bg-[#152336] h-64 rounded-xl border-2 border-gold shadow-lg flex items-center justify-center relative overflow-hidden group">
+              <motion.div 
+                animate={{ y: [0, -10, 0] }} 
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="bg-[#152336] h-64 rounded-xl border-2 border-gold shadow-lg flex items-center justify-center relative overflow-hidden group"
+              >
                 <div className="absolute inset-0 bg-gradient-to-t from-navy/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <span className="text-5xl relative z-10 group-hover:scale-110 transition-transform">ðŸ§µ</span>
+                <span className="text-5xl relative z-10 group-hover:scale-110 transition-transform">🥁</span>
                 <div className="absolute top-3 left-3 bg-gold text-navy text-[10px] font-bold px-2 py-1 rounded shadow-md z-20">
                   Colour Tribe Certified
                 </div>
-              </div>
-              <div className="bg-[#152336] h-48 rounded-xl shadow-md flex items-center justify-center hover:-translate-y-1 transition-transform">
-                <span className="text-4xl">👕</span>
-              </div>
+              </motion.div>
+              <motion.div 
+                animate={{ y: [0, 8, 0] }} 
+                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="bg-[#152336] h-48 rounded-xl shadow-md flex items-center justify-center hover:-translate-y-2 transition-transform"
+              >
+                <span className="text-4xl">👔</span>
+              </motion.div>
             </div>
             
             <div className="flex flex-col gap-4">
-              <div className="bg-[#152336] h-48 rounded-xl shadow-md flex items-center justify-center hover:-translate-y-1 transition-transform">
-                <span className="text-4xl">ðŸª¡</span>
-              </div>
-              <div className="bg-[#152336] h-72 rounded-xl border border-gray-200 shadow-md flex items-center justify-center transform hover:rotate-1 transition-all origin-bottom-right">
+              <motion.div 
+                animate={{ y: [0, -8, 0] }} 
+                transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+                className="bg-[#152336] h-48 rounded-xl shadow-md flex items-center justify-center hover:-translate-y-2 transition-transform"
+              >
+                <span className="text-4xl">🧵</span>
+              </motion.div>
+              <motion.div 
+                animate={{ y: [0, 10, 0] }} 
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+                className="bg-[#152336] h-72 rounded-xl border border-gray-200 shadow-md flex items-center justify-center transform hover:scale-105 transition-all origin-bottom-right relative overflow-hidden"
+              >
                 <span className="text-6xl text-white opacity-50">✨</span>
                 <p className="absolute bottom-4 left-4 text-white font-display text-lg">Perfect Fit.</p>
-              </div>
+              </motion.div>
             </div>
           </div>
           

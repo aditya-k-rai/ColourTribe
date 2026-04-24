@@ -40,7 +40,12 @@ const Dashboard = () => {
       {/* Recent Activity Mockup */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         
-        <div className="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 p-6"
+        >
           <div className="flex justify-between items-center mb-6">
             <h3 className="font-bold text-navy">Recent Quote Requests</h3>
             <button className="text-gold text-sm font-bold hover:underline">View All</button>
@@ -58,37 +63,37 @@ const Dashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b border-gray-50">
+                <motion.tr whileHover={{ backgroundColor: '#f9fafb' }} className="border-b border-gray-50 transition-colors cursor-pointer">
                   <td className="px-4 py-4 font-mono text-gray-500">#CT-092</td>
                   <td className="px-4 py-4 font-bold text-navy">Hotel Royal Orchid</td>
-                  <td className="px-4 py-4">₹2,45,000</td>
+                  <td className="px-4 py-4 font-medium">₹2,45,000</td>
                   <td className="px-4 py-4">
                     <span className="px-2 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full font-semibold">Pending Review</span>
                   </td>
                   <td className="px-4 py-4 text-gray-500">2 mins ago</td>
-                </tr>
-                <tr className="border-b border-gray-50">
+                </motion.tr>
+                <motion.tr whileHover={{ backgroundColor: '#f9fafb' }} className="border-b border-gray-50 transition-colors cursor-pointer">
                   <td className="px-4 py-4 font-mono text-gray-500">#CT-091</td>
                   <td className="px-4 py-4 font-bold text-navy">Spice Route Dining</td>
-                  <td className="px-4 py-4">₹45,500</td>
+                  <td className="px-4 py-4 font-medium">₹45,500</td>
                   <td className="px-4 py-4">
                     <span className="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full font-semibold">Quote Sent</span>
                   </td>
                   <td className="px-4 py-4 text-gray-500">1 hr ago</td>
-                </tr>
-                <tr>
+                </motion.tr>
+                <motion.tr whileHover={{ backgroundColor: '#f9fafb' }} className="transition-colors cursor-pointer">
                   <td className="px-4 py-4 font-mono text-gray-500">#CT-090</td>
                   <td className="px-4 py-4 font-bold text-navy">Vistara Aviation</td>
-                  <td className="px-4 py-4">₹1,80,000</td>
+                  <td className="px-4 py-4 font-medium">₹1,80,000</td>
                   <td className="px-4 py-4">
                     <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full font-semibold">Sample Approved</span>
                   </td>
                   <td className="px-4 py-4 text-gray-500">Yesterday</td>
-                </tr>
+                </motion.tr>
               </tbody>
             </table>
           </div>
-        </div>
+        </motion.div>
 
         <div className="bg-navy rounded-2xl shadow-sm text-white p-6 relative overflow-hidden">
            <div className="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-gold/20 rounded-full blur-2xl"></div>

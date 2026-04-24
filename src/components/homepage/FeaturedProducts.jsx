@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { CATEGORIES } from '../../data/categories.seed';
 import { Link } from 'react-router-dom';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
@@ -37,21 +37,8 @@ const ProductCard = ({ product }) => {
         
         <div className="flex justify-between items-center relative h-10 overflow-hidden">
           <Link to={`/product/${product.sku}`} className="text-sm font-semibold text-navy flex items-center gap-1 hover:text-gold transition-colors block w-full absolute top-2">
-            View Details →
+            View Details &#8594;
           </Link>
-          
-          <AnimatePresence>
-            <motion.button 
-              initial={{ y: 30, opacity: 0 }}
-              whileHover={{ scale: 1.05 }}
-              className="absolute inset-0 bg-navy text-white text-sm font-bold rounded flex items-center justify-center opacity-0 group-hover:opacity-100 transition-none"
-              // In Framer Motion, if we use CSS hover for the parent, we can just style child with Tailwind group-hover
-              // Because AnimatePresence needs React state, we'll rely on CSS for the simple hover interaction here instead to simplify
-            >
-              Add to Quote
-            </motion.button>
-          </AnimatePresence>
-          {/* Overriding Framer with CSS for clean hover effect */}
           <button className="absolute inset-x-0 bottom-0 top-0 bg-navy text-white text-sm font-bold rounded flex items-center justify-center transform translate-y-full opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-250 ease-out z-10 hover:bg-navy/90">
             + Add to Quote
           </button>
@@ -93,7 +80,7 @@ const FeaturedProducts = () => {
       <div className="container mx-auto px-6 lg:px-12 mb-10 flex justify-between items-end">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="text-gold text-sm">âœ¦</span>
+            <span className="text-gold text-sm">&#10022;</span>
             <span className="text-gold font-bold tracking-widest uppercase text-xs">Top Picks</span>
           </div>
           <h2 className="font-display text-4xl text-navy font-bold">Bestselling Uniforms</h2>

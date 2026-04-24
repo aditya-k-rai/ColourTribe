@@ -29,7 +29,7 @@ const QuotePage = () => {
     return (
       <div className="min-h-screen bg-cream pt-32 pb-20 flex justify-center items-center font-body">
         <div className="bg-white p-12 rounded-2xl shadow-xl max-w-lg text-center mx-4">
-          <div className="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">✓</div>
+          <div className="w-20 h-20 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6 text-4xl">&#10004;</div>
           <h2 className="font-display text-3xl text-navy font-bold mb-4">Quote Submitted!</h2>
           <p className="text-gray-500 mb-8 leading-relaxed">
             Thank you, {formData.name}. We have received your bulk order request. Our team will contact you at {formData.phone} within 24 hours with a finalized exact price.

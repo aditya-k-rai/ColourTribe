@@ -9,10 +9,9 @@ const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "mock-api-key",
   authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || "mock-auth-domain",
   projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "colourtribe-app",
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "mock-storage-bucket",
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || "colourtribe-app.appspot.com",
   messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "mock-sender-id",
-  appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:mock-sender-id:web:45b930e1f433bd724eacc9",
-  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID || "mock-measurement-id"
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || "mock-app-id"
 };
 
 const app = initializeApp(firebaseConfig);
