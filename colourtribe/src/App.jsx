@@ -1,3 +1,4 @@
+// Version 1.0.1 - Ensuring all routes are live
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'framer-motion';
