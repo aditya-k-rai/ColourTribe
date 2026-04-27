@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
+import { Routes, Route, Outlet } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import NavBar from './components/layout/NavBar';
 import Footer from './components/layout/Footer';
@@ -31,8 +31,12 @@ const PageLoader = () => (
   </div>
 );
 
+/**
+ * Layout — no animation key on the outlet wrapper.
+ * React Router swaps <Outlet /> content internally without unmounting
+ * the parent, so Suspense + lazy loading never causes a blank page.
+ */
 const Layout = () => {
-  const location = useLocation();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -49,15 +53,9 @@ const Layout = () => {
       />
       <NavBar />
       <main className="flex-grow">
-        <motion.div
-          key={location.pathname}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
-          className="w-full h-full"
-        >
+        <Suspense fallback={<PageLoader />}>
           <Outlet />
-        </motion.div>
+        </Suspense>
       </main>
       <Footer />
     </div>
