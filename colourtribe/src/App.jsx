@@ -1,6 +1,6 @@
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route, Outlet, useLocation } from 'react-router-dom';
-import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
+import { motion, useScroll, useSpring } from 'framer-motion';
 import NavBar from './components/layout/NavBar';
 import Footer from './components/layout/Footer';
 import ScrollToTop from './components/layout/ScrollToTop';
@@ -31,38 +31,6 @@ const PageLoader = () => (
   </div>
 );
 
-const PageTransition = ({ children }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -20 }}
-    transition={{ duration: 0.4, ease: "easeOut" }}
-    className="w-full h-full"
-  >
-    {children}
-  </motion.div>
-);
-
-/**
- * Derive a stable animation key from the pathname.
- * Sub-routes of the same page component share one key so
- * AnimatePresence doesn't re-trigger exit/enter for them.
- */
-function getPageKey(pathname) {
-  // /products, /products/men-formal-suit  → "products"
-  // /uniforms, /uniforms/chef-uniform      → "uniforms"
-  // /industries, /industries/hotel         → "industries"
-  // /product/HO-01                         → "product-detail"
-  // /uniform-manufacturer-in-delhi         → "city-landing"
-  const segments = pathname.replace(/^\//, '').split('/');
-  const root = segments[0] || 'home';
-
-  if (['products', 'uniforms', 'industries'].includes(root)) return root;
-  if (root.startsWith('uniform-manufacturer-in-')) return 'city-landing';
-  if (root === 'product') return `product-detail-${segments[1] || ''}`;
-  return root || 'home';
-}
-
 const Layout = () => {
   const location = useLocation();
   const { scrollYProgress } = useScroll();
@@ -71,8 +39,6 @@ const Layout = () => {
     damping: 30,
     restDelta: 0.001
   });
-
-  const pageKey = getPageKey(location.pathname);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -83,11 +49,15 @@ const Layout = () => {
       />
       <NavBar />
       <main className="flex-grow">
-        <AnimatePresence mode="wait">
-          <PageTransition key={pageKey}>
-            <Outlet />
-          </PageTransition>
-        </AnimatePresence>
+        <motion.div
+          key={location.pathname}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
+          className="w-full h-full"
+        >
+          <Outlet />
+        </motion.div>
       </main>
       <Footer />
     </div>
