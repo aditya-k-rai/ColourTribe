@@ -43,6 +43,26 @@ const PageTransition = ({ children }) => (
   </motion.div>
 );
 
+/**
+ * Derive a stable animation key from the pathname.
+ * Sub-routes of the same page component share one key so
+ * AnimatePresence doesn't re-trigger exit/enter for them.
+ */
+function getPageKey(pathname) {
+  // /products, /products/men-formal-suit  → "products"
+  // /uniforms, /uniforms/chef-uniform      → "uniforms"
+  // /industries, /industries/hotel         → "industries"
+  // /product/HO-01                         → "product-detail"
+  // /uniform-manufacturer-in-delhi         → "city-landing"
+  const segments = pathname.replace(/^\//, '').split('/');
+  const root = segments[0] || 'home';
+
+  if (['products', 'uniforms', 'industries'].includes(root)) return root;
+  if (root.startsWith('uniform-manufacturer-in-')) return 'city-landing';
+  if (root === 'product') return `product-detail-${segments[1] || ''}`;
+  return root || 'home';
+}
+
 const Layout = () => {
   const location = useLocation();
   const { scrollYProgress } = useScroll();
@@ -51,6 +71,8 @@ const Layout = () => {
     damping: 30,
     restDelta: 0.001
   });
+
+  const pageKey = getPageKey(location.pathname);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -62,7 +84,7 @@ const Layout = () => {
       <NavBar />
       <main className="flex-grow">
         <AnimatePresence mode="wait">
-          <PageTransition key={location.pathname}>
+          <PageTransition key={pageKey}>
             <Outlet />
           </PageTransition>
         </AnimatePresence>
