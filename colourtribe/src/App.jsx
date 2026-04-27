@@ -13,8 +13,8 @@ const AboutPage = lazy(() => import('./pages/AboutPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const ProductPage = lazy(() => import('./pages/ProductPage'));
 const QuotePage = lazy(() => import('./pages/QuotePage'));
-const CityLandingPage = lazy(() => import('./pages/CityLandingPage'));
-const MaterialGuidePage = lazy(() => import('./pages/MaterialGuidePage'));
+import CityLandingPage from './pages/CityLandingPage';
+import MaterialGuidePage from './pages/MaterialGuidePage';
 
 // Admin pages
 const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
