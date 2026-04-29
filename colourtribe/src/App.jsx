@@ -1,4 +1,3 @@
-// Version 1.0.1 - Ensuring all routes are live
 import React, { Suspense, lazy } from 'react';
 import { Routes, Route, Outlet } from 'react-router-dom';
 import { motion, useScroll, useSpring } from 'framer-motion';
@@ -13,8 +12,9 @@ const AboutPage = lazy(() => import('./pages/AboutPage'));
 const ContactPage = lazy(() => import('./pages/ContactPage'));
 const ProductPage = lazy(() => import('./pages/ProductPage'));
 const QuotePage = lazy(() => import('./pages/QuotePage'));
-import CityLandingPage from './pages/CityLandingPage';
-import MaterialGuidePage from './pages/MaterialGuidePage';
+const CityLandingPage = lazy(() => import('./pages/CityLandingPage'));
+const MaterialGuidePage = lazy(() => import('./pages/MaterialGuidePage'));
+const BlogPage = lazy(() => import('./pages/BlogPage'));
 
 // Admin pages
 const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
@@ -82,6 +82,8 @@ function App() {
           <Route path="contact" element={<ContactPage />} />
           <Route path="fabric-guide" element={<MaterialGuidePage />} />
           <Route path="uniform-manufacturer-in-:citySlug" element={<CityLandingPage />} />
+          <Route path="blog" element={<BlogPage />} />
+          <Route path="blog/:slug" element={<BlogPage />} />
         </Route>
 
         <Route path="/admin/login" element={<AdminLogin />} />

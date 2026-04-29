@@ -21,16 +21,20 @@ const HOME_FAQS = [
     a: 'Yes. All orders can include custom logo embroidery at no extra setup charge. Embroidery adds approximately 2 days to production.',
   },
   {
-    q: 'Do you supply and deliver uniforms to Mumbai, Bangalore, and Delhi?',
-    a: 'Absolutely. We are a top uniform manufacturer supplying all across India. We regularly deliver bulk corporate wear and hotel uniforms to Mumbai, Delhi, Bangalore, Chennai, and all other top 10 Indian cities.',
-  },
-  {
-    q: 'What is the best fabric material for corporate uniforms and chef wear?',
-    a: 'For corporate wear, Poly-Viscose is the best fabric as it offers a premium look while being highly durable and wrinkle-resistant. For chef coats and hospital scrubs, we recommend 100% Cotton or Terry Cotton (PC) for maximum breathability.',
+    q: 'Which industries does Colour Tribe supply uniforms to?',
+    a: 'Colour Tribe supplies uniforms to the hospitality, hotel & restaurant, healthcare, corporate, security, and industrial sectors across India.',
   },
   {
     q: 'How long does delivery take for bulk uniform orders?',
     a: 'Standard production and delivery takes 7–10 days for orders under 100 pieces. Larger or customised orders may take up to 15 days.',
+  },
+  {
+    q: 'Does Colour Tribe deliver pan-India?',
+    a: 'Yes. Colour Tribe ships to all major cities and towns across India directly from our manufacturing unit in Greater Noida, UP.',
+  },
+  {
+    q: 'What fabric is used in Colour Tribe uniforms?',
+    a: 'We primarily use a premium 65/35 polyviscose blend designed for durability and breathability. We also offer 100% cotton options for kitchen and chef wear.',
   },
 ];
 

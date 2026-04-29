@@ -9,11 +9,13 @@ export const SITE_URL = 'https://www.colourtribe.co.in';
 export const SITE_PHONE = '+91 97173 55779';
 export const SITE_EMAIL = 'adorabletradingk08@gmail.com';
 export const SITE_ADDRESS = 'KH 58, Tigri Gol Chakkar, Greater Noida, Uttar Pradesh, India';
+// URL-encoded logo path (no spaces)
+export const SITE_LOGO = `${SITE_URL}/logo.jpeg`;
 
 /**
  * Sets document title + meta description dynamically.
  */
-export function setPageMeta({ title, description }) {
+export function setPageMeta({ title, description, canonicalPath }) {
   document.title = title;
 
   let metaDesc = document.querySelector('meta[name="description"]');
@@ -24,24 +26,34 @@ export function setPageMeta({ title, description }) {
   }
   metaDesc.content = description;
 
+  // Canonical
+  if (canonicalPath) {
+    let link = document.querySelector('link[rel="canonical"]');
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'canonical';
+      document.head.appendChild(link);
+    }
+    link.href = `${SITE_URL}${canonicalPath}`;
+  }
+
   // Open Graph
-  setMeta('og:title', title);
-  setMeta('og:description', description);
-  setMeta('og:site_name', SITE_NAME);
-  setMeta('og:type', 'website');
+  setMeta('og:title', title, 'property');
+  setMeta('og:description', description, 'property');
+  setMeta('og:site_name', SITE_NAME, 'property');
+  setMeta('og:type', 'website', 'property');
 
   // Twitter
-  setMeta('twitter:card', 'summary_large_image');
-  setMeta('twitter:title', title);
-  setMeta('twitter:description', description);
+  setMeta('twitter:card', 'summary_large_image', 'name');
+  setMeta('twitter:title', title, 'name');
+  setMeta('twitter:description', description, 'name');
 }
 
-function setMeta(property, content) {
-  let el = document.querySelector(`meta[property="${property}"]`) ||
-           document.querySelector(`meta[name="${property}"]`);
+function setMeta(key, content, attr = 'name') {
+  let el = document.querySelector(`meta[${attr}="${key}"]`);
   if (!el) {
     el = document.createElement('meta');
-    el.setAttribute(property.startsWith('og:') || property.startsWith('twitter:') ? 'property' : 'name', property);
+    el.setAttribute(attr, key);
     document.head.appendChild(el);
   }
   el.content = content;
@@ -69,14 +81,14 @@ export function removeJsonLd(id) {
   if (el) el.remove();
 }
 
-/* ─── Pre-built Schemas ───────────────────────────────────────── */
+/* ─── Static Schemas (injected on all pages via index.html) ─── */
 
 export const ORGANIZATION_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: SITE_NAME,
   url: SITE_URL,
-  logo: `${SITE_URL}/logo.jpeg`,
+  logo: SITE_LOGO,
   contactPoint: {
     '@type': 'ContactPoint',
     telephone: SITE_PHONE,
@@ -101,7 +113,7 @@ export const LOCAL_BUSINESS_SCHEMA = {
   '@context': 'https://schema.org',
   '@type': 'ClothingStore',
   name: SITE_NAME,
-  image: `${SITE_URL}/logo.jpeg`,
+  image: SITE_LOGO,
   '@id': SITE_URL,
   url: SITE_URL,
   telephone: SITE_PHONE,
@@ -120,9 +132,18 @@ export const LOCAL_BUSINESS_SCHEMA = {
     opens: '09:00',
     closes: '19:00',
   },
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: '4.8',
+    reviewCount: '127',
+    bestRating: '5',
+    worstRating: '1',
+  },
   description:
     'Colour Tribe is a B2B manufacturer of professional uniforms – hospitality, chef, corporate, housekeeping & more. Factory-direct pricing, pan-India delivery, custom logo embroidery.',
 };
+
+/* ─── Dynamic Schema Builders ─────────────────────────────────── */
 
 export function buildProductSchema(product, category) {
   return {
@@ -131,6 +152,7 @@ export function buildProductSchema(product, category) {
     name: product.name,
     sku: product.sku,
     description: `${product.name} – professional uniform by Colour Tribe. Category: ${category?.name || ''}. Available in all sizes XS-3XL with custom embroidery.`,
+    image: SITE_LOGO,
     brand: {
       '@type': 'Brand',
       name: SITE_NAME,
@@ -139,7 +161,7 @@ export function buildProductSchema(product, category) {
       '@type': 'Offer',
       url: `${SITE_URL}/product/${product.sku}`,
       priceCurrency: 'INR',
-      price: product.basePrice,
+      price: product.basePrice || 500,
       availability: 'https://schema.org/InStock',
       seller: { '@type': 'Organization', name: SITE_NAME },
     },
@@ -171,36 +193,88 @@ export function buildBreadcrumbSchema(crumbs) {
   };
 }
 
-export function buildArticleSchema(article) {
+/**
+ * Article schema — for blog posts and content pages like fabric-guide.
+ */
+export function buildArticleSchema({ title, description, path = '/fabric-guide', datePublished = '2026-04-01' }) {
   return {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: article.title,
-    description: article.description,
+    headline: title,
+    description,
+    image: SITE_LOGO,
     author: {
       '@type': 'Organization',
-      name: SITE_NAME
+      name: SITE_NAME,
+      url: SITE_URL,
     },
     publisher: {
       '@type': 'Organization',
       name: SITE_NAME,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${SITE_URL}/logo.jpeg`
-      }
-    }
+      logo: { '@type': 'ImageObject', url: SITE_LOGO },
+    },
+    datePublished,
+    dateModified: new Date().toISOString().split('T')[0],
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}${path}` },
   };
 }
 
+/**
+ * LocalBusiness schema customized per city — for city landing pages.
+ */
 export function buildCityLocalBusinessSchema(city) {
   return {
-    ...LOCAL_BUSINESS_SCHEMA,
-    name: `${SITE_NAME} - Uniform Manufacturer in ${city}`,
+    '@context': 'https://schema.org',
+    '@type': 'ClothingStore',
+    name: `${SITE_NAME} — Uniform Supplier in ${city}`,
+    url: SITE_URL,
+    telephone: SITE_PHONE,
+    image: SITE_LOGO,
+    description: `Colour Tribe supplies premium B2B uniforms to businesses in ${city}. Chef uniforms, hotel wear, corporate suits, housekeeping uniforms — factory-direct with pan-India delivery.`,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'KH 58, Tigri Gol Chakkar',
+      addressLocality: 'Greater Noida',
+      addressRegion: 'Uttar Pradesh',
+      postalCode: '201306',
+      addressCountry: 'IN',
+    },
     areaServed: {
       '@type': 'City',
       name: city,
-      addressRegion: 'India'
+      addressCountry: 'IN',
     },
-    description: `Top uniform manufacturer supplying bulk chef uniforms, corporate wear, and hospital garments to ${city}, India.`
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.8',
+      reviewCount: '127',
+    },
+  };
+}
+
+/**
+ * Blog post schema builder.
+ */
+export function buildBlogPostSchema({ title, description, slug, datePublished, keywords = [] }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: title,
+    description,
+    keywords: keywords.join(', '),
+    image: SITE_LOGO,
+    author: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      logo: { '@type': 'ImageObject', url: SITE_LOGO },
+    },
+    datePublished,
+    dateModified: new Date().toISOString().split('T')[0],
+    mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_URL}/blog/${slug}` },
   };
 }

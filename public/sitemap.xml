@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- ── Core Pages ─────────────────────────────────────────────── -->
+  <url>
+    <loc>https://www.colourtribe.co.in/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.colourtribe.co.in/products</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.colourtribe.co.in/uniforms</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.colourtribe.co.in/industries</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.colourtribe.co.in/about</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.colourtribe.co.in/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.colourtribe.co.in/get-quote</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.colourtribe.co.in/fabric-guide</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.colourtribe.co.in/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- ── Category Pages — /products/:categorySlug ───────────────── -->
+  <url><loc>https://www.colourtribe.co.in/products/men-formal-suit</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/front-office</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/ethnic-indo-western</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/bandgala-nehru</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/banquet-catering</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/steward-restaurant</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/formal-shirt-gents</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/formal-trouser</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/shirt-pant-gents</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/formal-female</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/formal-suit-female</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/bellboy-doorman</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/doorman-protocol</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/security-driver</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/chef-uniform</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/chef-coat</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/aprons-full</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/service-apron</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/chef-trouser</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/workwear-industrial</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/housekeeping</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/winter-wear</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/polo-tshirt</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/round-neck-tshirt</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/head-gear</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://www.colourtribe.co.in/products/table-linen</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+
+  <!-- ── Uniform Hub Category Pages ─────────────────────────────── -->
+  <url><loc>https://www.colourtribe.co.in/uniforms/chef-uniform</loc><changefreq>weekly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.colourtribe.co.in/uniforms/housekeeping</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.colourtribe.co.in/uniforms/bellboy-doorman</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.colourtribe.co.in/uniforms/front-office</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.colourtribe.co.in/uniforms/security-driver</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/uniforms/workwear-industrial</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/uniforms/men-formal-suit</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+
+  <!-- ── Industry Pages ─────────────────────────────────────────── -->
+  <url><loc>https://www.colourtribe.co.in/industries/chef-uniform</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.colourtribe.co.in/industries/housekeeping</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.colourtribe.co.in/industries/men-formal-suit</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+
+  <!-- ── City Landing Pages (Top 10 Indian Cities) ──────────────── -->
+  <url><loc>https://www.colourtribe.co.in/uniform-manufacturer-in-delhi</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.colourtribe.co.in/uniform-manufacturer-in-mumbai</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://www.colourtribe.co.in/uniform-manufacturer-in-bangalore</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.colourtribe.co.in/uniform-manufacturer-in-chennai</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.colourtribe.co.in/uniform-manufacturer-in-kolkata</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.colourtribe.co.in/uniform-manufacturer-in-hyderabad</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.colourtribe.co.in/uniform-manufacturer-in-pune</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.colourtribe.co.in/uniform-manufacturer-in-ahmedabad</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://www.colourtribe.co.in/uniform-manufacturer-in-surat</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/uniform-manufacturer-in-jaipur</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+  <!-- ── Blog Articles ──────────────────────────────────────────── -->
+  <url><loc>https://www.colourtribe.co.in/blog/how-to-choose-hotel-uniforms</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/blog/polyviscose-benefits-workwear</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/blog/chef-uniform-guide</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/blog/corporate-uniform-policy</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://www.colourtribe.co.in/blog/housekeeping-uniform-india</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+
+</urlset>
