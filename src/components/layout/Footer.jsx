@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import logo from '../../assets/logo.jpeg';
-import devPhoto from '../../assets/aditya-kumar-rai.png';
+import devPhoto from '../../assets/aditya-kumar-rai.gif';
 
 const Footer = () => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
