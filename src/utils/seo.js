@@ -1,7 +1,7 @@
 /**
  * SEO Utility — Colour Tribe
- * Manages dynamic <title>, <meta description> and JSON-LD structured data
- * for every page to target Google Search + AI Answer Engines (AEO).
+ * Manages dynamic <title>, <meta description>, canonical, og:url and
+ * JSON-LD structured data for every page to target Google Search + AI Answer Engines (AEO).
  */
 
 export const SITE_NAME = 'Colour Tribe';
@@ -9,11 +9,12 @@ export const SITE_URL = 'https://www.colourtribe.co.in';
 export const SITE_PHONE = '+91 97173 55779';
 export const SITE_EMAIL = 'adorabletradingk08@gmail.com';
 export const SITE_ADDRESS = 'KH 58, Tigri Gol Chakkar, Greater Noida, Uttar Pradesh, India';
-// URL-encoded logo path (no spaces)
+// No spaces in logo URL — critical for schema validation
 export const SITE_LOGO = `${SITE_URL}/logo.jpeg`;
 
 /**
- * Sets document title + meta description dynamically.
+ * Sets document title + meta description + canonical + og:url dynamically.
+ * @param {{ title: string, description: string, canonicalPath?: string }} opts
  */
 export function setPageMeta({ title, description, canonicalPath }) {
   document.title = title;
@@ -27,21 +28,24 @@ export function setPageMeta({ title, description, canonicalPath }) {
   metaDesc.content = description;
 
   // Canonical
-  if (canonicalPath) {
-    let link = document.querySelector('link[rel="canonical"]');
-    if (!link) {
-      link = document.createElement('link');
-      link.rel = 'canonical';
-      document.head.appendChild(link);
-    }
-    link.href = `${SITE_URL}${canonicalPath}`;
+  let link = document.querySelector('link[rel="canonical"]');
+  if (!link) {
+    link = document.createElement('link');
+    link.rel = 'canonical';
+    document.head.appendChild(link);
   }
+  // Always set canonical — use provided path or current window location
+  const canonicalUrl = canonicalPath
+    ? `${SITE_URL}${canonicalPath}`
+    : `${SITE_URL}${window.location.pathname}`;
+  link.href = canonicalUrl;
 
   // Open Graph
   setMeta('og:title', title, 'property');
   setMeta('og:description', description, 'property');
   setMeta('og:site_name', SITE_NAME, 'property');
   setMeta('og:type', 'website', 'property');
+  setMeta('og:url', canonicalUrl, 'property');
 
   // Twitter
   setMeta('twitter:card', 'summary_large_image', 'name');
@@ -105,7 +109,9 @@ export const ORGANIZATION_SCHEMA = {
     addressCountry: 'IN',
   },
   sameAs: [
-    'https://www.colourtribe.co.in',
+    'https://www.instagram.com/colourtribe.in/',
+    'https://www.linkedin.com/company/colour-tribe/',
+    'https://www.facebook.com/colourtribe.in/',
   ],
 };
 
@@ -117,6 +123,7 @@ export const LOCAL_BUSINESS_SCHEMA = {
   '@id': SITE_URL,
   url: SITE_URL,
   telephone: SITE_PHONE,
+  email: SITE_EMAIL,
   priceRange: '₹₹',
   address: {
     '@type': 'PostalAddress',
@@ -126,12 +133,29 @@ export const LOCAL_BUSINESS_SCHEMA = {
     postalCode: '201306',
     addressCountry: 'IN',
   },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 28.4744,
+    longitude: 77.5040,
+  },
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
     dayOfWeek: ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
     opens: '09:00',
     closes: '19:00',
   },
+  areaServed: [
+    { '@type': 'City', name: 'Delhi', addressCountry: 'IN' },
+    { '@type': 'City', name: 'Noida', addressCountry: 'IN' },
+    { '@type': 'City', name: 'Greater Noida', addressCountry: 'IN' },
+    { '@type': 'City', name: 'Gurgaon', addressCountry: 'IN' },
+    { '@type': 'Country', name: 'India' },
+  ],
+  sameAs: [
+    'https://www.instagram.com/colourtribe.in/',
+    'https://www.linkedin.com/company/colour-tribe/',
+    'https://www.facebook.com/colourtribe.in/',
+  ],
   aggregateRating: {
     '@type': 'AggregateRating',
     ratingValue: '4.8',
@@ -140,7 +164,7 @@ export const LOCAL_BUSINESS_SCHEMA = {
     worstRating: '1',
   },
   description:
-    'Colour Tribe is a B2B manufacturer of professional uniforms – hospitality, chef, corporate, housekeeping & more. Factory-direct pricing, pan-India delivery, custom logo embroidery.',
+    'Colour Tribe is a B2B manufacturer of professional uniforms – hospitality, chef, corporate, housekeeping & more. Factory-direct pricing, pan-India delivery, custom logo embroidery. Minimum 10 pieces.',
 };
 
 /* ─── Dynamic Schema Builders ─────────────────────────────────── */
@@ -238,6 +262,11 @@ export function buildCityLocalBusinessSchema(city) {
       addressRegion: 'Uttar Pradesh',
       postalCode: '201306',
       addressCountry: 'IN',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 28.4744,
+      longitude: 77.5040,
     },
     areaServed: {
       '@type': 'City',

@@ -20,9 +20,10 @@ const ABOUT_FAQS = [
 const AboutPage = () => {
   useEffect(() => {
     setPageMeta({
-      title: 'About Colour Tribe | B2B Uniform Manufacturer in Greater Noida',
+      title: 'About Colour Tribe | B2B Uniform Factory, Greater Noida',
       description:
-        'Learn about Colour Tribe — India\'s trusted in-house uniform manufacturer with 15+ years of experience supplying B2B uniforms to 500+ clients across the hospitality, corporate, and industrial sectors.',
+        'Colour Tribe is a B2B uniform manufacturer with 15+ years of experience. In-house factory in Greater Noida supplying 500+ clients across hospitality, corporate & industrial sectors.',
+      canonicalPath: '/about',
     });
     setJsonLd('ld-about-faq', buildFaqSchema(ABOUT_FAQS));
     return () => removeJsonLd('ld-about-faq');

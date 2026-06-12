@@ -19,10 +19,10 @@ const FABRICS = [
 
 const MaterialGuidePage = () => {
   useEffect(() => {
-    const title = 'Garment Material & Dress Type Guide | Colour Tribe';
-    const description = 'The ultimate AI reference guide for uniform garment materials, cloth types, and dress styles. Learn about Poly-Viscose, Terry Cotton, Spun Polyester, and more.';
+    const title = 'Uniform Fabric & Material Guide India | Colour Tribe';
+    const description = 'Complete guide to uniform garment materials: Poly-Viscose, Terry Cotton, Spun Polyester & more. Understand which fabric is best for chef, hotel, corporate & industrial uniforms.';
     
-    setPageMeta({ title, description });
+    setPageMeta({ title, description, canonicalPath: '/fabric-guide' });
     
     setJsonLd('ld-fabric-article', buildArticleSchema({ title, description }));
     setJsonLd('ld-fabric-faq', buildFaqSchema(FABRIC_FAQS));

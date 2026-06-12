@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ColourTribe.co.in — Complete SEO Audit & Roadmap</title>
+<style>
+  :root {
+    --primary: #0f1b2d;
+    --accent: #e8a020;
+    --accent2: #2e8b57;
+    --danger: #c0392b;
+    --warning: #e67e22;
+    --success: #27ae60;
+    --info: #2980b9;
+    --light-bg: #f7f9fc;
+    --border: #dde3ec;
+    --text: #1a1a2e;
+    --text-muted: #5a6272;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', system-ui, sans-serif; background: #eef2f7; color: var(--text); font-size: 14px; }
+
+  /* ---- COVER ---- */
+  .cover {
+    background: var(--primary);
+    color: #fff;
+    padding: 56px 48px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: rgba(232,160,32,0.12);
+  }
+  .cover::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 200px;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .cover-badge { display: inline-block; background: var(--accent); color: var(--primary); font-weight: 700; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 18px; }
+  .cover h1 { font-size: 32px; font-weight: 800; line-height: 1.25; margin-bottom: 10px; }
+  .cover .sub { font-size: 16px; color: rgba(255,255,255,0.65); margin-bottom: 28px; }
+  .cover-meta { display: flex; gap: 32px; flex-wrap: wrap; font-size: 13px; color: rgba(255,255,255,0.55); }
+  .cover-meta span strong { color: #fff; display: block; font-size: 14px; }
+
+  /* ---- LAYOUT ---- */
+  .container { max-width: 1100px; margin: 0 auto; padding: 36px 24px; }
+
+  /* ---- SECTION ---- */
+  .section { background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 28px; overflow: hidden; }
+  .section-header { background: var(--primary); color: #fff; padding: 18px 28px; display: flex; align-items: center; gap: 12px; }
+  .section-header .num { background: var(--accent); color: var(--primary); font-weight: 800; font-size: 13px; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .section-header h2 { font-size: 17px; font-weight: 700; margin: 0; }
+  .section-header .tag { margin-left: auto; background: rgba(255,255,255,0.12); font-size: 11px; padding: 3px 10px; border-radius: 20px; letter-spacing: 0.5px; }
+  .section-body { padding: 28px; }
+
+  /* ---- SUMMARY CARDS ---- */
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
+  .summary-card { border-radius: 10px; padding: 20px 22px; border: 2px solid transparent; }
+  .summary-card.red { background: #fff5f5; border-color: #fdc5c5; }
+  .summary-card.orange { background: #fff8f0; border-color: #fdd5a0; }
+  .summary-card.green { background: #f0fff6; border-color: #a0ddb8; }
+  .summary-card.blue { background: #f0f6ff; border-color: #a0c0e8; }
+  .summary-card .label { font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
+  .summary-card.red .label { color: var(--danger); }
+  .summary-card.orange .label { color: var(--warning); }
+  .summary-card.green .label { color: var(--success); }
+  .summary-card.blue .label { color: var(--info); }
+  .summary-card .value { font-size: 30px; font-weight: 800; }
+  .summary-card.red .value { color: var(--danger); }
+  .summary-card.orange .value { color: var(--warning); }
+  .summary-card.green .value { color: var(--success); }
+  .summary-card.blue .value { color: var(--info); }
+  .summary-card .desc { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+
+  /* ---- ISSUE CARDS ---- */
+  .issue { border-radius: 8px; border-left: 4px solid; padding: 16px 18px; margin-bottom: 14px; }
+  .issue.critical { border-color: var(--danger); background: #fff5f5; }
+  .issue.high { border-color: var(--warning); background: #fffaf0; }
+  .issue.medium { border-color: var(--info); background: #f0f6ff; }
+  .issue.low { border-color: var(--success); background: #f0fff6; }
+  .issue-header { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; }
+  .badge { font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 8px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; margin-top: 1px; }
+  .badge.critical { background: var(--danger); color: #fff; }
+  .badge.high { background: var(--warning); color: #fff; }
+  .badge.medium { background: var(--info); color: #fff; }
+  .badge.low { background: var(--success); color: #fff; }
+  .issue h3 { font-size: 14px; font-weight: 700; margin: 0; }
+  .issue p { font-size: 13px; color: var(--text-muted); margin-top: 4px; line-height: 1.6; }
+  .fix-box { background: #fff; border-radius: 6px; padding: 12px 14px; margin-top: 10px; border: 1px solid var(--border); }
+  .fix-box .fix-label { font-size: 11px; font-weight: 700; color: var(--accent2); letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 6px; }
+  .fix-box p, .fix-box li { font-size: 12.5px; color: var(--text); line-height: 1.7; }
+  .fix-box ul { padding-left: 16px; }
+  code { background: #f0f4f8; border-radius: 3px; padding: 1px 5px; font-family: 'Courier New', monospace; font-size: 12px; color: #c0392b; }
+  pre { background: #1a1a2e; color: #e0e8f0; border-radius: 8px; padding: 14px 16px; overflow-x: auto; font-size: 12px; line-height: 1.6; margin: 8px 0; }
+  pre code { background: none; color: inherit; padding: 0; font-size: 12px; }
+
+  /* ---- ROADMAP PHASES ---- */
+  .phase { border-radius: 10px; border: 2px solid var(--border); padding: 22px 24px; margin-bottom: 20px; }
+  .phase-header { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
+  .phase-dot { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 16px; flex-shrink: 0; }
+  .phase-dot.p1 { background: #fde8e8; color: var(--danger); }
+  .phase-dot.p2 { background: #fef3e2; color: var(--warning); }
+  .phase-dot.p3 { background: #e8f5e9; color: var(--success); }
+  .phase-dot.p4 { background: #e3f2fd; color: var(--info); }
+  .phase-dot.p5 { background: #f3e5f5; color: #7b1fa2; }
+  .phase-title { font-size: 16px; font-weight: 700; }
+  .phase-subtitle { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+  .phase-timeline { margin-left: auto; font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 20px; }
+  .phase-timeline.p1 { background: #fde8e8; color: var(--danger); }
+  .phase-timeline.p2 { background: #fef3e2; color: var(--warning); }
+  .phase-timeline.p3 { background: #e8f5e9; color: var(--success); }
+  .phase-timeline.p4 { background: #e3f2fd; color: var(--info); }
+  .phase-timeline.p5 { background: #f3e5f5; color: #7b1fa2; }
+  .task-list { list-style: none; padding: 0; }
+  .task-list li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 13px; line-height: 1.5; }
+  .task-list li:last-child { border-bottom: none; }
+  .task-list li::before { content: '→'; color: var(--accent); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+  /* ---- KEYWORD TABLE ---- */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--primary); color: #fff; padding: 10px 14px; text-align: left; font-size: 12px; font-weight: 600; }
+  td { padding: 9px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:nth-child(even) { background: #f9fbfd; }
+  .kd-low { color: var(--success); font-weight: 600; }
+  .kd-med { color: var(--warning); font-weight: 600; }
+  .kd-high { color: var(--danger); font-weight: 600; }
+  .intent { font-size: 11px; padding: 2px 8px; border-radius: 10px; font-weight: 600; }
+  .intent.trans { background: #e8f5e9; color: var(--success); }
+  .intent.info { background: #e3f2fd; color: var(--info); }
+  .intent.local { background: #fff8e1; color: #f57f17; }
+
+  /* ---- ON PAGE CHECKLIST ---- */
+  .checklist { list-style: none; padding: 0; }
+  .checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px dashed var(--border); font-size: 13px; line-height: 1.5; }
+  .checklist li:last-child { border-bottom: none; }
+  .check-icon { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .check-icon.ok { background: #e8f5e9; color: var(--success); }
+  .check-icon.no { background: #fde8e8; color: var(--danger); }
+  .check-icon.warn { background: #fef3e2; color: var(--warning); }
+
+  /* ---- SCHEMA CODE ---- */
+  .schema-block { background: #1a1a2e; border-radius: 8px; padding: 20px; overflow-x: auto; margin-top: 10px; }
+  .schema-block code { color: #a8d8ea; font-size: 12px; line-height: 1.7; display: block; white-space: pre; font-family: 'Courier New', monospace; }
+
+  /* ---- COMPETITOR ---- */
+  .comp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; }
+  .comp-card { background: var(--light-bg); border-radius: 8px; padding: 16px; border: 1px solid var(--border); }
+  .comp-card h4 { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .comp-card .strength { font-size: 12px; color: var(--success); }
+  .comp-card .gap { font-size: 12px; color: var(--danger); }
+  .comp-card .score { font-size: 22px; font-weight: 800; color: var(--primary); }
+
+  /* ---- META AUDIT ---- */
+  .meta-row { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .meta-label { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; min-width: 130px; padding-top: 3px; }
+  .meta-value { flex: 1; font-size: 13px; background: var(--light-bg); border-radius: 6px; padding: 8px 12px; border: 1px solid var(--border); }
+  .meta-value.issue { border-color: var(--danger); background: #fff5f5; }
+  .meta-value.ok { border-color: var(--success); background: #f0fff6; }
+  .meta-note { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+  .meta-note.bad { color: var(--danger); }
+  .meta-note.good { color: var(--success); }
+
+  /* ---- DIVIDER ---- */
+  .divider { height: 1px; background: var(--border); margin: 20px 0; }
+
+  /* ---- FOOTER ---- */
+  footer { text-align: center; padding: 32px; color: var(--text-muted); font-size: 12px; }
+
+  /* ---- CALLOUT ---- */
+  .callout { background: #fff8e1; border-left: 4px solid var(--accent); border-radius: 0 8px 8px 0; padding: 14px 16px; margin: 16px 0; font-size: 13px; line-height: 1.6; }
+  .callout strong { color: var(--primary); }
+
+  h3.sub-section { font-size: 15px; font-weight: 700; color: var(--primary); margin: 20px 0 12px; border-bottom: 2px solid var(--accent); padding-bottom: 6px; display: inline-block; }
+</style>
+</head>
+<body>
+
+<!-- ===== COVER ===== -->
+<div class="cover">
+  <div class="cover-badge">SEO Audit + Roadmap 2026</div>
+  <h1>ColourTribe.co.in<br>Complete SEO Analysis & Ranking Roadmap</h1>
+  <p class="sub">B2B Uniform Manufacturer · Greater Noida · Hospitality, Corporate & Industrial</p>
+  <div class="cover-meta">
+    <span><strong>Audited URL</strong>www.colourtribe.co.in</span>
+    <span><strong>Tech Stack</strong>React 18 + Vite + Tailwind</span>
+    <span><strong>Target Market</strong>Hotels, Restaurants, Corporates</span>
+    <span><strong>Audit Date</strong>June 2026</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ===== EXECUTIVE SUMMARY ===== -->
+  <div class="summary-grid">
+    <div class="summary-card red">
+      <div class="label">Critical Issues</div>
+      <div class="value">6</div>
+      <div class="desc">Zero indexation, CSR SPA, no schema, no sitemap</div>
+    </div>
+    <div class="summary-card orange">
+      <div class="label">High Priority Issues</div>
+      <div class="value">8</div>
+      <div class="desc">Meta length, titles, missing pages, local SEO</div>
+    </div>
+    <div class="summary-card blue">
+      <div class="label">Keyword Opportunities</div>
+      <div class="value">40+</div>
+      <div class="desc">Transactional + local + long-tail keywords</div>
+    </div>
+    <div class="summary-card green">
+      <div class="label">SEO Score Potential</div>
+      <div class="value">85+</div>
+      <div class="desc">After implementing all roadmap phases</div>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 1: CURRENT STATUS ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">1</div>
+      <h2>Current SEO Status — What's Wrong Right Now</h2>
+      <span class="tag">DIAGNOSIS</span>
+    </div>
+    <div class="section-body">
+
+      <div class="callout">
+        <strong>🚨 #1 Finding — The Site Is Not Indexed:</strong> A <code>site:colourtribe.co.in</code> Google search returns <strong>zero results</strong>. This means Google has either not crawled the site yet, or is unable to index it. No indexation = zero organic traffic regardless of how good the on-page SEO is. This must be fixed before anything else.
+      </div>
+
+      <h3 class="sub-section">Meta Tags Audit</h3>
+      <div class="meta-row">
+        <div class="meta-label">HTML Title Tag</div>
+        <div>
+          <div class="meta-value issue">Colour Tribe | B2B Uniform Manufacturer — Hospitality, Corporate &amp; Industrial Wear <span style="color:#c0392b">(82 chars)</span></div>
+          <div class="meta-note bad">❌ Too long — Google truncates at ~60 chars. Use 50–60 characters only.</div>
+        </div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-label">OG Title</div>
+        <div>
+          <div class="meta-value warn">Colour Tribe | B2B Uniform Manufacturer India <span style="color:#e67e22">(46 chars)</span></div>
+          <div class="meta-note bad">⚠️ Inconsistent with HTML title — should match. Also missing primary keyword "hospitality uniform".</div>
+        </div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-label">Meta Description</div>
+        <div>
+          <div class="meta-value issue">Colour Tribe is India's premier B2B uniform manufacturer. We supply custom chef uniforms, hotel uniforms, corporate workwear, housekeeping uniforms &amp; more. Factory-direct pricing, pan-India delivery, minimum 10 pieces. <span style="color:#c0392b">(222 chars)</span></div>
+          <div class="meta-note bad">❌ WAY too long — Google truncates at 155–160 characters. Entire second half is cut off in SERPs.</div>
+        </div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-label">Canonical URL</div>
+        <div>
+          <div class="meta-value ok">https://www.colourtribe.co.in/ ✓</div>
+          <div class="meta-note good">✅ Correctly set.</div>
+        </div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-label">Robots Tag</div>
+        <div>
+          <div class="meta-value ok">index, follow ✓</div>
+          <div class="meta-note good">✅ Correctly set.</div>
+        </div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-label">OG Image</div>
+        <div>
+          <div class="meta-value warn">logo.jpeg (unknown dimensions)</div>
+          <div class="meta-note bad">⚠️ Should be a product/business image, 1200×630px minimum. Just a logo is weak for social sharing CTR.</div>
+        </div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-label">Sitemap.xml</div>
+        <div>
+          <div class="meta-value issue">Not found / not confirmed</div>
+          <div class="meta-note bad">❌ Critical for Google to discover and index all pages.</div>
+        </div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-label">Robots.txt</div>
+        <div>
+          <div class="meta-value issue">Not confirmed accessible</div>
+          <div class="meta-note bad">❌ Should exist at /robots.txt to guide crawlers.</div>
+        </div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-label">Structured Data</div>
+        <div>
+          <div class="meta-value issue">No JSON-LD schema found</div>
+          <div class="meta-note bad">❌ Missing LocalBusiness, Organization, Product schema. This kills rich results eligibility.</div>
+        </div>
+      </div>
+      <div class="meta-row">
+        <div class="meta-label">Google Indexation</div>
+        <div>
+          <div class="meta-value issue">ZERO pages indexed</div>
+          <div class="meta-note bad">❌ site:colourtribe.co.in returns no results. The site is effectively invisible to Google.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== SECTION 2: CRITICAL ISSUES ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">2</div>
+      <h2>Critical SEO Issues — Fix These First</h2>
+      <span class="tag">MUST FIX</span>
+    </div>
+    <div class="section-body">
+
+      <!-- ISSUE 1 -->
+      <div class="issue critical">
+        <div class="issue-header">
+          <span class="badge critical">CRITICAL</span>
+          <h3>React SPA / Client-Side Rendering (CSR) — Biggest Technical Blocker</h3>
+        </div>
+        <p>ColourTribe is built with React 18 + Vite as a Single Page Application using Client-Side Rendering. When Google's crawler visits the site, it initially sees an empty HTML shell with just a <code>&lt;div id="root"&gt;&lt;/div&gt;</code>. The crawler must execute JavaScript to see content. Googlebot renders JS, but it's slower, less reliable, and content rendered via JS gets lower indexing priority. This is the #1 reason the site has zero indexed pages.</p>
+        <div class="fix-box">
+          <div class="fix-label">🔧 Fix Options (Ranked by Impact)</div>
+          <ul>
+            <li><strong>Option A (Best): Migrate to Next.js 14 with App Router + SSR/SSG.</strong> Every page is pre-rendered as HTML. Google sees full content on first crawl. This is the gold standard for React SEO.</li>
+            <li><strong>Option B: Add React SSR using Vite's SSR mode.</strong> Render React to HTML on the server. More complex but keeps Vite.</li>
+            <li><strong>Option C (Quickest win): Add Prerendering with vite-plugin-prerender or React Snap.</strong> Pre-render key pages to static HTML at build time. Works for mostly static pages.</li>
+            <li><strong>Option D (Temporary patch): Implement React Helmet for meta tags + submit URLs manually in Google Search Console.</strong> Does NOT solve JS rendering but helps Googlebot know pages exist.</li>
+          </ul>
+          <pre><code># Install prerendering plugin for Vite
+npm install --save-dev vite-plugin-prerender
+
+# In vite.config.js:
+import prerender from 'vite-plugin-prerender'
+plugins: [
+  prerender({
+    routes: ['/', '/products', '/about', '/contact', '/hotel-uniforms',
+             '/chef-uniforms', '/corporate-uniforms', '/housekeeping-uniforms']
+  })
+]</code></pre>
+        </div>
+      </div>
+
+      <!-- ISSUE 2 -->
+      <div class="issue critical">
+        <div class="issue-header">
+          <span class="badge critical">CRITICAL</span>
+          <h3>Zero Google Indexation — Site Is Invisible</h3>
+        </div>
+        <p>A <code>site:colourtribe.co.in</code> search returns NO results. The site does not appear in Google Search Console as indexed. Before any on-page optimization matters, the site must first be crawled and indexed.</p>
+        <div class="fix-box">
+          <div class="fix-label">🔧 Fix — Step by Step</div>
+          <ul>
+            <li>Go to <strong>Google Search Console</strong> → Add property for www.colourtribe.co.in</li>
+            <li>Verify ownership via DNS TXT record or HTML file</li>
+            <li>Submit homepage URL using "URL Inspection → Request Indexing"</li>
+            <li>Create and submit <code>sitemap.xml</code> via Settings → Sitemaps</li>
+            <li>Check Coverage report for any "Crawl Anomaly" or "Blocked by robots.txt" errors</li>
+            <li>Ensure <code>robots.txt</code> does NOT have <code>Disallow: /</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ISSUE 3 -->
+      <div class="issue critical">
+        <div class="issue-header">
+          <span class="badge critical">CRITICAL</span>
+          <h3>No Sitemap.xml</h3>
+        </div>
+        <p>No XML sitemap was found at <code>/sitemap.xml</code>. Without a sitemap, Google must discover pages by crawling internal links. For a new site, this means pages may never be discovered.</p>
+        <div class="fix-box">
+          <div class="fix-label">🔧 Fix</div>
+          <pre><code>&lt;!-- /sitemap.xml --&gt;
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"&gt;
+  &lt;url&gt;&lt;loc&gt;https://www.colourtribe.co.in/&lt;/loc&gt;&lt;priority&gt;1.0&lt;/priority&gt;&lt;changefreq&gt;weekly&lt;/changefreq&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://www.colourtribe.co.in/products&lt;/loc&gt;&lt;priority&gt;0.9&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://www.colourtribe.co.in/hotel-uniforms&lt;/loc&gt;&lt;priority&gt;0.9&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://www.colourtribe.co.in/chef-uniforms&lt;/loc&gt;&lt;priority&gt;0.9&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://www.colourtribe.co.in/corporate-uniforms&lt;/loc&gt;&lt;priority&gt;0.9&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://www.colourtribe.co.in/about&lt;/loc&gt;&lt;priority&gt;0.7&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://www.colourtribe.co.in/contact&lt;/loc&gt;&lt;priority&gt;0.7&lt;/priority&gt;&lt;/url&gt;
+  &lt;url&gt;&lt;loc&gt;https://www.colourtribe.co.in/blog&lt;/loc&gt;&lt;priority&gt;0.6&lt;/priority&gt;&lt;/url&gt;
+&lt;/urlset&gt;</code></pre>
+        </div>
+      </div>
+
+      <!-- ISSUE 4 -->
+      <div class="issue critical">
+        <div class="issue-header">
+          <span class="badge critical">CRITICAL</span>
+          <h3>No Structured Data / Schema Markup</h3>
+        </div>
+        <p>There is zero JSON-LD structured data on the site. This means ColourTribe is ineligible for rich results (star ratings, FAQs, breadcrumbs, local business info) in Google SERPs. Competitors with schema markup get significantly better SERP real estate.</p>
+        <div class="fix-box">
+          <div class="fix-label">🔧 Required Schema Types</div>
+          <pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Colour Tribe",
+  "description": "B2B uniform manufacturer in Greater Noida. Factory-direct hotel, chef, corporate &amp; industrial uniforms.",
+  "url": "https://www.colourtribe.co.in/",
+  "logo": "https://www.colourtribe.co.in/logo.jpeg",
+  "telephone": "+91-XXXXXXXXXX",
+  "email": "contact@colourtribe.co.in",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "YOUR STREET ADDRESS",
+    "addressLocality": "Greater Noida",
+    "addressRegion": "Uttar Pradesh",
+    "postalCode": "201310",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 28.4744,
+    "longitude": 77.5040
+  },
+  "openingHoursSpecification": [{
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens": "09:00",
+    "closes": "18:00"
+  }],
+  "sameAs": [
+    "https://www.instagram.com/colourtribe/",
+    "https://www.linkedin.com/company/colourtribe/"
+  ],
+  "priceRange": "₹₹",
+  "areaServed": ["Delhi", "Noida", "Greater Noida", "Gurgaon", "India"]
+}
+&lt;/script&gt;</code></pre>
+          <p style="margin-top:8px; font-size:12px; color: var(--text-muted)">Also add: <strong>FAQPage schema</strong> for FAQ section, <strong>BreadcrumbList schema</strong> for navigation, <strong>Product schema</strong> for each uniform category page.</p>
+        </div>
+      </div>
+
+      <!-- ISSUE 5 -->
+      <div class="issue critical">
+        <div class="issue-header">
+          <span class="badge critical">CRITICAL</span>
+          <h3>No Dedicated Category/Product Landing Pages</h3>
+        </div>
+        <p>The current site has a single homepage URL. There are no separate pages for hotel uniforms, chef uniforms, corporate uniforms, etc. Every ranking keyword needs its own dedicated, optimized URL. Competitors like <em>uniformmanufacturer.co.in</em>, <em>vihaaninternational.com</em>, and <em>4sstyle.com</em> have dedicated pages for every product category — that's why they rank and ColourTribe doesn't.</p>
+        <div class="fix-box">
+          <div class="fix-label">🔧 Required Pages to Create (Priority Order)</div>
+          <ul>
+            <li><code>/hotel-uniforms</code> → "Hotel Uniform Manufacturer in India | Colour Tribe"</li>
+            <li><code>/chef-uniforms</code> → "Chef Uniform Supplier India | Kitchen Staff Uniforms"</li>
+            <li><code>/corporate-uniforms</code> → "Corporate Uniform Manufacturer Delhi NCR"</li>
+            <li><code>/housekeeping-uniforms</code> → "Housekeeping Uniform Supplier | Hotels & Hospitals"</li>
+            <li><code>/restaurant-uniforms</code> → "Restaurant Staff Uniform Manufacturer India"</li>
+            <li><code>/industrial-workwear</code> → "Industrial Workwear Manufacturer Greater Noida"</li>
+            <li><code>/about</code> → Company story, GST number, manufacturing facility</li>
+            <li><code>/contact</code> → Full address, Google Maps embed, phone, WhatsApp link</li>
+            <li><code>/blog</code> → Content hub for informational keywords</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ISSUE 6 -->
+      <div class="issue critical">
+        <div class="issue-header">
+          <span class="badge critical">CRITICAL</span>
+          <h3>Heavy JavaScript Bundle Killing Core Web Vitals</h3>
+        </div>
+        <p>The stack includes React 18 + Three.js + Framer Motion + Zustand + Firebase. This creates a massive JavaScript bundle that results in poor LCP (Largest Contentful Paint), high CLS (Cumulative Layout Shift), and bad FID/INP scores. Google uses Core Web Vitals as a direct ranking signal.</p>
+        <div class="fix-box">
+          <div class="fix-label">🔧 Optimization Actions</div>
+          <ul>
+            <li><strong>Three.js:</strong> Load lazily only on sections that actually need 3D. Use <code>React.lazy()</code> + <code>Suspense</code>. Remove Three.js from homepage critical path.</li>
+            <li><strong>Framer Motion:</strong> Use <code>LazyMotion</code> with <code>domAnimation</code> feature set (~5KB vs 25KB) instead of full Framer Motion.</li>
+            <li><strong>Code splitting:</strong> Use Vite's <code>rollupOptions.output.manualChunks</code> to split vendor bundle.</li>
+            <li><strong>Image optimization:</strong> Convert all images to WebP/AVIF format. Use <code>loading="lazy"</code> on below-fold images.</li>
+            <li><strong>Font loading:</strong> Use <code>font-display: swap</code> and preload critical fonts.</li>
+            <li>Target: LCP &lt; 2.5s, CLS &lt; 0.1, INP &lt; 200ms</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== SECTION 3: HIGH PRIORITY ON-PAGE FIXES ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">3</div>
+      <h2>High Priority On-Page SEO Fixes</h2>
+      <span class="tag">ON-PAGE</span>
+    </div>
+    <div class="section-body">
+
+      <div class="issue high">
+        <div class="issue-header">
+          <span class="badge high">HIGH</span>
+          <h3>Fix Title Tags — Too Long & Keyword Positioning Wrong</h3>
+        </div>
+        <p>Current title (82 chars) gets truncated in Google SERPs at ~60 chars. The primary keyword should always appear at the start of the title tag. Branding goes at the end.</p>
+        <div class="fix-box">
+          <div class="fix-label">🔧 Fixed Title Tags Per Page</div>
+          <ul>
+            <li><strong>Homepage:</strong> <code>B2B Uniform Manufacturer India | Colour Tribe</code> (46 chars ✓)</li>
+            <li><strong>Hotel Uniforms:</strong> <code>Hotel Uniform Supplier India | Factory-Direct | Colour Tribe</code></li>
+            <li><strong>Chef Uniforms:</strong> <code>Chef Uniform Manufacturer India | Custom Kitchen Wear</code></li>
+            <li><strong>Corporate:</strong> <code>Corporate Uniform Manufacturer Delhi NCR | Colour Tribe</code></li>
+            <li><strong>Housekeeping:</strong> <code>Housekeeping Uniform Supplier | Hotels & Hospitals | India</code></li>
+            <li><strong>About:</strong> <code>About Colour Tribe | B2B Uniform Factory, Greater Noida</code></li>
+            <li><strong>Contact:</strong> <code>Get a Bulk Uniform Quote | Contact Colour Tribe</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="issue high">
+        <div class="issue-header">
+          <span class="badge high">HIGH</span>
+          <h3>Rewrite Meta Descriptions — Currently 222 Chars (Way Too Long)</h3>
+        </div>
+        <p>The current description is 222 characters. Google truncates at 155-160. The user never sees the most compelling part of the description. Descriptions should include the primary keyword, a clear value proposition, and a call-to-action — all within 155 chars.</p>
+        <div class="fix-box">
+          <div class="fix-label">🔧 Optimized Descriptions</div>
+          <ul>
+            <li><strong>Homepage (152 chars):</strong> <code>India's factory-direct B2B uniform manufacturer. Hotel, chef, corporate & industrial uniforms. Custom logo embroidery. Min. 10 pcs. Pan-India delivery.</code></li>
+            <li><strong>Hotel Uniforms (148 chars):</strong> <code>Custom hotel uniforms made in India. Factory-direct supply for 5-star hotels, resorts & hospitality brands. Logo embroidery, bulk pricing, fast delivery.</code></li>
+            <li><strong>Chef Uniforms (146 chars):</strong> <code>Premium chef uniforms & kitchen wear manufactured in Greater Noida. Custom designs, logo embroidery. MOQ 10 pcs. B2B pricing for restaurants & hotels.</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="issue high">
+        <div class="issue-header">
+          <span class="badge high">HIGH</span>
+          <h3>H1/H2/H3 Heading Hierarchy — Not Verifiable Due to CSR</h3>
+        </div>
+        <p>Because the site uses Client-Side Rendering, the heading structure cannot be verified from server-side fetch. However, every page MUST have exactly one H1 tag containing the primary keyword, followed by H2s for sub-sections. This is non-negotiable for on-page SEO.</p>
+        <div class="fix-box">
+          <div class="fix-label">🔧 Correct H1 Tags Per Page</div>
+          <ul>
+            <li><strong>Homepage H1:</strong> "B2B Uniform Manufacturer in India — Factory-Direct Supply"</li>
+            <li><strong>Hotel Uniforms H1:</strong> "Hotel Uniform Manufacturer India — Custom Staff Uniforms"</li>
+            <li><strong>Chef Uniforms H1:</strong> "Chef Uniform Supplier — Kitchen & Restaurant Staff Wear"</li>
+            <li><strong>Corporate Uniforms H1:</strong> "Corporate Uniform Manufacturer in Delhi NCR"</li>
+            <li><strong>About H1:</strong> "Colour Tribe — B2B Uniform Factory in Greater Noida"</li>
+          </ul>
+          <p style="margin-top:8px"><strong>Rule:</strong> H1 = 1 per page. H2 = section headings. H3 = subsections. NEVER use H tags for styling purposes only.</p>
+        </div>
+      </div>
+
+      <div class="issue high">
+        <div class="issue-header">
+          <span class="badge high">HIGH</span>
+          <h3>Image Alt Text — All Images Need Descriptive Alt Tags</h3>
+        </div>
+        <p>Product images with no alt text are invisible to Google Image Search. B2B buyers sometimes find suppliers through image searches. Every product image needs keyword-rich, descriptive alt text.</p>
+        <div class="fix-box">
+          <div class="fix-label">🔧 Alt Text Examples</div>
+          <ul>
+            <li>Chef uniform image: <code>alt="custom chef uniform manufacturer India - white chef coat with logo embroidery"</code></li>
+            <li>Hotel uniform image: <code>alt="hotel housekeeping uniform - blue apron set bulk supplier Greater Noida"</code></li>
+            <li>Corporate uniform: <code>alt="corporate office uniform set - custom branded workwear manufacturer Delhi NCR"</code></li>
+            <li>Logo: <code>alt="Colour Tribe - B2B Uniform Manufacturer India logo"</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="issue high">
+        <div class="issue-header">
+          <span class="badge high">HIGH</span>
+          <h3>robots.txt — Create and Optimize</h3>
+        </div>
+        <div class="fix-box">
+          <div class="fix-label">🔧 Recommended /robots.txt</div>
+          <pre><code>User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /firebase/
+Disallow: /api/
+
+Sitemap: https://www.colourtribe.co.in/sitemap.xml</code></pre>
+        </div>
+      </div>
+
+      <div class="issue high">
+        <div class="issue-header">
+          <span class="badge high">HIGH</span>
+          <h3>Local SEO — Google My Business + NAP Consistency</h3>
+        </div>
+        <p>Local B2B buyers in Delhi NCR search for "uniform manufacturer near me" or "uniform supplier Greater Noida." Without a verified Google Business Profile and consistent NAP (Name, Address, Phone) data, ColourTribe won't appear in local pack results.</p>
+        <div class="fix-box">
+          <div class="fix-label">🔧 Local SEO Checklist</div>
+          <ul>
+            <li>Create/claim <strong>Google Business Profile</strong> at business.google.com</li>
+            <li>Category: "Clothing Manufacturer" + "Uniform Store"</li>
+            <li>Add 10+ product photos (uniforms, facility, team)</li>
+            <li>Get your first 5 Google reviews from existing clients</li>
+            <li>Add business to <strong>IndiaMart, JustDial, Sulekha, TradeIndia, Indiamart</strong></li>
+            <li>Ensure NAP is identical on website, GMB, and all directories</li>
+            <li>Embed Google Maps on your /contact page</li>
+            <li>Target keyword: "uniform manufacturer Greater Noida" in GMB description</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="issue high">
+        <div class="issue-header">
+          <span class="badge high">HIGH</span>
+          <h3>URL Structure — Clean & SEO-Friendly URLs Required</h3>
+        </div>
+        <p>React Router URLs must be clean, keyword-rich, and crawlable. Avoid hash-based routing (<code>/#/about</code>) which is invisible to search engines.</p>
+        <div class="fix-box">
+          <div class="fix-label">🔧 Correct URL Structure</div>
+          <ul>
+            <li>✅ <code>/hotel-uniforms</code> — Not <code>/#hotel</code> or <code>/products?cat=hotel</code></li>
+            <li>✅ <code>/chef-uniforms</code></li>
+            <li>✅ <code>/blog/how-to-choose-hotel-staff-uniforms</code></li>
+            <li>✅ <code>/about</code></li>
+            <li>✅ <code>/contact</code></li>
+            <li>❌ Never: <code>/#/hotel</code>, <code>/page?id=3</code>, <code>/products/uniform-1</code></li>
+          </ul>
+          <p style="margin-top:8px">Use React Router with <code>BrowserRouter</code> (not <code>HashRouter</code>) and configure your hosting to redirect all paths to <code>index.html</code>.</p>
+        </div>
+      </div>
+
+      <div class="issue medium">
+        <div class="issue-header">
+          <span class="badge medium">MEDIUM</span>
+          <h3>Internal Linking Strategy — Cross-Link All Category Pages</h3>
+        </div>
+        <div class="fix-box">
+          <div class="fix-label">🔧 Internal Linking Rules</div>
+          <ul>
+            <li>Homepage → links to every category page (hotel, chef, corporate, housekeeping) with keyword-rich anchor text</li>
+            <li>Hotel Uniforms page → links to Housekeeping Uniforms, Restaurant Uniforms</li>
+            <li>Blog posts → link to relevant product category pages</li>
+            <li>Every page → links to Contact page with anchor "Get a Bulk Uniform Quote"</li>
+            <li>Never use "click here" as anchor text — use descriptive keywords</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== SECTION 4: KEYWORD STRATEGY ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">4</div>
+      <h2>Keyword Strategy & Target Keywords</h2>
+      <span class="tag">KEYWORDS</span>
+    </div>
+    <div class="section-body">
+
+      <div class="callout">
+        <strong>Strategy:</strong> Focus on <strong>high-intent transactional keywords</strong> first (buyers ready to order), then <strong>local keywords</strong> (Delhi NCR), then <strong>informational content keywords</strong> (blog). Long-tail, lower-competition keywords will rank faster and bring more qualified leads.
+      </div>
+
+      <h3 class="sub-section">Tier 1 — Quick Win Keywords (Low Competition, High Intent)</h3>
+      <table>
+        <thead>
+          <tr><th>Keyword</th><th>Intent</th><th>Difficulty</th><th>Target Page</th><th>Why It Converts</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>uniform manufacturer Greater Noida</td><td><span class="intent local">LOCAL</span></td><td class="kd-low">LOW</td><td>/</td><td>Ultra-local, B2B buyer, zero competition</td></tr>
+          <tr><td>hotel uniform supplier Greater Noida</td><td><span class="intent trans">TRANS</span></td><td class="kd-low">LOW</td><td>/hotel-uniforms</td><td>Hyper-local buyer intent</td></tr>
+          <tr><td>chef uniform manufacturer India</td><td><span class="intent trans">TRANS</span></td><td class="kd-low">LOW</td><td>/chef-uniforms</td><td>Specific product, B2B need</td></tr>
+          <tr><td>bulk uniform manufacturer India MOQ 10</td><td><span class="intent trans">TRANS</span></td><td class="kd-low">LOW</td><td>/</td><td>Exact match for their USP</td></tr>
+          <tr><td>factory direct uniform supplier Delhi NCR</td><td><span class="intent trans">TRANS</span></td><td class="kd-low">LOW</td><td>/</td><td>Price-sensitive B2B buyer</td></tr>
+          <tr><td>housekeeping uniform manufacturer India</td><td><span class="intent trans">TRANS</span></td><td class="kd-low">LOW</td><td>/housekeeping-uniforms</td><td>Specific product page</td></tr>
+          <tr><td>restaurant staff uniform manufacturer</td><td><span class="intent trans">TRANS</span></td><td class="kd-low">LOW</td><td>/restaurant-uniforms</td><td>F&amp;B segment, strong buyer intent</td></tr>
+          <tr><td>custom logo embroidery uniform India</td><td><span class="intent trans">TRANS</span></td><td class="kd-low">LOW</td><td>/</td><td>USP keyword, brand differentiator</td></tr>
+        </tbody>
+      </table>
+
+      <div class="divider"></div>
+
+      <h3 class="sub-section">Tier 2 — Medium Competition Keywords (3–6 Month Target)</h3>
+      <table>
+        <thead>
+          <tr><th>Keyword</th><th>Intent</th><th>Difficulty</th><th>Target Page</th><th>Notes</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>hotel uniform manufacturer India</td><td><span class="intent trans">TRANS</span></td><td class="kd-med">MEDIUM</td><td>/hotel-uniforms</td><td>High volume, main category keyword</td></tr>
+          <tr><td>corporate uniform manufacturer Delhi</td><td><span class="intent trans">TRANS</span></td><td class="kd-med">MEDIUM</td><td>/corporate-uniforms</td><td>Arvind Industries currently owns this</td></tr>
+          <tr><td>B2B uniform supplier India</td><td><span class="intent trans">TRANS</span></td><td class="kd-med">MEDIUM</td><td>/</td><td>Core positioning keyword</td></tr>
+          <tr><td>hospitality uniform supplier India</td><td><span class="intent trans">TRANS</span></td><td class="kd-med">MEDIUM</td><td>/hotel-uniforms</td><td>Broad hospitality sector</td></tr>
+          <tr><td>workwear manufacturer Delhi NCR</td><td><span class="intent trans">TRANS</span></td><td class="kd-med">MEDIUM</td><td>/industrial-workwear</td><td>Industrial segment</td></tr>
+          <tr><td>uniform manufacturer pan India delivery</td><td><span class="intent trans">TRANS</span></td><td class="kd-low">LOW</td><td>/</td><td>Geographic USP</td></tr>
+          <tr><td>5 star hotel uniform supplier India</td><td><span class="intent trans">TRANS</span></td><td class="kd-low">LOW</td><td>/hotel-uniforms</td><td>Premium segment, high LTV</td></tr>
+          <tr><td>custom chef coat manufacturer India</td><td><span class="intent trans">TRANS</span></td><td class="kd-low">LOW</td><td>/chef-uniforms</td><td>Long-tail product keyword</td></tr>
+        </tbody>
+      </table>
+
+      <div class="divider"></div>
+
+      <h3 class="sub-section">Tier 3 — Blog / Informational Keywords (Content Strategy)</h3>
+      <table>
+        <thead>
+          <tr><th>Keyword / Topic</th><th>Intent</th><th>Blog Post Title</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>how to choose hotel staff uniforms</td><td><span class="intent info">INFO</span></td><td>"Complete Guide: Choosing Hotel Staff Uniforms in India"</td></tr>
+          <tr><td>chef uniform fabric types India</td><td><span class="intent info">INFO</span></td><td>"Best Fabrics for Chef Uniforms: Cotton vs Polyester vs Blend"</td></tr>
+          <tr><td>uniform cost per employee India</td><td><span class="intent info">INFO</span></td><td>"How Much Does It Cost to Uniform Your Hotel Staff in 2026?"</td></tr>
+          <tr><td>corporate uniform policy India</td><td><span class="intent info">INFO</span></td><td>"How to Create a Corporate Uniform Policy for Your Company"</td></tr>
+          <tr><td>uniform embroidery vs screen print</td><td><span class="intent info">INFO</span></td><td>"Embroidery vs Screen Printing: Which is Better for Uniform Branding?"</td></tr>
+          <tr><td>minimum order quantity uniform India</td><td><span class="intent info">INFO</span></td><td>"Bulk Uniform Ordering Guide: MOQ, Lead Times & Pricing in India"</td></tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <!-- ===== SECTION 5: ON-PAGE SEO CHECKLIST ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">5</div>
+      <h2>On-Page SEO Checklist Per Page (Hotel Uniforms Example)</h2>
+      <span class="tag">ON-PAGE TEMPLATE</span>
+    </div>
+    <div class="section-body">
+
+      <p style="margin-bottom: 16px; font-size:13px; color: var(--text-muted)">This is a complete on-page SEO template to follow for every category landing page. Apply it to all 8 pages.</p>
+
+      <ul class="checklist">
+        <li><span class="check-icon no">✗</span><div><strong>URL:</strong> <code>/hotel-uniforms</code> — clean, keyword-rich, lowercase, hyphen-separated. Currently not present.</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Title Tag (50-60 chars):</strong> "Hotel Uniform Manufacturer India | Colour Tribe" — primary keyword first, brand at end.</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Meta Description (140-155 chars):</strong> Contains primary keyword, USP, and soft CTA ("Request a Quote Today").</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>H1 (Exactly 1):</strong> "Hotel Uniform Manufacturer in India — Custom Staff Uniforms" — contains primary keyword.</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>H2 Tags (3-6 per page):</strong> "Why Hotels Choose Colour Tribe", "Our Hotel Uniform Collections", "Fabric & Quality Standards", "Custom Logo Embroidery", "Bulk Pricing & MOQ", "Frequently Asked Questions"</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Primary Keyword Density:</strong> "hotel uniform" appears 3-5 times naturally in body copy. Not stuffed.</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>LSI/Related Keywords:</strong> Include: "hotel staff uniform", "hospitality workwear", "housekeeping uniform", "front desk uniform", "hotel linen", "uniform supplier India" naturally throughout.</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Word Count:</strong> Minimum 800 words of unique, useful content per category page. Describe products, specifications, customization options, delivery, pricing FAQs.</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Images:</strong> 4-6 product images, all with keyword-rich alt text. Filename also descriptive: <code>hotel-housekeeping-uniform-india.webp</code>.</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>CTA Section:</strong> Prominent "Get a Free Quote" or "Request Sample" button linking to /contact. Include phone number and WhatsApp link.</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>FAQ Section:</strong> 4-6 FAQs with FAQPage JSON-LD schema. Q&A format that captures long-tail keyword searches.</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Trust Signals:</strong> Client logos/names, "500+ B2B clients", "Pan-India Delivery", years in business, factory photos.</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Internal Links:</strong> Links to 2-3 related category pages using keyword-rich anchor text.</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Breadcrumbs:</strong> Home → Products → Hotel Uniforms (with BreadcrumbList schema).</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>JSON-LD Schema:</strong> Product + BreadcrumbList + FAQPage schemas on every category page.</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Canonical Tag:</strong> <code>&lt;link rel="canonical" href="https://www.colourtribe.co.in/hotel-uniforms"&gt;</code></div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Open Graph Tags:</strong> Unique OG title, description, and product image (1200×630px) per page.</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Page Speed:</strong> Lazy load images, minimize JS, target LCP &lt; 2.5s on mobile.</div></li>
+      </ul>
+
+      <div class="divider"></div>
+
+      <h3 class="sub-section">Perfect FAQ Section Example (with Schema)</h3>
+      <pre><code>// On /hotel-uniforms page, add this FAQPage schema:
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the minimum order quantity for hotel uniforms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Colour Tribe accepts a minimum order of 10 pieces per design. For bulk hotel orders (100+ pieces), we offer factory-direct pricing with up to 30% cost savings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you offer custom logo embroidery on hotel uniforms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, all our hotel uniforms can be customized with your hotel's logo via embroidery or screen printing. We match Pantone colors for brand consistency."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long does delivery take for bulk hotel uniform orders?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Standard orders are delivered pan-India in 7-14 working days after sample approval. Express delivery available for urgent requirements."
+      }
+    }
+  ]
+}</code></pre>
+
+    </div>
+  </div>
+
+  <!-- ===== SECTION 6: COMPETITOR ANALYSIS ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">6</div>
+      <h2>Competitor SEO Analysis & Gaps</h2>
+      <span class="tag">COMPETITIVE</span>
+    </div>
+    <div class="section-body">
+      <div class="comp-grid">
+        <div class="comp-card">
+          <div class="score">A-</div>
+          <h4>MUNI Uniforms (muniuniforms.com)</h4>
+          <div class="strength">✅ 30yr experience, rich content, strong schema, blog</div>
+          <div class="gap">🎯 Your Gap: They lack local Greater Noida content. Target NCR-specific keywords they miss.</div>
+        </div>
+        <div class="comp-card">
+          <div class="score">B+</div>
+          <h4>Vihaan International (vihaaninternational.com)</h4>
+          <div class="strength">✅ City-specific pages (Delhi, Gurgaon), trust signals, fast delivery focus</div>
+          <div class="gap">🎯 Your Gap: They skip chef/kitchen uniforms. Target F&amp;B sector specifically.</div>
+        </div>
+        <div class="comp-card">
+          <div class="score">B</div>
+          <h4>Arvind Industries (arvindindustries.net)</h4>
+          <div class="strength">✅ 15,000+ clients, Delhi NCR local SEO, GST visible</div>
+          <div class="gap">🎯 Your Gap: Low MOQ (10 pcs) is your advantage vs their 100+ MOQ. Target SMBs &amp; boutique hotels.</div>
+        </div>
+        <div class="comp-card">
+          <div class="score">B</div>
+          <h4>4S Style (4sstyle.com)</h4>
+          <div class="strength">✅ Delhi NCR focus, multiple categories, good URL structure</div>
+          <div class="gap">🎯 Your Gap: They have no blog content. Win informational keywords they ignore.</div>
+        </div>
+        <div class="comp-card">
+          <div class="score">C+</div>
+          <h4>Knowf Uniform (knowf.com)</h4>
+          <div class="strength">✅ Dwarka/Delhi NCR local, hotel focus</div>
+          <div class="gap">🎯 Your Gap: Outdated site (2021), weak technical SEO. Easy to outrank with better content.</div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="callout">
+        <strong>Key Competitive Insight:</strong> Your moat is <strong>low MOQ (10 pieces)</strong> + <strong>Greater Noida/NCR location</strong> + <strong>factory-direct pricing</strong>. None of the top competitors prominently rank for "uniform manufacturer minimum 10 pieces" or target boutique hotels, cloud kitchens, and small restaurant chains — which is a massive underserved segment. Own this segment first.
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== SECTION 7: TECHNICAL SEO AUDIT ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">7</div>
+      <h2>Technical SEO Full Checklist</h2>
+      <span class="tag">TECHNICAL</span>
+    </div>
+    <div class="section-body">
+      <ul class="checklist">
+        <li><span class="check-icon warn">⚠</span><div><strong>HTTPS:</strong> Confirmed (colourtribe.co.in resolves over HTTPS). ✅ Keep it — never let SSL expire.</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Server-Side Rendering:</strong> NOT implemented. React CSR is the root cause of zero indexation. ❌ Highest priority fix.</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>sitemap.xml:</strong> Not found. Create and submit to Google Search Console. ❌</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>robots.txt:</strong> Not confirmed. Create with proper Allow/Disallow rules. ❌</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Google Search Console:</strong> Verify site is added, submit sitemap, check for coverage errors. ❌</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Core Web Vitals:</strong> Three.js + Framer Motion = heavy bundle. Likely failing LCP threshold. Run PageSpeed Insights audit. ❌</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Mobile Optimization:</strong> Verify Three.js 3D renders don't break on mobile. Check viewport meta (found ✅) but test on actual devices. ⚠</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>404 Page:</strong> Ensure a proper 404 page exists with navigation links back to homepage. ❌</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Canonical Tags:</strong> Only on homepage. Add to all category pages to prevent duplicate content. ❌</div></li>
+        <li><span class="check-icon ok">✓</span><div><strong>Open Graph / Twitter Cards:</strong> Implemented on homepage. ✅ Extend to all pages.</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Image Formats:</strong> Convert all images to WebP. Use AVIF as progressive enhancement. ❌</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Lazy Loading:</strong> Implement <code>loading="lazy"</code> on all below-fold images. ❌</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Breadcrumb Navigation:</strong> No breadcrumbs found. Implement with BreadcrumbList schema. ❌</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Hreflang:</strong> Currently English-only (India). Add <code>hreflang="en-IN"</code> tag. ❌</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Structured Data (JSON-LD):</strong> Zero schema markup found. Critical gap. ❌</div></li>
+        <li><span class="check-icon warn">⚠</span><div><strong>URL Structure:</strong> Need to verify React Router uses BrowserRouter (not HashRouter) for crawlable URLs. ⚠</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>Google Analytics / GA4:</strong> No tracking confirmed. Must implement GA4 + GSC for data-driven decisions. ❌</div></li>
+        <li><span class="check-icon no">✗</span><div><strong>WhatsApp Business Link:</strong> Add <code>https://wa.me/91XXXXXXXXXX</code> to site for B2B inquiry — this is how most Indian B2B buyers initiate contact. ❌</div></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===== SECTION 8: CONTENT STRATEGY ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">8</div>
+      <h2>Content Strategy — Blog & Landing Pages</h2>
+      <span class="tag">CONTENT</span>
+    </div>
+    <div class="section-body">
+
+      <div class="callout">
+        <strong>Why Content Matters for B2B SEO:</strong> Your potential customers (hotel GMs, restaurant owners, procurement managers) Google questions before calling a supplier. If your blog answers those questions, they arrive pre-sold. Competitors with blogs like 4S Style generate 40-60% of their organic leads from informational content.
+      </div>
+
+      <h3 class="sub-section">Content Calendar — First 6 Months</h3>
+      <table>
+        <thead>
+          <tr><th>Month</th><th>Content Type</th><th>Title / Focus</th><th>Target Keyword</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Month 1</td><td>Category Page</td><td>Hotel Uniform Manufacturer India — Full Landing Page</td><td>hotel uniform manufacturer India</td></tr>
+          <tr><td>Month 1</td><td>Category Page</td><td>Chef Uniform Supplier — Kitchen & Restaurant Wear</td><td>chef uniform manufacturer India</td></tr>
+          <tr><td>Month 1</td><td>Category Page</td><td>Corporate Uniform Manufacturer Delhi NCR</td><td>corporate uniform manufacturer Delhi</td></tr>
+          <tr><td>Month 2</td><td>Category Page</td><td>Housekeeping Uniforms — Hotels & Hospitals</td><td>housekeeping uniform supplier India</td></tr>
+          <tr><td>Month 2</td><td>Blog Post</td><td>"How to Choose the Right Fabric for Hotel Staff Uniforms"</td><td>hotel uniform fabric guide India</td></tr>
+          <tr><td>Month 3</td><td>Blog Post</td><td>"How Much Does It Cost to Uniform a 50-Room Hotel in India?"</td><td>hotel uniform cost India</td></tr>
+          <tr><td>Month 3</td><td>Category Page</td><td>Restaurant & F&B Staff Uniforms</td><td>restaurant uniform manufacturer India</td></tr>
+          <tr><td>Month 4</td><td>Blog Post</td><td>"MOQ Guide: Minimum Order Quantities for Custom Uniforms in India"</td><td>uniform MOQ India bulk order</td></tr>
+          <tr><td>Month 4</td><td>City Page</td><td>Uniform Manufacturer Delhi NCR — Serving Noida, Gurgaon, Faridabad</td><td>uniform manufacturer Delhi NCR</td></tr>
+          <tr><td>Month 5</td><td>Blog Post</td><td>"Embroidery vs Screen Printing: Uniform Branding Guide"</td><td>uniform embroidery vs printing India</td></tr>
+          <tr><td>Month 6</td><td>Case Study</td><td>"How a Noida Hotel Saved 35% on Uniforms with Colour Tribe"</td><td>hotel uniform supplier case study</td></tr>
+        </tbody>
+      </table>
+
+      <div class="divider"></div>
+
+      <h3 class="sub-section">Ideal Category Page Structure (Copy This Template)</h3>
+      <ul class="task-list">
+        <li><strong>Section 1 — Hero:</strong> H1 with primary keyword + 2-line subheading with secondary keywords + CTA button ("Get Free Quote") + hero image with alt text.</li>
+        <li><strong>Section 2 — Product Gallery:</strong> 6-8 uniform images with keyword-rich alt text. Product names as H3 tags. Fabric and customization details.</li>
+        <li><strong>Section 3 — Why Choose Colour Tribe:</strong> 4 USP points (Low MOQ, Factory-Direct, Custom Embroidery, Pan-India Delivery). Add trust numbers: "500+ clients", "10 years experience".</li>
+        <li><strong>Section 4 — Customization Options:</strong> Fabrics available, colors, sizes, embroidery options, lead times. This is keyword-rich naturally.</li>
+        <li><strong>Section 5 — Client Logos / Testimonials:</strong> Even 3-4 real client names/logos massively increases trust and CTR from SERPs.</li>
+        <li><strong>Section 6 — FAQ:</strong> 4-6 Q&As with FAQPage schema. This gets you FAQ rich results in Google.</li>
+        <li><strong>Section 7 — Related Products:</strong> Internal links to 3 related category pages.</li>
+        <li><strong>Section 8 — CTA Footer:</strong> Phone, WhatsApp, email. Repeat the contact options clearly.</li>
+      </ul>
+
+    </div>
+  </div>
+
+  <!-- ===== SECTION 9: LINK BUILDING ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">9</div>
+      <h2>Off-Page SEO & Link Building Strategy</h2>
+      <span class="tag">OFF-PAGE</span>
+    </div>
+    <div class="section-body">
+
+      <div class="issue medium">
+        <div class="issue-header">
+          <span class="badge medium">MEDIUM</span>
+          <h3>Business Directory Listings (Domain Authority Boost)</h3>
+        </div>
+        <div class="fix-box">
+          <div class="fix-label">🔧 Priority Directories — List on All of These</div>
+          <ul>
+            <li><strong>IndiaMart.com</strong> — India's #1 B2B marketplace. Create detailed product listings for every uniform category. Highly indexed by Google.</li>
+            <li><strong>TradeIndia.com</strong> — Second largest B2B directory in India.</li>
+            <li><strong>JustDial.com</strong> — Critical for local searches "uniform supplier near me".</li>
+            <li><strong>Sulekha.com</strong> — Service business directory, high DA.</li>
+            <li><strong>ExportersIndia.com</strong> — For export intent keywords.</li>
+            <li><strong>YellowPages India</strong> — Classic business directory, still indexed.</li>
+            <li><strong>Google Business Profile</strong> — Mandatory for local pack ranking.</li>
+            <li><strong>Bing Places for Business</strong> — Often ignored but easy wins for brand visibility.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="issue low">
+        <div class="issue-header">
+          <span class="badge low">LOW</span>
+          <h3>Guest Posting & Industry Links</h3>
+        </div>
+        <div class="fix-box">
+          <div class="fix-label">🔧 Link Building Opportunities</div>
+          <ul>
+            <li>Write guest posts for hospitality industry blogs: "Top Trends in Hotel Staff Uniforms 2026" → link back to your hotel uniforms page.</li>
+            <li>Get listed on hospitality supplier directories like Hotelier India, FnB India.</li>
+            <li>Connect with hotel management college blogs (IHM Delhi etc.) for supplier resource pages.</li>
+            <li>Get featured in local Greater Noida / NCR business news sites.</li>
+            <li>Build backlinks through MSME/startup portals in Uttar Pradesh.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== SECTION 10: PHASE ROADMAP ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">10</div>
+      <h2>Implementation Roadmap — 6-Phase Action Plan</h2>
+      <span class="tag">ROADMAP</span>
+    </div>
+    <div class="section-body">
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot p1">1</div>
+          <div>
+            <div class="phase-title">Phase 1 — Foundation & Indexation Fix</div>
+            <div class="phase-subtitle">Zero traffic until this is done. Highest priority.</div>
+          </div>
+          <span class="phase-timeline p1">Week 1–2</span>
+        </div>
+        <ul class="task-list">
+          <li>Add site to Google Search Console + Bing Webmaster Tools. Submit homepage for indexing.</li>
+          <li>Create and publish <code>robots.txt</code> and <code>sitemap.xml</code></li>
+          <li>Implement SSR / prerendering for React SPA (vite-plugin-prerender minimum)</li>
+          <li>Set up GA4 (Google Analytics 4) with proper event tracking (form submissions, WhatsApp clicks, phone clicks)</li>
+          <li>Fix React Router — ensure BrowserRouter (not HashRouter) is used throughout</li>
+          <li>Verify site is accessible over HTTPS with valid SSL</li>
+          <li>Fix title tag (82 chars → 50 chars) and meta description (222 chars → 155 chars) on homepage</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot p2">2</div>
+          <div>
+            <div class="phase-title">Phase 2 — Schema Markup & Core On-Page SEO</div>
+            <div class="phase-subtitle">Enable rich results eligibility and Google trust signals.</div>
+          </div>
+          <span class="phase-timeline p2">Week 3–4</span>
+        </div>
+        <ul class="task-list">
+          <li>Add LocalBusiness JSON-LD schema to homepage (full address, phone, opening hours)</li>
+          <li>Add Organization schema with sameAs social profiles</li>
+          <li>Implement FAQPage schema on homepage FAQ section</li>
+          <li>Add BreadcrumbList schema on all pages</li>
+          <li>Optimize all H1/H2/H3 tags — ensure exactly one H1 per page</li>
+          <li>Add keyword-rich alt text to all images (audit every single image)</li>
+          <li>Add canonical tags to every page</li>
+          <li>Verify Google Business Profile — add photos, services, business hours, description</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot p3">3</div>
+          <div>
+            <div class="phase-title">Phase 3 — Category Landing Pages (Core SEO Content)</div>
+            <div class="phase-subtitle">Create individual ranking pages for each product type.</div>
+          </div>
+          <span class="phase-timeline p3">Week 5–8</span>
+        </div>
+        <ul class="task-list">
+          <li>Build and launch <code>/hotel-uniforms</code> page — 1,000+ words, full schema, images</li>
+          <li>Build and launch <code>/chef-uniforms</code> page — kitchen & restaurant focus</li>
+          <li>Build and launch <code>/corporate-uniforms</code> page — Delhi NCR corporate market</li>
+          <li>Build and launch <code>/housekeeping-uniforms</code> page — hotels & hospitals</li>
+          <li>Build and launch <code>/restaurant-uniforms</code> page — F&B industry focus</li>
+          <li>Build and launch <code>/about</code> page — factory, team, certifications, GST, facility photos</li>
+          <li>Build and launch <code>/contact</code> page — Google Maps embed, WhatsApp link, quote form</li>
+          <li>Update sitemap.xml with all new URLs and re-submit to GSC</li>
+          <li>Add internal linking across all category pages</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot p4">4</div>
+          <div>
+            <div class="phase-title">Phase 4 — Performance & Core Web Vitals</div>
+            <div class="phase-subtitle">Pass Google's page experience signals for ranking boost.</div>
+          </div>
+          <span class="phase-timeline p4">Week 9–10</span>
+        </div>
+        <ul class="task-list">
+          <li>Run Google PageSpeed Insights on all pages. Target score 80+ on mobile.</li>
+          <li>Implement LazyMotion for Framer Motion (reduces bundle ~80%)</li>
+          <li>Lazy-load Three.js — only load on sections that use 3D, not on page load</li>
+          <li>Convert all images to WebP format (use vite-imagetools or cwebp)</li>
+          <li>Implement image lazy loading with native <code>loading="lazy"</code></li>
+          <li>Set up Vite code splitting: vendor chunk, Three.js chunk, main chunk</li>
+          <li>Add resource hints: <code>&lt;link rel="preload"&gt;</code> for hero image and fonts</li>
+          <li>Target: LCP &lt; 2.5s, CLS &lt; 0.1, INP &lt; 200ms on mobile 3G</li>
+        </ul>
+      </div>
+
+      <div class="phase">
+        <div class="phase-header">
+          <div class="phase-dot p5">5</div>
+          <div>
+            <div class="phase-title">Phase 5 — Content Marketing & Local SEO Dominance</div>
+            <div class="phase-subtitle">Long-term organic traffic via blog + directories.</div>
+          </div>
+          <span class="phase-timeline p5">Month 3–6</span>
+        </div>
+        <ul class="task-list">
+          <li>Publish 2 blog posts per month targeting informational keywords (see content calendar above)</li>
+          <li>Create dedicated city/region landing page: "Uniform Manufacturer Delhi NCR"</li>
+          <li>List on IndiaMart, TradeIndia, JustDial, ExportersIndia, Sulekha</li>
+          <li>Get 10+ Google reviews by reaching out to existing customers</li>
+          <li>Build 10 high-quality backlinks via directory listings and guest posts</li>
+          <li>Create a "Portfolio" or "Case Studies" section showcasing actual clients</li>
+          <li>Add a WhatsApp Business link prominently on every page (header + contact)</li>
+          <li>Share blog content on LinkedIn (corporate buyers are on LinkedIn)</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== SECTION 11: QUICK WINS ===== -->
+  <div class="section">
+    <div class="section-header">
+      <div class="num">11</div>
+      <h2>10 Quick Wins — Do These Today</h2>
+      <span class="tag">ACTION NOW</span>
+    </div>
+    <div class="section-body">
+      <ul class="task-list">
+        <li><strong>Add site to Google Search Console + submit homepage URL for indexing</strong> — Takes 10 minutes. Every day without this = missed indexing opportunity.</li>
+        <li><strong>Shorten homepage meta description to 155 chars</strong> — Live change, immediate SERP display improvement.</li>
+        <li><strong>Shorten title tag to 55 chars</strong> — Stops Google from rewriting your title.</li>
+        <li><strong>Create robots.txt and sitemap.xml</strong> — Deploy these static files today.</li>
+        <li><strong>Create/Claim Google Business Profile</strong> — Business.google.com, takes 30 min.</li>
+        <li><strong>Add LocalBusiness JSON-LD schema to homepage</strong> — Copy-paste the schema template above, fill in your details.</li>
+        <li><strong>Add WhatsApp Business link to header</strong> — <code>https://wa.me/91XXXXXXXXXX</code> — converts B2B leads 3x better than forms in India.</li>
+        <li><strong>List on IndiaMart with detailed product descriptions</strong> — IndiaMart listings rank on Google independently and drive B2B leads immediately.</li>
+        <li><strong>Compress and convert logo.jpeg to WebP</strong> — Replace OG image with 1200×630px branded product photo.</li>
+        <li><strong>Add descriptive alt text to every image on the homepage</strong> — Audit all images in React, add keyword-rich alt props today.</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>ColourTribe.co.in — SEO Audit & Roadmap</strong><br>
+  Prepared by Aditya Kumar Rai · June 2026 · For internal use and team handoff
+  <br><br>
+  <small>Priority: Fix indexation (Phase 1) first → schema (Phase 2) → category pages (Phase 3) → performance (Phase 4) → content/links (Phase 5)</small>
+</footer>
+
+</body>
+</html>

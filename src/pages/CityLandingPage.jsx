@@ -13,8 +13,9 @@ const CityLandingPage = () => {
     if (!VALID_CITIES.includes(citySlug?.toLowerCase())) return;
 
     setPageMeta({
-      title: `Top Uniform Manufacturer in ${city} | Colour Tribe`,
-      description: `Looking for a bulk uniform supplier in ${city}? Colour Tribe manufactures premium chef uniforms, hospital wear, and corporate dress with pan-India delivery.`,
+      title: `Uniform Manufacturer in ${city} | Factory-Direct Supply | Colour Tribe`,
+      description: `Looking for a bulk uniform supplier in ${city}? Colour Tribe manufactures premium chef uniforms, hotel staff wear & corporate workwear. Factory-direct pricing. Pan-India delivery.`,
+      canonicalPath: `/uniform-manufacturer-in-${citySlug}`,
     });
     setJsonLd(`ld-city-${citySlug}`, buildCityLocalBusinessSchema(city));
 

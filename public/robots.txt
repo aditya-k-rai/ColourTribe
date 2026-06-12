@@ -1,9 +1,11 @@
 User-agent: *
 Allow: /
 
-# Block admin routes from all crawlers
+# Block private/admin routes from all crawlers
 Disallow: /admin/
 Disallow: /admin
+Disallow: /firebase/
+Disallow: /api/
 
 # Sitemap location
 Sitemap: https://www.colourtribe.co.in/sitemap.xml

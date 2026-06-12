@@ -15,6 +15,7 @@ const QuotePage = lazy(() => import('./pages/QuotePage'));
 const CityLandingPage = lazy(() => import('./pages/CityLandingPage'));
 const MaterialGuidePage = lazy(() => import('./pages/MaterialGuidePage'));
 const BlogPage = lazy(() => import('./pages/BlogPage'));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 // Admin pages
 const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
@@ -84,6 +85,7 @@ function App() {
           <Route path="uniform-manufacturer-in-:citySlug" element={<CityLandingPage />} />
           <Route path="blog" element={<BlogPage />} />
           <Route path="blog/:slug" element={<BlogPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
 
         <Route path="/admin/login" element={<AdminLogin />} />

@@ -26,9 +26,10 @@ const CONTACT_FAQS = [
 const ContactPage = () => {
   useEffect(() => {
     setPageMeta({
-      title: 'Contact Colour Tribe | Bulk Uniform Orders & Enquiries',
+      title: 'Get a Bulk Uniform Quote | Contact Colour Tribe',
       description:
-        'Get in touch with Colour Tribe for bulk uniform orders, custom embroidery quotes, and B2B enquiries. Call +91 97173 55779 or visit our Greater Noida manufacturing hub.',
+        'Get bulk uniform pricing from Colour Tribe. Call +91 97173 55779, WhatsApp, or visit our factory in Greater Noida. Chef, hotel, corporate & industrial uniforms. Pan-India delivery.',
+      canonicalPath: '/contact',
     });
     setJsonLd('ld-contact-faq', buildFaqSchema(CONTACT_FAQS));
     return () => removeJsonLd('ld-contact-faq');
@@ -157,6 +158,28 @@ const ContactPage = () => {
 
         </div>
       </div>
+
+      {/* Google Maps Embed — Local SEO Signal */}
+      <section className="py-0 bg-cream" aria-label="Our Location on Google Maps">
+        <div className="w-full h-80 md:h-96 overflow-hidden shadow-inner">
+          <iframe
+            title="Colour Tribe Manufacturing Hub — Greater Noida Location"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.0!2d77.5040!3d28.4744!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDI4JzI3LjgiTiA3N8KwMzAnMTQuNCJF!5e0!3m2!1sen!2sin!4v1718000000000!5m2!1sen!2sin"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
+        </div>
+        <div className="bg-navy text-white text-center py-4 px-6">
+          <p className="text-sm font-medium">
+            📍 <strong>Colour Tribe Manufacturing Hub</strong> — KH 58, Tigri Gol Chakkar, Greater Noida, Uttar Pradesh — 201306
+          </p>
+        </div>
+      </section>
+
       {/* AEO FAQ Section */}
       <section className="py-16 px-6 bg-white">
         <div className="container mx-auto max-w-4xl">

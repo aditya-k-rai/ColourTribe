@@ -29,25 +29,36 @@ const CataloguePage = ({ hub = 'products' }) => {
 
   // Set SEO Metadata
   useEffect(() => {
-    let title = 'Premium Uniforms & Workwear | Colour Tribe';
-    if (hub === 'products') title = 'All Products | Colour Tribe';
-    if (hub === 'uniforms') title = 'Professional Uniforms | Colour Tribe';
-    if (hub === 'industries') title = 'Industry Solutions | Colour Tribe';
-    
+    // Hub-level keyword-rich titles
+    const hubTitles = {
+      products: 'Professional Uniforms & Workwear Catalogue | Colour Tribe',
+      uniforms: 'Hotel, Chef & Corporate Uniforms Supplier India | Colour Tribe',
+      industries: 'Industry Uniform Solutions — Hospitality, Corporate & Industrial | Colour Tribe',
+    };
+    const hubDescriptions = {
+      products: "Browse Colour Tribe's full uniform catalogue. Hotel, chef, corporate & housekeeping uniforms — factory-direct B2B pricing, custom embroidery, pan-India delivery. Min. 10 pcs.",
+      uniforms: "Professional uniform supplier India. Hotel staff, chef, housekeeping & corporate uniforms. Factory-direct from Greater Noida. Custom logo embroidery. Bulk B2B pricing.",
+      industries: "Industry-specific uniform solutions — hospitality, healthcare, corporate & industrial sectors. B2B manufacturer in Greater Noida. Factory-direct pricing. Min. 10 pieces.",
+    };
+
+    let title = hubTitles[hub] || hubTitles.products;
+    let description = hubDescriptions[hub] || hubDescriptions.products;
+    let canonicalPath = `/${hub}`;
+
     // Override if a category is selected
     if (selectedCategory !== 'all') {
       const cat = CATEGORIES.find(c => c.id === selectedCategory);
-      if (cat) title = `${cat.name} | Colour Tribe`;
+      if (cat) {
+        title = `${cat.name} Uniform Manufacturer India | Colour Tribe`;
+        description = `Buy ${cat.name} uniforms from Colour Tribe — B2B manufacturer in Greater Noida. Factory-direct pricing, custom logo embroidery, bulk order discounts. Pan-India delivery.`;
+        canonicalPath = `/${hub}/${cat.slug}`;
+      }
     }
 
-    const hubLabel = hub === 'industries' ? 'Industry Solutions' : hub === 'uniforms' ? 'Professional Uniforms' : 'All Products';
-    const description = selectedCategory !== 'all'
-      ? `Shop ${CATEGORIES.find(c => c.id === selectedCategory)?.name || ''} uniforms at Colour Tribe. Factory-direct B2B pricing, custom embroidery, pan-India delivery.`
-      : `Browse Colour Tribe's ${hubLabel} — premium B2B uniforms for hotels, restaurants, hospitals & corporates. Factory-direct pricing, min. 10 pcs.`;
-
-    setPageMeta({ title, description });
+    setPageMeta({ title, description, canonicalPath });
 
     // Breadcrumb JSON-LD
+    const hubLabel = hub === 'industries' ? 'Industry Solutions' : hub === 'uniforms' ? 'Professional Uniforms' : 'All Products';
     const crumbs = [{ name: 'Home', path: '/' }, { name: hubLabel, path: `/${hub}` }];
     if (selectedCategory !== 'all') {
       const cat = CATEGORIES.find(c => c.id === selectedCategory);

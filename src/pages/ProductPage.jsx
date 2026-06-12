@@ -32,8 +32,9 @@ const ProductPage = () => {
 
       // SEO: dynamic title + meta per product
       setPageMeta({
-        title: `${foundProduct.name} | Colour Tribe B2B Uniforms`,
+        title: `${foundProduct.name} | B2B Uniform Manufacturer India | Colour Tribe`,
         description: `Buy ${foundProduct.name} (SKU: ${foundProduct.sku}) from Colour Tribe. Premium quality ${foundCategory?.name || 'uniform'} — custom embroidery, bulk pricing, pan-India delivery. Min. 10 pcs.`,
+        canonicalPath: `/product/${foundProduct.sku}`,
       });
 
       // JSON-LD: Product schema

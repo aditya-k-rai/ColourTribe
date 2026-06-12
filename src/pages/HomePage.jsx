@@ -41,9 +41,10 @@ const HOME_FAQS = [
 const HomePage = () => {
   useEffect(() => {
     setPageMeta({
-      title: 'Colour Tribe | Premium B2B Uniform Manufacturer in India',
+      title: 'B2B Uniform Manufacturer India | Colour Tribe',
       description:
-        'Colour Tribe manufactures custom uniforms for hotels, restaurants, hospitals & corporates. Chef wear, housekeeping, corporate suits — factory-direct pricing, custom embroidery, pan-India delivery.',
+        "India's factory-direct B2B uniform manufacturer. Hotel, chef, corporate & industrial uniforms. Custom logo embroidery. Min. 10 pcs. Pan-India delivery.",
+      canonicalPath: '/',
     });
     setJsonLd('ld-home-faq', buildFaqSchema(HOME_FAQS));
     return () => removeJsonLd('ld-home-faq');
