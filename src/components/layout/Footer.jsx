@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import logo from '../../assets/logo.jpeg';
+import devPhoto from '../../assets/aditya-kumar-rai.png';
 
 const Footer = () => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
@@ -73,8 +74,12 @@ const Footer = () => {
         <div>
           &copy; {new Date().getFullYear()} Colour Tribe. All rights reserved. <br/>Made in Delhi, India 🛡️🏳️
         </div>
-        <div className="glass-dark px-5 py-2 rounded-full text-white/60 text-[10px] sm:text-xs shadow-lg hover:shadow-gold/10 transition-shadow">
-          Developed by <a href="https://aditya-k-rai.github.io/P-Website/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gold transition-colors font-bold tracking-widest pl-1 text-gradient">Aditya Rai</a>
+        <div className="glass-dark px-5 py-2.5 rounded-full text-white/60 text-[10px] sm:text-xs shadow-lg hover:shadow-gold/10 transition-shadow flex items-center gap-2.5">
+          Developed by
+          <a href="https://www.linkedin.com/in/aditya-k-rai/" target="_blank" rel="noopener noreferrer" className="inline-block rounded-full hover:scale-110 transition-transform duration-300" title="Aditya Kumar Rai on LinkedIn">
+            <img src={devPhoto} alt="Aditya Kumar Rai" className="h-6 w-6 rounded-full object-cover ring-2 ring-gold/60 hover:ring-gold transition-all duration-300" />
+          </a>
+          <a href="https://aditya-k-rai.github.io/P-Website/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gold transition-colors font-bold tracking-widest text-gradient" title="Visit Aditya Kumar Rai's Portfolio">Aditya Kumar Rai</a>
         </div>
       </motion.div>
     </footer>
