@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuoteStore } from '../store/quoteStore';
 import { useLeadStore } from '../store/leadStore';
 import { useNavigate } from 'react-router-dom';
+import { setPageMeta } from '../utils/seo';
 
 const QuotePage = () => {
   const { items, submitQuote } = useQuoteStore();
@@ -9,6 +10,14 @@ const QuotePage = () => {
   const navigate = useNavigate();
   
   const [formData, setFormData] = useState({ name, phone, email, businessName, city, message: '' });
+
+  useEffect(() => {
+    setPageMeta({
+      title: 'Request Bulk Uniform Quote | Colour Tribe',
+      description: 'Get a free, factory-direct bulk quote for custom hospitality, chef, corporate, housekeeping & industrial uniforms. Low MOQ of 10 pieces with pan-India delivery.',
+      canonicalPath: '/get-quote',
+    });
+  }, []);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [submittedRef, setSubmittedRef] = useState('');

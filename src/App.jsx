@@ -15,6 +15,7 @@ const QuotePage = lazy(() => import('./pages/QuotePage'));
 const CityLandingPage = lazy(() => import('./pages/CityLandingPage'));
 const MaterialGuidePage = lazy(() => import('./pages/MaterialGuidePage'));
 const BlogPage = lazy(() => import('./pages/BlogPage'));
+const SEOLandingPage = lazy(() => import('./pages/SEOLandingPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage'));
 
 // Admin pages
@@ -85,6 +86,15 @@ function App() {
           <Route path="uniform-manufacturer-in-:citySlug" element={<CityLandingPage />} />
           <Route path="blog" element={<BlogPage />} />
           <Route path="blog/:slug" element={<BlogPage />} />
+          
+          {/* SEO Category Landing Pages */}
+          <Route path="hotel-uniforms" element={<SEOLandingPage slug="hotel-uniforms" />} />
+          <Route path="chef-uniforms" element={<SEOLandingPage slug="chef-uniforms" />} />
+          <Route path="corporate-uniforms" element={<SEOLandingPage slug="corporate-uniforms" />} />
+          <Route path="housekeeping-uniforms" element={<SEOLandingPage slug="housekeeping-uniforms" />} />
+          <Route path="restaurant-uniforms" element={<SEOLandingPage slug="restaurant-uniforms" />} />
+          <Route path="industrial-workwear" element={<SEOLandingPage slug="industrial-workwear" />} />
+
           <Route path="*" element={<NotFoundPage />} />
         </Route>
 
