@@ -22,6 +22,7 @@ const Footer = () => {
   };
 
   return (
+    <>
     <footer className="bg-navy text-white py-16 text-sm overflow-hidden" ref={ref}>
       <motion.div 
         variants={containerVariants}
@@ -69,20 +70,25 @@ const Footer = () => {
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ delay: 0.8, duration: 1 }}
-        className="border-t border-white/10 mt-12 pt-8 flex flex-col items-center text-center text-white/40 font-mono text-xs gap-3"
+        className="border-t border-white/10 mt-12 pt-8 flex flex-col items-center text-center text-white/40 font-mono text-xs"
       >
         <div>
           &copy; {new Date().getFullYear()} Colour Tribe. All rights reserved. <br/>Made in Delhi, India 🛡️🏳️
         </div>
-        <div className="glass-dark px-5 py-2.5 rounded-full text-white/60 text-[10px] sm:text-xs shadow-lg hover:shadow-gold/10 transition-shadow flex items-center gap-2.5">
-          Developed by
-          <a href="https://www.linkedin.com/in/aditya-k-rai/" target="_blank" rel="noopener noreferrer" className="inline-block rounded-full hover:scale-110 transition-transform duration-300" title="Aditya Kumar Rai on LinkedIn">
-            <img src={devPhoto} alt="Aditya Kumar Rai" className="h-6 w-6 rounded-full object-cover ring-2 ring-gold/60 hover:ring-gold transition-all duration-300" />
-          </a>
-          <a href="https://aditya-k-rai.github.io/P-Website/" target="_blank" rel="noopener noreferrer" className="text-white hover:text-gold transition-colors font-bold tracking-widest text-gradient" title="Visit Aditya Kumar Rai's Portfolio">Aditya Kumar Rai</a>
-        </div>
       </motion.div>
     </footer>
+
+    {/* Developer Credit Bar */}
+    <div className="bg-[#080e18] border-t border-white/5 py-2.5 px-4">
+      <div className="flex items-center justify-center gap-2 font-body">
+        <span className="text-white/40 text-[11px] sm:text-xs">Developed by</span>
+        <a href="https://www.linkedin.com/in/aditya-k-rai/" target="_blank" rel="noopener noreferrer" className="flex-shrink-0 rounded-full hover:scale-110 transition-transform duration-300" title="Aditya Kumar Rai on LinkedIn">
+          <img src={devPhoto} alt="Aditya Kumar Rai" className="h-7 w-7 rounded-full object-cover border-2 border-gold shadow-[0_0_8px_rgba(201,168,76,0.3)]" />
+        </a>
+        <a href="https://aditya-k-rai.github.io/P-Website/" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-gold transition-colors duration-300 text-[11px] sm:text-xs font-semibold tracking-wide" title="Visit Aditya Kumar Rai's Portfolio">Aditya Kumar Rai</a>
+      </div>
+    </div>
+    </>
   );
 };
 
