@@ -99,17 +99,29 @@ const ProductPage = () => {
               layoutId={`product-image-${product.sku}`}
               className="bg-[#f0f4f8] w-full aspect-[4/5] rounded-2xl flex items-center justify-center text-9xl relative overflow-hidden group border border-gray-100 shadow-inner"
             >
+               <img 
+                 src={`/products/${product.sku}.png`} 
+                 alt={product.name}
+                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                 onError={(e) => {
+                   e.target.style.display = 'none';
+                   if (e.target.nextSibling) {
+                     e.target.nextSibling.style.display = 'block';
+                   }
+                 }}
+               />
                <motion.span
                  initial={{ scale: 0.8 }}
                  animate={{ scale: 1 }}
                  transition={{ duration: 0.5 }}
                  className="group-hover:scale-110 transition-transform duration-500"
+                 style={{ display: 'none' }}
                >
                  {category?.icon || '👔'}
                </motion.span>
             </motion.div>
             
-            {/* Thumbnails placeholder */}
+            {/* Thumbnails */}
             <div className="flex gap-4">
                {[1,2,3,4].map((thumb, idx) => (
                  <motion.div 
@@ -118,9 +130,20 @@ const ProductPage = () => {
                    animate={{ opacity: 1, y: 0 }}
                    transition={{ delay: 0.3 + (idx * 0.1) }}
                    whileHover={{ scale: 1.05 }}
-                   className="w-1/4 aspect-square bg-[#f0f4f8] rounded-xl border-2 border-transparent hover:border-gold cursor-pointer transition-colors flex items-center justify-center text-3xl shadow-sm hover:shadow-md"
+                   className="w-1/4 aspect-square bg-[#f0f4f8] rounded-xl border-2 border-transparent hover:border-gold cursor-pointer transition-colors flex items-center justify-center text-3xl shadow-sm hover:shadow-md overflow-hidden"
                  >
-                   {category?.icon || '👔'}
+                   <img 
+                     src={`/products/${product.sku}.png`} 
+                     alt={`${product.name} View ${thumb}`}
+                     className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity"
+                     onError={(e) => {
+                       e.target.style.display = 'none';
+                       if (e.target.nextSibling) {
+                         e.target.nextSibling.style.display = 'block';
+                       }
+                     }}
+                   />
+                   <span style={{ display: 'none' }}>{category?.icon || '👔'}</span>
                  </motion.div>
                ))}
             </div>

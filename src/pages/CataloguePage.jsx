@@ -234,10 +234,22 @@ const CataloguePage = ({ hub = 'products' }) => {
                             {/* Animated Background Element */}
                             <div className="absolute inset-0 bg-gradient-to-tr from-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                             
+                            <img 
+                              src={`/products/${product.sku}.png`} 
+                              alt={product.name}
+                              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                              onError={(e) => {
+                                e.target.style.display = 'none';
+                                if (e.target.nextSibling) {
+                                  e.target.nextSibling.style.display = 'block';
+                                }
+                              }}
+                            />
                             <motion.div 
                               whileHover={{ scale: 1.15, rotate: 2 }}
                               transition={{ type: "spring", stiffness: 300, damping: 20 }}
                               className="text-7xl relative z-10 drop-shadow-xl"
+                              style={{ display: 'none' }}
                             >
                               {cat?.icon || '👔'}
                             </motion.div>
